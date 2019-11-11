@@ -1,0 +1,105 @@
+.main-horizontal.navbar-sticky, .main-horizontal.navbar-static {
+    .vs-navbar.vx-navbar, .vs-navbar, .vs-navbar:not(.vx-navbar) {
+        background: white;
+        box-shadow: none;
+    }
+
+    .router-content {
+        margin-top: 0;
+    }
+
+    @media screen and (min-width: 800px) {
+        .vs-con-items {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+    }
+
+    .navbar-user {
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+}
+
+#content-area {
+    .content-wrapper {
+        min-height: auto;
+
+        .router-view {
+            padding: 1rem 2.5rem 2.5rem 2.5rem;
+        }
+    }
+}
+
+.content-with-breadcrumb {
+    .vx-breadcrumb {
+        height: 40px;
+        margin-bottom: 0.5rem;
+
+        > ul > li:last-child .breadcrumb-separator {
+            display: none !important;
+        }
+
+        button + button {
+            margin-left: 15px;
+        }
+    }
+}
+
+.vx-card__body {
+    .vs-con-table {
+        .vs-con-tbody {
+            border: none;
+        }
+    }
+}
+
+.vs-input {
+    width: 100%;
+}
+
+input[type="file"].vs-input--input.normal {
+    padding: 0.5rem 0.7rem;
+}
+
+.vs-button-primary {
+    &.vs-button-filled {
+        &:hover {
+            -webkit-box-shadow: 0 8px 10px -8px rgba(var(--vs-primary),1);
+            box-shadow: 0 8px 10px -8px rgba(var(--vs-primary),1);
+        }
+    }
+}
+
+.select-large {
+    input.vs-select--input {
+        padding: 0.7rem;
+    }
+}
+
+.vx-row.flex-nowrap {
+    flex-wrap: nowrap;
+
+    > .vx-col {
+        flex-grow: 1;
+    }
+}
+
+.suggestions {
+    z-index: 99999;
+}
+
+.con-img-upload {
+    .img-upload {
+        margin: 0 20px 0 0;
+        box-shadow: 0 0 5px 5px rgba(150, 150, 150, .1);
+    }
+
+    .con-input-upload {
+        margin: 0;
+    }
+}

@@ -1,0 +1,32 @@
+#invoice-table {
+    thead th:nth-child(1), tbody td:nth-child(1) {
+        width: 12%;
+    }
+
+    thead th:nth-child(2), tbody td:nth-child(2) {
+        width: 42%;
+    }
+
+    thead th:nth-child(3), tbody td:nth-child(3),
+    thead th:nth-child(4), tbody td:nth-child(4),
+    thead th:nth-child(5), tbody td:nth-child(5),
+    thead th:nth-child(6), tbody td:nth-child(6) {
+        width: 10%;
+    }
+
+    thead th:nth-child(7), tbody td:nth-child(7) {
+        width: 5%;
+
+        button {
+            display: inline-block;
+        }
+
+        button:nth-child(1) {
+            margin-right: 10px;
+        }
+    }
+
+    .tr-values:hover {
+        opacity: 1;
+    }
+}
