@@ -10,8 +10,8 @@ export default {
             form: {
                 reference: '',
                 name: '',
-                price: '',
-                enabled: '',
+                price: 0,
+                enabled: true,
             }
         }
     },

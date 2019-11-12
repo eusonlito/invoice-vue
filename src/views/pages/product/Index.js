@@ -21,7 +21,7 @@ export default {
                         url: 'product-update'
                     },
                     {
-                        title: 'Export',
+                        title: 'Exportar',
                         click: () => this.export()
                     }
                 ]

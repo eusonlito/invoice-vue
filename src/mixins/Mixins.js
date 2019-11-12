@@ -22,24 +22,39 @@ Vue.mixin({
         downloadBlob: (response) => {
             const clickHandler = () => {
                 setTimeout(() => {
-                    window.URL.revokeObjectURL(href);
+                    window.URL.revokeObjectURL(a.href);
                 }, 150);
             };
 
-            const json = response.headers['content-type'] === 'application/json';
-            const data = json ? JSON.stringify(response.data) : response.data;
+            let type = '';
 
-            const href = window.URL.createObjectURL(new Blob([data], {
-                type: response.headers['content-type']
-            }));
+            switch (response.headers['content-type']) {
+                case 'application/json':
+                    type = 'json';
+                    break;
+
+                case 'text/html':
+                    type = 'html';
+                    break;
+
+                default:
+                    type = 'binary';
+                    break;
+            }
 
             const a = document.createElement('a');
 
-            a.href = href;
+            if (type === 'json') {
+                response.data = JSON.stringify(response.data);
+            }
 
-            if (json) {
+            a.href = window.URL.createObjectURL(new Blob([response.data], {
+                type: response.headers['content-type']
+            }));
+
+            if (type === 'json') {
                 a.download = response.config.url.split('/').slice(-2).join('-') + '.json';
-            } else if (response.headers['content-disposition']) {
+            } else if ((type === 'binary') && response.headers['content-disposition']) {
                 a.download = response.headers['content-disposition'].match(/filename="?([^"]+)/)[1];
             }
 

@@ -10,7 +10,8 @@ export default {
             form: {
                 name: '',
                 description: '',
-                enabled: '',
+                default: false,
+                enabled: true,
             }
         }
     },

@@ -25,10 +25,10 @@ export default {
 
             clientAddress: [],
             discount: [],
+            invoice_status: [],
             payment: [],
             product: [],
             shipping: [],
-            status: [],
             tax: [],
 
             submitButton: {
@@ -154,15 +154,14 @@ export default {
 
         getUpdateWrapper(id) {
             return invoice.dispatch('updateWrapper', id).then(({ data }) => {
-                this.setInvoice(data.invoice);
                 this.setClientAddress(data.client_address);
                 this.setDiscount(data.discount);
-                this.setInvoice(data.invoice);
                 this.setInvoiceStatus(data.invoice_status);
                 this.setPayment(data.payment);
                 this.setProduct(data.product);
                 this.setShipping(data.shipping);
                 this.setTax(data.tax);
+                this.setInvoice(data.invoice);
             }).catch(e => {
                 this.$notify.error(this.$vs, e);
             });
@@ -192,15 +191,33 @@ export default {
         },
 
         setDiscount(data) {
+            const selected = data.filter(value => value.default)[0];
+
             this.discount = data;
+
+            if (selected) {
+                this.form.discount_id = selected.id;
+            }
         },
 
         setInvoiceStatus(data) {
-            this.status = data;
+            const selected = data.filter(value => value.default)[0];
+
+            this.invoice_status = data;
+
+            if (selected) {
+                this.form.invoice_status_id = selected.id;
+            }
         },
 
         setPayment(data) {
+            const selected = data.filter(value => value.default)[0];
+
             this.payment = data;
+
+            if (selected) {
+                this.form.payment_id = selected.id;
+            }
         },
 
         setProduct(data) {
@@ -208,11 +225,23 @@ export default {
         },
 
         setShipping(data) {
+            const selected = data.filter(value => value.default)[0];
+
             this.shipping = data;
+
+            if (selected) {
+                this.form.shipping_id = selected.id;
+            }
         },
 
         setTax(data) {
+            const selected = data.filter(value => value.default)[0];
+
             this.tax = data;
+
+            if (selected) {
+                this.form.tax_id = selected.id;
+            }
         },
 
         setNumber(data) {
@@ -375,10 +404,10 @@ export default {
         },
 
         setInvoiceStatusPaid() {
-            const status = this.status.filter(each => each.paid)[0];
+            const invoice_status = this.invoice_status.filter(each => each.paid)[0];
 
-            if (status) {
-                this.form.invoice_status_id = status.id;
+            if (invoice_status) {
+                this.form.invoice_status_id = invoice_status.id;
             }
         },
 

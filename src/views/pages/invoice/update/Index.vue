@@ -158,7 +158,7 @@
 
                     <div class="vx-col">
                         <vs-select v-model="form.invoice_status_id" name="invoice_status_id" label="Estado" class="w-full select-large">
-                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in status" :selected="item.id === form.invoice_status_id" />
+                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in invoice_status" :selected="item.id === form.invoice_status_id" />
                         </vs-select>
                         <span class="text-danger text-sm">{{ errors.first('invoice_status_id') }}</span>
                     </div>

@@ -11,12 +11,17 @@
                 <span class="text-danger text-sm">{{ errors.first('order') }}</span>
             </div>
 
-            <div class="mb-3 mt-6">
+            <div class="mb-3">
                 <vs-checkbox name="paid" v-model="form.paid" class="w-full">Pagada</vs-checkbox>
                 <span class="text-danger text-sm">{{ errors.first('paid') }}</span>
             </div>
 
-            <div class="mb-3 mt-6">
+            <div class="mb-3">
+                <vs-checkbox name="default" v-model="form.default" class="w-full">Por defecto</vs-checkbox>
+                <span class="text-danger text-sm">{{ errors.first('default') }}</span>
+            </div>
+
+            <div class="mb-3">
                 <vs-checkbox name="enabled" v-model="form.enabled" class="w-full">Activo</vs-checkbox>
                 <span class="text-danger text-sm">{{ errors.first('enabled') }}</span>
             </div>

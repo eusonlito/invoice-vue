@@ -9,10 +9,11 @@ export default {
         return {
             form: {
                 name: '',
-                type: '',
-                value: '',
+                type: 'percent',
+                value: 0,
                 description: '',
-                enabled: '',
+                default: false,
+                enabled: true,
             }
         }
     },

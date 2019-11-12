@@ -25,7 +25,7 @@ export default {
                         url: 'invoice-update'
                     },
                     {
-                        title: 'Export',
+                        title: 'Exportar',
                         click: () => this.export()
                     }
                 ]
@@ -58,6 +58,14 @@ export default {
 
         export() {
             return invoice.dispatch('export').then(response => {
+                return this.downloadBlob(response);
+            }).catch(e => {
+                this.$notify.error(this.$vs, e);
+            });
+        },
+
+        preview() {
+            return invoice.dispatch('preview').then(response => {
                 return this.downloadBlob(response);
             }).catch(e => {
                 this.$notify.error(this.$vs, e);

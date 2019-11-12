@@ -9,9 +9,10 @@ export default {
         return {
             form: {
                 name: '',
-                value: '',
+                value: 0,
                 description: '',
-                enabled: '',
+                default: false,
+                enabled: true,
             }
         }
     },

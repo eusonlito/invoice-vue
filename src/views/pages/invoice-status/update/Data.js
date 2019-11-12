@@ -11,7 +11,8 @@ export default {
                 name: '',
                 order: 0,
                 paid: false,
-                enabled: false,
+                default: false,
+                enabled: true,
             }
         }
     },

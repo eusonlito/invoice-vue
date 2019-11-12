@@ -11,6 +11,10 @@ export default {
         return axios.get('/invoice/export');
     },
 
+    preview() {
+        return axios.get('/invoice/preview');
+    },
+
     detail(_, id) {
         return axios.get('/invoice/' + id);
     },

@@ -8,6 +8,7 @@
                     <vs-th>Nombre</vs-th>
                     <vs-th>Tipo</vs-th>
                     <vs-th>Valor</vs-th>
+                    <vs-th>Por defecto</vs-th>
                     <vs-th>Activo</vs-th>
                 </template>
 
@@ -16,6 +17,9 @@
                         <vs-td>{{ item.name }}</vs-td>
                         <vs-td>{{ item.type }}</vs-td>
                         <vs-td>{{ item.value }}</vs-td>
+                        <vs-td>
+                            <vs-chip :color="item.default ? 'success' : 'danger'" class="product-order-status">{{ item.default ? 'Sí' : 'No' }}</vs-chip>
+                        </vs-td>
                         <vs-td>
                             <vs-chip :color="item.enabled ? 'success' : 'danger'" class="product-order-status">{{ item.enabled ? 'Sí' : 'No' }}</vs-chip>
                         </vs-td>
