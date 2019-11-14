@@ -125,7 +125,7 @@
             <vx-card class="mb-base">
                 <div class="vx-row flex-nowrap">
                     <div class="vx-col">
-                        <vs-input type="text" name="number" label="Número" v-model="form.number" v-validate="'required'" data-vv-validate-on="blur" />
+                        <vs-input type="text" name="number" label="Número" v-model="form.number" v-validate="'required'" data-vv-as="Número" data-vv-validate-on="blur" />
                         <span class="text-danger text-sm">{{ errors.first('number') }}</span>
                     </div>
 

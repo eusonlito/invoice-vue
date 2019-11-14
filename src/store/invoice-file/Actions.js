@@ -5,15 +5,15 @@ import axios from '@/services/axios'
 export default {
     main(_, invoice_id) {
         return axios.get('/invoice-file/invoice/' + invoice_id + '/main', {
-            responseType: 'arraybuffer',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            responseType: 'arraybuffer'
         });
     },
 
     download(_, id) {
         return axios.get('/invoice-file/' + id + '/download', {
-            responseType: 'arraybuffer',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            responseType: 'arraybuffer'
         });
     },
 

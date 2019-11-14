@@ -8,16 +8,13 @@ export default {
             breadcrumb: {
                 items: [
                     {
-                        title: 'Configuración',
-                        url: 'invoice-configuration-update'
+                        title: 'Diseño de PDF',
+                        url: 'invoice-configuration-css'
                     }
                 ]
             },
 
             form: {
-                number_prefix: '',
-                number_fill: '',
-                number_next: '',
                 css: '',
             }
         }
@@ -31,12 +28,16 @@ export default {
 
     methods: {
         load() {
-            this.list();
+            return configuration.dispatch('design').then(({ data }) => {
+                this.form.css = data;
+            }).catch(e => {
+                this.$notify.error(this.$vs, e);
+            });
         },
 
-        list() {
-            return configuration.dispatch('list').then(({ data }) => {
-                Object.assign(this.form, data);
+        preview() {
+            return configuration.dispatch('designPreview', this.form).then(response => {
+                return this.downloadBlob(response);
             }).catch(e => {
                 this.$notify.error(this.$vs, e);
             });
@@ -48,7 +49,7 @@ export default {
                     return;
                 }
 
-                return configuration.dispatch('update', { payload: this.form }).then(() => {
+                return configuration.dispatch('updateDesign', this.form).then(() => {
                     this.success();
                 }).catch(e => {
                     this.$notify.error(this.$vs, e);

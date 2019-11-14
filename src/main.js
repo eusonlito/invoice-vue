@@ -17,10 +17,12 @@ import App from './App.vue';
 import theme from '@/plugins/Theme';
 import axios from '@/plugins/Axios';
 import notify from '@/plugins/Notify';
+import validation from '@/plugins/Validation';
 
 Vue.use(theme);
 Vue.use(axios);
 Vue.use(notify);
+Vue.use(validation);
 
 // Globally Registered Components
 import '@/components.js';
@@ -36,11 +38,6 @@ import '@/filters/Filters';
 
 // Mixins
 import '@/mixins/Mixins';
-
-// VeeValidate
-import VeeValidate from 'vee-validate';
-
-Vue.use(VeeValidate);
 
 // Vuejs - Vue wrapper for hammerjs
 import { VueHammer } from 'vue2-hammer';

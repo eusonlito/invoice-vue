@@ -66,6 +66,10 @@ input[type="file"].vs-input--input.normal {
     padding: 0.5rem 0.7rem;
 }
 
+.vs-button + .vs-button {
+    margin-left: 20px;
+}
+
 .vs-button-primary {
     &.vs-button-filled {
         &:hover {

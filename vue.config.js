@@ -1,10 +1,12 @@
 module.exports = {
     publicPath: '/',
+
+    filenameHashing: true,
+
     configureWebpack: {
         optimization: {
-            splitChunks: {
-                chunks: 'all'
-            }
+            splitChunks: false
         }
     }
 }
+

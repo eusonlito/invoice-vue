@@ -23,14 +23,19 @@ export default [
                 slug: 'invoice-update'
             },
             {
+                url: { name: 'invoice-status-index' },
+                name: 'Estados',
+                slug: 'invoice-status-index'
+            },
+            {
                 url: { name: 'invoice-configuration-update' },
                 name: 'Configuración',
                 slug: 'invoice-configuration-update'
             },
             {
-                url: { name: 'invoice-status-index' },
-                name: 'Estados',
-                slug: 'invoice-status-index'
+                url: { name: 'invoice-configuration-css' },
+                name: 'Diseño de PDF',
+                slug: 'invoice-configuration-css'
             }
         ]
     },

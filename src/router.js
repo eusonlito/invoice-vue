@@ -122,6 +122,15 @@ const router = new Router({
                 },
 
                 {
+                    path: '/invoice-configuration/css',
+                    name: 'invoice-configuration-css',
+                    component: () => import('@/views/pages/invoice-configuration/Css.vue'),
+                    meta: {
+                        middleware: [Session, Auth, Company]
+                    }
+                },
+
+                {
                     path: '/payment',
                     name: 'payment-index',
                     component: () => import('@/views/pages/payment/Index.vue'),
