@@ -10,7 +10,7 @@
                 <!-- If it's link -->
                 <div v-else-if="item.url" class="menu-link">
                     <navbar-horizontal-menu-item class="relative py-4 cursor-pointer" :to="item.slug !== 'external' ? item.url : null" :href="item.slug === 'external' ? item.url : null" :icon="item.icon" :target="item.target" :isDisabled="item.isDisabled" :slug="item.slug">
-                        <span class="truncate">{{ $t(item.i18n) || item.name }}</span>
+                        <span class="truncate">{{ item.name }}</span>
                         <vs-chip :color="item.tagColor" v-if="item.tag">{{ item.tag }}</vs-chip>
                     </navbar-horizontal-menu-item>
                 </div>

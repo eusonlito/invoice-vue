@@ -1,37 +1,37 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     list(_, payload) {
-        return axios.get('/invoice', { params: payload });
+        return request.get('/invoice', { params: payload });
     },
 
     export() {
-        return axios.get('/invoice/export');
+        return request.get('/invoice/export');
     },
 
     preview() {
-        return axios.get('/invoice/preview');
+        return request.get('/invoice/preview');
     },
 
     detail(_, id) {
-        return axios.get('/invoice/' + id);
+        return request.get('/invoice/' + id);
     },
 
     createWrapper() {
-        return axios.get('/w/invoice');
+        return request.get('/w/invoice');
     },
 
     updateWrapper(_, id) {
-        return axios.get('/w/invoice/' + id);
+        return request.get('/w/invoice/' + id);
     },
 
     createOrUpdate(_, { id, payload }) {
         if (id) {
-            return axios.patch('/invoice/' + id, payload);
+            return request.patch('/invoice/' + id, payload);
         }
 
-        return axios.post('/invoice', payload);
+        return request.post('/invoice', payload);
     }
 }

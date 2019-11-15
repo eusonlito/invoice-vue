@@ -1,10 +1,10 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     auth({ commit }, payload) {
-        return axios.post('/user/auth', payload).then(response => {
+        return request.post('/user/auth', payload).then(response => {
             return commit('UPDATE', { ...response.data.user, ...{ token: response.data.token }});
         });
     },
@@ -14,9 +14,9 @@ export default {
             return;
         }
 
-        axios.get('/user/auth/logout').catch(() => {});
-
-        return commit('LOGOUT');
+        return request.get('/user/auth/logout').finally(() => {
+            return commit('LOGOUT');
+        });
     },
 
     refresh({ commit }) {
@@ -24,43 +24,43 @@ export default {
             return;
         }
 
-        return axios.get('/user/auth/refresh').then(response => {
+        return request.get('/user/auth/refresh').then(response => {
             return commit('UPDATE', { token: response.data.token });
         });
     },
 
     signup({ commit }, payload) {
-        return axios.post('/user', payload).then(response => {
+        return request.post('/user', payload).then(response => {
             return commit('UPDATE', { ...response.data.user, ...{ token: response.data.token }});
         });
     },
 
     confirmStart(_, payload) {
-        return axios.post('/user/confirm', payload);
+        return request.post('/user/confirm', payload);
     },
 
     confirmFinish({ commit }, hash) {
-        return axios.post('/user/confirm/' + hash).then(response => {
+        return request.post('/user/confirm/' + hash).then(response => {
             return commit('UPDATE', response.data);
         });
     },
 
     passwordResetStart(_, payload) {
-        return axios.post('/user/password/reset', payload);
+        return request.post('/user/password/reset', payload);
     },
 
     passwordResetFinish(_, { hash, payload }) {
-        return axios.post('/user/password/reset/' + hash, payload);
+        return request.post('/user/password/reset/' + hash, payload);
     },
 
     updateProfile({ commit }, payload) {
-        return axios.patch('/user', payload).then(response => {
+        return request.patch('/user', payload).then(response => {
             return commit('UPDATE', response.data);
         });
     },
 
     updatePassword({ commit }, payload) {
-        return axios.patch('/user/password', payload).then(response => {
+        return request.patch('/user/password', payload).then(response => {
             return commit('UPDATE', response.data);
         });
     },
@@ -70,7 +70,7 @@ export default {
             return;
         }
 
-        return axios.get('/user').then(response => {
+        return request.get('/user').then(response => {
             return commit('UPDATE', response.data);
         }).catch(() => {
             return commit('LOGOUT');

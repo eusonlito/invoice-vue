@@ -1,25 +1,25 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     list() {
-        return axios.get('/tax');
+        return request.get('/tax');
     },
 
     enabled() {
-        return axios.get('/tax/enabled');
+        return request.get('/tax/enabled');
     },
 
     detail(_, id) {
-        return axios.get('/tax/' + id);
+        return request.get('/tax/' + id);
     },
 
     createOrUpdate(_, { id, payload }) {
         if (id) {
-            return axios.patch('/tax/' + id, payload);
+            return request.patch('/tax/' + id, payload);
         }
 
-        return axios.post('/tax', payload);
+        return request.post('/tax', payload);
     },
 }

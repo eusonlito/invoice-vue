@@ -1,25 +1,25 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     list() {
-        return axios.get('/payment');
+        return request.get('/payment');
     },
 
     enabled() {
-        return axios.get('/payment/enabled');
+        return request.get('/payment/enabled');
     },
 
     detail(_, id) {
-        return axios.get('/payment/' + id);
+        return request.get('/payment/' + id);
     },
 
     createOrUpdate(_, { id, payload }) {
         if (id) {
-            return axios.patch('/payment/' + id, payload);
+            return request.patch('/payment/' + id, payload);
         }
 
-        return axios.post('/payment', payload);
+        return request.post('/payment', payload);
     },
 }

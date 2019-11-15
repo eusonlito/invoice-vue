@@ -1,5 +1,7 @@
 'use strict';
 
+import cache from '@/services/cache/Local'
+
 export default {
     LOAD(state) {
         this.commit('REFRESH');
@@ -8,10 +10,7 @@ export default {
             return;
         }
 
-        state.company = localStorage.getItem('company');
-        state.company = state.company ? JSON.parse(state.company) : null;
-
-        return state.company;
+        return state.company = cache.get('company');
     },
 
     UPDATE(state, payload) {
@@ -21,7 +20,7 @@ export default {
 
         state.company = {...state.company, ...payload};
 
-        localStorage.setItem('company', JSON.stringify(state.company))
+        cache.set('company', state.company);
 
         return state.company;
     },
@@ -33,14 +32,12 @@ export default {
 
         state.interval = setInterval(() => {
             if (state.company) {
-                this.dispatch('detail');
+                this.dispatch('detail').catch(() => {});
             }
         }, 60000);
     },
 
     LOGOUT(state) {
-        localStorage.removeItem('company');
-
         state.company = null;
     }
 }

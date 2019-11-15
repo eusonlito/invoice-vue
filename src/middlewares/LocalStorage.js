@@ -1,12 +1,11 @@
 'use strict';
 
+import cache from '@/services/cache/Local'
+
 export default function({ next, router }) {
-    try {
-        localStorage.setItem('local-storage-test', Math.random());
-        localStorage.removeItem('local-storage-test');
-    } catch (e) {
-        return router.push({ name: 'cookie-unavailable' }).catch(() => {});
+    if (cache.enabled()) {
+        return next();
     }
 
-    return next();
+    return router.push({ name: 'cookie-unavailable' }).catch(() => {});
 }

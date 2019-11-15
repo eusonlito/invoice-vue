@@ -17,12 +17,12 @@
                                     </div>
 
                                     <div class="mb-6">
-                                        <vs-input type="password" name="password" label-placeholder="Nueva contraseña" v-model="form.password" v-validate="'required|min:6'" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
+                                        <vs-input type="password" name="password" label-placeholder="Nueva contraseña" v-model="form.password" v-validate="'required|min:6'" data-vv-as="Contraseña" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
                                         <span class="text-danger text-sm">{{ errors.first('password') }}</span>
                                     </div>
 
                                     <div class="mb-6">
-                                        <vs-input type="password" name="password_repeat" label-placeholder="Repite la contraseña" v-model="form.password_repeat" v-validate="'required|min:6'" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
+                                        <vs-input type="password" name="password_repeat" label-placeholder="Repite la contraseña" v-model="form.password_repeat" v-validate="'required|min:6'" data-vv-as="Repetición" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
                                         <span class="text-danger text-sm">{{ errors.first('password_repeat') }}</span>
                                     </div>
 

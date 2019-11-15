@@ -1,5 +1,7 @@
 'use strict';
 
+import cacheLocal from '@/services/cache/Local'
+import cacheSession from '@/services/cache/Session'
 import company from '@/store/company'
 import jwt from '@/services/jwt'
 
@@ -11,8 +13,7 @@ export default {
             return state.user;
         }
 
-        state.user = localStorage.getItem('user');
-        state.user = state.user ? JSON.parse(state.user) : null;
+        state.user = cacheLocal.get('user');
 
         this.commit('TOKEN');
 
@@ -26,7 +27,7 @@ export default {
 
         state.user = {...state.user, ...payload};
 
-        localStorage.setItem('user', JSON.stringify(state.user));
+        cacheLocal.set('user', state.user);
 
         this.commit('TOKEN');
 
@@ -50,12 +51,12 @@ export default {
     },
 
     LOGOUT(state) {
-        localStorage.removeItem('user');
-
         state.user = null;
 
-        this.commit('TOKEN');
+        cacheLocal.clear();
+        cacheSession.clear();
 
+        this.commit('TOKEN');
         company.commit('LOGOUT');
     }
 }

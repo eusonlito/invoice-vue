@@ -1,24 +1,24 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     main(_, invoice_id) {
-        return axios.get('/invoice-file/invoice/' + invoice_id + '/main', {
+        return request.get('/invoice-file/invoice/' + invoice_id + '/main', {
             headers: { 'Content-Type': 'application/json' },
             responseType: 'arraybuffer'
         });
     },
 
     download(_, id) {
-        return axios.get('/invoice-file/' + id + '/download', {
+        return request.get('/invoice-file/' + id + '/download', {
             headers: { 'Content-Type': 'application/json' },
             responseType: 'arraybuffer'
         });
     },
 
     detail(_, id) {
-        return axios.get('/invoice-file/' + id);
+        return request.get('/invoice-file/' + id);
     },
 
     create(_, { invoice_id, file }) {
@@ -26,10 +26,10 @@ export default {
 
         data.append('file', file);
 
-        return axios.post('/invoice-file/invoice/' + invoice_id, data);
+        return request.post('/invoice-file/invoice/' + invoice_id, data);
     },
 
     delete(_, id) {
-        return axios.delete('/invoice-file/' + id);
+        return request.delete('/invoice-file/' + id);
     }
 }

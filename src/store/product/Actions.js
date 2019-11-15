@@ -1,29 +1,29 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     list() {
-        return axios.get('/product');
+        return request.get('/product');
     },
 
     enabled() {
-        return axios.get('/product/enabled');
+        return request.get('/product/enabled');
     },
 
     export() {
-        return axios.get('/product/export');
+        return request.get('/product/export');
     },
 
     detail(_, id) {
-        return axios.get('/product/' + id);
+        return request.get('/product/' + id);
     },
 
     createOrUpdate(_, { id, payload }) {
         if (id) {
-            return axios.patch('/product/' + id, payload);
+            return request.patch('/product/' + id, payload);
         }
 
-        return axios.post('/product', payload);
+        return request.post('/product', payload);
     },
 }

@@ -70,6 +70,12 @@ input[type="file"].vs-input--input.normal {
     margin-left: 20px;
 }
 
+#invoice-table {
+    .vs-button + .vs-button {
+        margin-left: 0;
+    }
+}
+
 .vs-button-primary {
     &.vs-button-filled {
         &:hover {

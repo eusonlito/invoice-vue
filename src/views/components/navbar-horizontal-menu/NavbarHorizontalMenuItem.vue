@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-horizontal-menu-item"
+  <div class="h-nav-menu-item"
     :class="[
       {'h-nav-active-item text-primary font-medium' : activeLink},
       {'disabled-item pointer-events-none' : isDisabled},

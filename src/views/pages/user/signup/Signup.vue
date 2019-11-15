@@ -21,24 +21,24 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <vs-input type="email" name="user" label-placeholder="Correo electrónico" v-model="form.user" v-validate="'required|email'" icon="icon icon-user" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
+                                        <vs-input type="email" name="user" label-placeholder="Correo electrónico" v-model="form.user" v-validate="'required|email'" data-vv-as="Correo electrónico" icon="icon icon-user" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
                                         <span class="text-danger text-sm">{{ errors.first('user') }}</span>
                                     </div>
 
                                     <div class="vx-row mb-8">
                                         <div class="vx-col sm:w-1/2 w-full">
-                                            <vs-input type="password" name="password" label-placeholder="Contraseña" v-model="form.password" v-validate="'required|min:6'" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
+                                            <vs-input type="password" name="password" label-placeholder="Contraseña" v-model="form.password" v-validate="'required|min:6'" data-vv-as="Contraseña" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
                                             <span class="text-danger text-sm">{{ errors.first('password') }}</span>
                                         </div>
 
                                         <div class="vx-col sm:w-1/2 w-full">
-                                            <vs-input type="password" name="password_repeat" label-placeholder="Repite la contraseña" v-model="form.password_repeat" v-validate="'required|min:6'" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
+                                            <vs-input type="password" name="password_repeat" label-placeholder="Repite la contraseña" v-model="form.password_repeat" v-validate="'required|min:6'" data-vv-as="Repetición" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
                                             <span class="text-danger text-sm">{{ errors.first('password_repeat') }}</span>
                                         </div>
                                     </div>
 
                                     <div class="mb-6">
-                                        <vs-input type="text" name="name" label-placeholder="Nombre" v-model="form.name" v-validate="'required'" data-vv-validate-on="blur" />
+                                        <vs-input type="text" name="name" label-placeholder="Nombre" v-model="form.name" v-validate="'required'" data-vv-as="Nombre" data-vv-validate-on="blur" />
                                         <span class="text-danger text-sm">{{ errors.first('name') }}</span>
                                     </div>
 

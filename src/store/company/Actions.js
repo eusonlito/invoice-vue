@@ -1,16 +1,16 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     detail({ commit }) {
-        return axios.get('/company').then(response => {
+        return request.get('/company').then(response => {
             return commit('UPDATE', response.data);
-        }).catch(() => {});
+        });
     },
 
     update({ commit }, payload) {
-        return axios.patch('/company', payload).then(response => {
+        return request.patch('/company', payload).then(response => {
             return commit('UPDATE', response.data);
         });
     },

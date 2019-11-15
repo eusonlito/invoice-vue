@@ -1,25 +1,25 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     list() {
-        return axios.get('/invoice-status');
+        return request.get('/invoice-status');
     },
 
     enabled() {
-        return axios.get('/invoice-status/enabled');
+        return request.get('/invoice-status/enabled');
     },
 
     detail(_, id) {
-        return axios.get('/invoice-status/' + id);
+        return request.get('/invoice-status/' + id);
     },
 
     createOrUpdate(_, { id, payload }) {
         if (id) {
-            return axios.patch('/invoice-status/' + id, payload);
+            return request.patch('/invoice-status/' + id, payload);
         }
 
-        return axios.post('/invoice-status', payload);
+        return request.post('/invoice-status', payload);
     },
 }

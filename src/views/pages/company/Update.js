@@ -1,7 +1,8 @@
 'use strict';
 
-import axios from '@/services/axios';
 import company from '@/store/company';
+import country from '@/store/country';
+import state from '@/store/state';
 
 export default {
     data() {
@@ -63,7 +64,7 @@ export default {
         },
 
         getCountries() {
-            return axios.get('/country').then(({ data }) => {
+            return country.dispatch('list').then(({ data }) => {
                 this.countries = data;
 
                 if (this.country_id) {
@@ -79,7 +80,7 @@ export default {
                 return [];
             }
 
-            return axios.get('/state/' + this.form.country_id).then(({ data }) => {
+            return state.dispatch('list', { country_id: this.form.country_id }).then(({ data }) => {
                 this.states = data;
 
                 if (this.state_id && (this.country_id === this.form.country_id)) {

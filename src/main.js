@@ -15,12 +15,12 @@ import App from './App.vue';
 
 // Plugins
 import theme from '@/plugins/Theme';
-import axios from '@/plugins/Axios';
+import jwt from '@/plugins/Jwt';
 import notify from '@/plugins/Notify';
 import validation from '@/plugins/Validation';
 
 Vue.use(theme);
-Vue.use(axios);
+Vue.use(jwt);
 Vue.use(notify);
 Vue.use(validation);
 
@@ -29,9 +29,6 @@ import '@/components.js';
 
 // Vue Router
 import router from '@/router';
-
-// i18n
-import i18n from '@/services/i18n';
 
 // Filters
 import '@/filters/Filters';
@@ -69,6 +66,5 @@ Vue.config.productionTip = false
 
 new Vue({
     router,
-    i18n,
     render: h => h(App)
 }).$mount('#app');

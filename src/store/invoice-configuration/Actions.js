@@ -1,28 +1,28 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     list() {
-        return axios.get('/invoice-configuration');
+        return request.get('/invoice-configuration');
     },
 
     design() {
-        return axios.get('/invoice-configuration/css');
+        return request.get('/invoice-configuration/css');
     },
 
     designPreview(_, payload) {
-        return axios.post('/invoice-configuration/css/preview', payload, {
+        return request.post('/invoice-configuration/css/preview', payload, {
             headers: { 'Content-Type': 'application/json' },
             responseType: 'arraybuffer'
         });
     },
 
     update(_, { payload }) {
-        return axios.patch('/invoice-configuration', payload);
+        return request.patch('/invoice-configuration', payload);
     },
 
     updateDesign(_, payload) {
-        return axios.patch('/invoice-configuration/css', payload);
+        return request.patch('/invoice-configuration/css', payload);
     }
 }

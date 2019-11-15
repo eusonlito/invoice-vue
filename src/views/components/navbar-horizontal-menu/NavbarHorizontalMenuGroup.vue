@@ -19,7 +19,7 @@
             :svgClasses = "iconClasses" />
 
           <!-- Group Name -->
-          <span class="truncate mr-3 select-none">{{ $t(group.i18n) || group.name }}</span>
+          <span class="truncate mr-3 select-none">{{ group.name }}</span>
         </span>
 
         <!-- Group Collapse Icon -->
@@ -32,7 +32,7 @@
 
       <!-- Group Items -->
       <transition name="fade-bottom-2x">
-        <ul :style="styleItems" class="h-nav-group-items navbar-horizontal-menu-dd absolute shadow-drop py-2" v-show="openItems" ref="childDropdown">
+        <ul :style="styleItems" class="h-nav-group-items h-nav-menu-dd absolute shadow-drop py-2" v-show="openItems" ref="childDropdown">
           <li v-for="(item, index) in group.submenu" :key="index">
 
             <navbar-horizontal-menu-group
@@ -51,7 +51,7 @@
               :icon   = "itemIcon"
               :slug   = "item.slug"
               :target = "item.target">
-                <span class="truncate">{{ $t(item.i18n) || item.name }}</span>
+                <span class="truncate">{{ item.name }}</span>
                 <vs-chip class="ml-auto" :color="item.tagColor" v-if="item.tag">{{ item.tag }}</vs-chip>
             </navbar-horizontal-menu-item>
 

@@ -1,25 +1,25 @@
 'use strict';
 
-import axios from '@/services/axios'
+import request from '@/services/request'
 
 export default {
     list() {
-        return axios.get('/discount');
+        return request.get('/discount');
     },
 
     enabled() {
-        return axios.get('/discount/enabled');
+        return request.get('/discount/enabled');
     },
 
     detail(_, id) {
-        return axios.get('/discount/' + id);
+        return request.get('/discount/' + id);
     },
 
     createOrUpdate(_, { id, payload }) {
         if (id) {
-            return axios.patch('/discount/' + id, payload);
+            return request.patch('/discount/' + id, payload);
         }
 
-        return axios.post('/discount', payload);
+        return request.post('/discount', payload);
     },
 }
