@@ -94,6 +94,25 @@ const router = new Router({
                 },
 
                 {
+                    path: '/invoice-serie',
+                    name: 'invoice-serie-index',
+                    component: () => import('@/views/pages/invoice-serie/Index.vue'),
+                    meta: {
+                        middleware: [Session, Auth, Company]
+                    }
+                },
+
+                {
+                    path: '/invoice-serie/update/:id?',
+                    name: 'invoice-serie-update',
+                    component: () => import('@/views/pages/invoice-serie/update/Index.vue'),
+                    meta: {
+                        middleware: [Session, Auth, Company],
+                        parent: 'invoice-serie-index'
+                    }
+                },
+
+                {
                     path: '/invoice-status',
                     name: 'invoice-status-index',
                     component: () => import('@/views/pages/invoice-status/Index.vue'),
@@ -109,24 +128,6 @@ const router = new Router({
                     meta: {
                         middleware: [Session, Auth, Company],
                         parent: 'invoice-status-index'
-                    }
-                },
-
-                {
-                    path: '/invoice-configuration',
-                    name: 'invoice-configuration-update',
-                    component: () => import('@/views/pages/invoice-configuration/Update.vue'),
-                    meta: {
-                        middleware: [Session, Auth, Company]
-                    }
-                },
-
-                {
-                    path: '/invoice-configuration/css',
-                    name: 'invoice-configuration-css',
-                    component: () => import('@/views/pages/invoice-configuration/Css.vue'),
-                    meta: {
-                        middleware: [Session, Auth, Company]
                     }
                 },
 

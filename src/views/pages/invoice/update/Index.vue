@@ -125,6 +125,13 @@
             <vx-card class="mb-base">
                 <div class="vx-row flex-nowrap">
                     <div class="vx-col">
+                        <vs-select v-model="form.invoice_serie_id" name="invoice_serie_id" label="Serie" class="w-full select-large" v-validate="'required'" data-vv-as="Serie" data-vv-validate-on="blur">
+                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in invoice_serie" :selected="item.id === form.invoice_serie_id" />
+                        </vs-select>
+                        <span class="text-danger text-sm">{{ errors.first('invoice_serie_id') }}</span>
+                    </div>
+
+                    <div class="vx-col">
                         <vs-input type="text" name="number" label="Número" v-model="form.number" v-validate="'required'" data-vv-as="Número" data-vv-validate-on="blur" />
                         <span class="text-danger text-sm">{{ errors.first('number') }}</span>
                     </div>

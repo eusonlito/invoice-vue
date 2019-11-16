@@ -8,6 +8,7 @@
             <vs-table :data="list" @selected="update" search pagination max-items="20">
                 <template slot="thead">
                     <vs-th sort-key="number">Número</vs-th>
+                    <vs-th>Serie</vs-th>
                     <vs-th>Estado</vs-th>
                     <vs-th sort-key="billing_name">Cliente</vs-th>
                     <vs-th sort-key="amount_total">Importe</vs-th>
@@ -19,6 +20,7 @@
                 <template slot-scope="{data}">
                     <vs-tr :data="item.id" :key="index" v-for="(item, index) in data">
                         <vs-td>{{ item.number }}</vs-td>
+                        <vs-td>{{ item.serie ? item.serie.name : '-' }}</vs-td>
                         <vs-td>{{ item.status.name }}</vs-td>
                         <vs-td>{{ item.billing_name }}</vs-td>
 

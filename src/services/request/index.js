@@ -16,26 +16,26 @@ export default {
         });
     },
 
-    post(path, payload) {
-        return axios.post(path, payload).then(data => {
+    post(path, payload, config) {
+        return axios.post(path, payload, config).then(data => {
             return cache.remove(path, data);
         });
     },
 
-    put(path, payload) {
-        return axios.put(path, payload).then(data => {
+    put(path, payload, config) {
+        return axios.put(path, payload, config).then(data => {
             return cache.remove(path, data);
         });
     },
 
-    patch(path, payload) {
-        return axios.patch(path, payload).then(data => {
+    patch(path, payload, config) {
+        return axios.patch(path, payload, config).then(data => {
             return cache.remove(path, data);
         });
     },
 
-    delete(path, payload) {
-        return axios.delete(path, payload).then(data => {
+    delete(path, payload, config) {
+        return axios.delete(path, payload, config).then(data => {
             return cache.remove(path, data);
         });
     }

@@ -28,14 +28,9 @@ export default [
                 slug: 'invoice-status-index'
             },
             {
-                url: { name: 'invoice-configuration-update' },
-                name: 'Configuración',
-                slug: 'invoice-configuration-update'
-            },
-            {
-                url: { name: 'invoice-configuration-css' },
-                name: 'Diseño de PDF',
-                slug: 'invoice-configuration-css'
+                url: { name: 'invoice-serie-index' },
+                name: 'Series',
+                slug: 'invoice-serie-index'
             }
         ]
     },

@@ -1,21 +1,14 @@
 'use strict';
 
-import configuration from '@/store/invoice-configuration';
+import serie from '@/store/invoice-serie';
 
 export default {
+    name: 'update-css',
+
     data() {
         return {
-            breadcrumb: {
-                items: [
-                    {
-                        title: 'Diseño de PDF',
-                        url: 'invoice-configuration-css'
-                    }
-                ]
-            },
-
             form: {
-                css: '',
+                css: ''
             }
         }
     },
@@ -28,7 +21,11 @@ export default {
 
     methods: {
         load() {
-            return configuration.dispatch('design').then(({ data }) => {
+            this.getInvoiceSerieCss();
+        },
+
+        getInvoiceSerieCss() {
+            return serie.dispatch('css', this.$route.params.id).then(({ data }) => {
                 this.form.css = data;
             }).catch(e => {
                 this.$notify.error(this.$vs, e);
@@ -36,7 +33,7 @@ export default {
         },
 
         preview() {
-            return configuration.dispatch('designPreview', this.form).then(response => {
+            return serie.dispatch('cssPreview', { id: this.$route.params.id, payload: this.form }).then(response => {
                 return this.downloadBlob(response);
             }).catch(e => {
                 this.$notify.error(this.$vs, e);
@@ -49,16 +46,12 @@ export default {
                     return;
                 }
 
-                return configuration.dispatch('updateDesign', this.form).then(() => {
-                    this.success();
+                return serie.dispatch('cssUpdate', { id: this.$route.params.id, payload: this.form }).then(() => {
+                    this.$notify.success(this.$vs, 'OK :)');
                 }).catch(e => {
                     this.$notify.error(this.$vs, e);
                 })
             });
-        },
-
-        success() {
-            this.$notify.success(this.$vs, 'OK :)');
         }
     },
 

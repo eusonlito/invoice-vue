@@ -25,6 +25,7 @@ export default {
 
             clientAddress: [],
             discount: [],
+            invoice_serie: [],
             invoice_status: [],
             payment: [],
             product: [],
@@ -86,6 +87,7 @@ export default {
                 client_address_billing_id: null,
                 client_address_shipping_id: null,
                 discount_id: null,
+                invoice_serie_id: null,
                 invoice_status_id: null,
                 payment_id: null,
                 shipping_id: null,
@@ -136,15 +138,7 @@ export default {
 
         getCreateWrapper() {
             return invoice.dispatch('createWrapper').then(({ data }) => {
-                this.setClientAddress(data.client_address);
-                this.setDiscount(data.discount);
-                this.setInvoiceStatus(data.invoice_status);
-                this.setPayment(data.payment);
-                this.setProduct(data.product);
-                this.setShipping(data.shipping);
-                this.setTax(data.tax);
-
-                this.setNumber(data.invoice_configuration);
+                this.setRelations(data);
 
                 this.form.date_at = new Date;
             }).catch(e => {
@@ -154,17 +148,22 @@ export default {
 
         getUpdateWrapper(id) {
             return invoice.dispatch('updateWrapper', id).then(({ data }) => {
-                this.setClientAddress(data.client_address);
-                this.setDiscount(data.discount);
-                this.setInvoiceStatus(data.invoice_status);
-                this.setPayment(data.payment);
-                this.setProduct(data.product);
-                this.setShipping(data.shipping);
-                this.setTax(data.tax);
+                this.setRelations(data);
                 this.setInvoice(data.invoice);
             }).catch(e => {
                 this.$notify.error(this.$vs, e);
             });
+        },
+
+        setRelations(data) {
+            this.setClientAddress(data.client_address);
+            this.setDiscount(data.discount);
+            this.setInvoiceSerie(data.invoice_serie);
+            this.setInvoiceStatus(data.invoice_status);
+            this.setPayment(data.payment);
+            this.setProduct(data.product);
+            this.setShipping(data.shipping);
+            this.setTax(data.tax);
         },
 
         setInvoice(data) {
@@ -176,6 +175,7 @@ export default {
             this.form.discount_id = data.discount ? data.discount.id : null;
             this.form.payment_id = data.payment ? data.payment.id : null;
             this.form.shipping_id = data.shipping ? data.shipping.id : null;
+            this.form.invoice_serie_id = data.serie ? data.serie.id : null;
             this.form.invoice_status_id = data.status ? data.status.id : null;
             this.form.tax_id = data.tax ? data.tax.id : null;
 
@@ -197,6 +197,16 @@ export default {
 
             if (selected) {
                 this.form.discount_id = selected.id;
+            }
+        },
+
+        setInvoiceSerie(data) {
+            const selected = data.filter(value => value.default)[0];
+
+            this.invoice_serie = data;
+
+            if (selected) {
+                this.form.invoice_serie_id = selected.id;
             }
         },
 
@@ -245,10 +255,14 @@ export default {
         },
 
         setNumber(data) {
-            let number = data.number_next || '1';
+            if (!data || this.id) {
+                return;
+            }
+
+            let number = data.number_next.toString() || '1';
 
             if (data.number_fill) {
-                number = number.padStart(data.number_fill, '0');
+                number = number.padStart(data.number_fill.toString(), '0');
             }
 
             if (data.number_prefix) {
@@ -309,7 +323,19 @@ export default {
             return Math.random().toString(36).substr(2, 9);
         },
 
-        paymentUpdate() {
+        invoiceSerieChange() {
+            if (!this.form.invoice_serie_id) {
+                return;
+            }
+
+            const serie = this.invoice_serie.filter(each => each.id === this.form.invoice_serie_id)[0];
+
+            if (serie) {
+                this.setNumber(serie);
+            }
+        },
+
+        paymentChange() {
             if (!this.form.payment_id || this.form.comment_public) {
                 return;
             }
@@ -490,8 +516,12 @@ export default {
     },
 
     watch: {
+        ['form.invoice_serie_id']() {
+            this.invoiceSerieChange();
+        },
+
         ['form.payment_id']() {
-            this.paymentUpdate();
+            this.paymentChange();
         },
 
         ['form.discount_id']() {

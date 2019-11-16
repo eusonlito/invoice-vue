@@ -11,10 +11,6 @@ export default {
         return request.get('/invoice/export');
     },
 
-    preview() {
-        return request.get('/invoice/preview');
-    },
-
     detail(_, id) {
         return request.get('/invoice/' + id);
     },

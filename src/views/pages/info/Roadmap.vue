@@ -9,8 +9,8 @@
                 <p class="mb-5 text-center">El camino a seguir será (más o menos por prioridad).</p>
 
                 <vs-list class="mb-5">
-                    <vs-list-item title="Personalización del PDF de factura mediante subida de CSS"></vs-list-item>
                     <vs-list-item title="Importación de Facturas/Clientes/Productos"></vs-list-item>
+                    <vs-list-item title="Facturas recurrentes"></vs-list-item>
                     <vs-list-item title="Firma digital integrada para el PDF de factura"></vs-list-item>
                     <vs-list-item title="Logo de empresa para PDF de factura"></vs-list-item>
                 </vs-list>

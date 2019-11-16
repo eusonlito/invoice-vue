@@ -44,6 +44,7 @@ export default {
                 amount_due: parseFloat(item.amount_due),
                 date_at: item.date_at,
                 paid_at: item.paid_at,
+                serie: item.serie,
                 status: item.status
             };
         },
@@ -58,14 +59,6 @@ export default {
 
         export() {
             return invoice.dispatch('export').then(response => {
-                return this.downloadBlob(response);
-            }).catch(e => {
-                this.$notify.error(this.$vs, e);
-            });
-        },
-
-        preview() {
-            return invoice.dispatch('preview').then(response => {
                 return this.downloadBlob(response);
             }).catch(e => {
                 this.$notify.error(this.$vs, e);
