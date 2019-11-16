@@ -34,7 +34,7 @@ export default {
             product.dispatch('list').then(({ data }) => {
                 this.list = data;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -42,7 +42,7 @@ export default {
             return product.dispatch('export').then(response => {
                 return this.downloadBlob(response);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 

@@ -94,13 +94,13 @@ export default {
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return company.dispatch('update', this.form).then(() => {
-                    this.$notify.success(this.$vs, 'OK :)');
+                    this.notifySuccess('OK :)');
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 });
             });
         }

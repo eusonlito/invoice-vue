@@ -21,13 +21,13 @@ export default {
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return user.dispatch('passwordResetStart', this.form).then(() => {
-                    this.$notify.success(this.$vs, 'Revisa tu correo para finalizar el proceso (y la bandeja de SPAM, que nunca se sabe)');
+                    this.notifySuccess('Revisa tu correo para finalizar el proceso (y la bandeja de SPAM, que nunca se sabe)');
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 });
             });
         }

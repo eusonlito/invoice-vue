@@ -60,7 +60,7 @@ export default {
             return discount.dispatch('list').then(({ data }) => {
                 this.discount = data;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -68,7 +68,7 @@ export default {
             return payment.dispatch('list').then(({ data }) => {
                 this.payment = data;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -76,7 +76,7 @@ export default {
             return shipping.dispatch('list').then(({ data }) => {
                 this.shipping = data;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -84,7 +84,7 @@ export default {
             return tax.dispatch('list').then(({ data }) => {
                 this.tax = data;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -97,26 +97,26 @@ export default {
                 this.form.shipping_id = data.shipping ? data.shipping.id : null;
                 this.form.tax_id = data.tax ? data.tax.id : null;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 client.dispatch('createOrUpdate', { id: this.id, payload: this.form }).then(({ data }) => {
                     this.success(data);
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 })
             });
         },
 
         success(data) {
-            this.$notify.success(this.$vs, 'OK :)');
+            this.notifySuccess('OK :)');
 
             if (!this.id) {
                 this.$router.push({ name: this.$route.name , params: { id: data.id }});

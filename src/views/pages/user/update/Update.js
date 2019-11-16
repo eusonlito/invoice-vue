@@ -44,13 +44,13 @@ export default {
         submitProfile() {
             this.$validator.validateAll('profile').then(result => {
                 if (!result) {
-                    return false;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return user.dispatch('updateProfile', this.form.profile).then(() => {
-                    this.$notify.success(this.$vs, 'OK :)');
+                    this.notifySuccess('OK :)');
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 });
             });
         },
@@ -58,13 +58,13 @@ export default {
         submitSecurity() {
             this.$validator.validateAll('security').then(result => {
                 if (!result) {
-                    return false;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return user.dispatch('updatePassword', this.form.security).then(() => {
-                    this.$notify.success(this.$vs, 'OK :)');
+                    this.notifySuccess('OK :)');
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 });
             });
         }

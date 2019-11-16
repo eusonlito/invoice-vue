@@ -25,13 +25,13 @@ export default {
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return user.dispatch('signup', this.form).then(() => {
                     this.$router.push({ name: 'dashboard-index' })
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 });
             });
         }

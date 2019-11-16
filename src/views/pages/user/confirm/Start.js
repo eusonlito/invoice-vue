@@ -21,13 +21,13 @@ export default {
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return user.dispatch('confirmStart', this.form).then(() => {
-                    this.$notify.success(this.$vs, 'Correo enviado, revisa tu bandeja de entrada :)');
+                    this.notifySuccess('Correo enviado, revisa tu bandeja de entrada :)');
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 });
             });
         }

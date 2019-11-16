@@ -23,7 +23,7 @@ export default {
             return client.dispatch('address', this.$route.params.id).then(({ data }) => {
                 this.list = data;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 

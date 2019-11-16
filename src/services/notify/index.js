@@ -40,6 +40,10 @@ export default {
     },
 
     errorText(error) {
+        if (Array.isArray(error)) {
+            return error[0];
+        }
+
         if ((error.request.responseType === 'arraybuffer') && error.response.data) {
             error.response.data = JSON.parse(Buffer.from(error.response.data).toString('utf8'));
         }

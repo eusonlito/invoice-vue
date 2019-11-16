@@ -40,19 +40,19 @@ export default {
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return client.dispatch('addressUpdate', { id: this.$route.params.id, payload: this.form }).then(({ data }) => {
                     this.success(data);
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 })
             });
         },
 
         success(data) {
-            this.$notify.success(this.$vs, 'OK :)');
+            this.notifySuccess('OK :)');
             Object.assign(this.form, data);
         }
     }

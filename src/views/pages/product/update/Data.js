@@ -33,26 +33,26 @@ export default {
             return product.dispatch('detail', this.$route.params.id).then(({ data }) => {
                 Object.assign(this.form, data);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return product.dispatch('createOrUpdate', { id: this.$route.params.id, payload: this.form }).then(({ data }) => {
                     this.success(data);
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 })
             });
         },
 
         success(data) {
-            this.$notify.success(this.$vs, 'OK :)');
+            this.notifySuccess('OK :)');
 
             if (!this.$route.params.id) {
                 this.$router.push({ name: this.$route.name , params: { id: data.id }});

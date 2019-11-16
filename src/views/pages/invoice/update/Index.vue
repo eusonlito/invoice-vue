@@ -47,7 +47,7 @@
                             <input type="hidden" name="client_address_billing_id" v-model="form.client_address_billing_id" />
 
                             <vue-simple-suggest :list="client_address_billing" v-model="form.billing_name" display-attribute="name" value-attribute="name" :filter-by-query="true" v-on:select="clientAddressBillingSelected">
-                                <vs-input type="text" name="billing_name" placeholder="Nombre" v-model="form.billing_name" v-validate="'required'" data-vv-validate-on="blur" />
+                                <vs-input type="text" name="billing_name" placeholder="Nombre" v-model="form.billing_name" v-validate="'required'" data-vv-as="Datos de facturación" data-vv-validate-on="blur" />
                             </vue-simple-suggest>
 
                             <span class="text-danger text-sm">{{ errors.first('billing_name') }}</span>
@@ -333,10 +333,8 @@
                 <file-upload :files="files" :upload="fileUpload" :remove="fileDelete" :open="fileView"></file-upload>
             </vx-card>
 
-            <vx-card class="mb-base">
-                <div class="text-right">
-                    <vs-button button="submit" :disabled="!validate || submitButton.disabled">{{ submitButton.text }}</vs-button>
-                </div>
+            <vx-card class="mb-base text-right">
+                <vs-button button="submit" :disabled="!validate || submitButton.disabled">{{ submitButton.text }}</vs-button>
             </vx-card>
         </form>
     </div>

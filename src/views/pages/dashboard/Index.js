@@ -47,7 +47,7 @@ export default{
                 this.setRevenueComparison(data);
                 this.setInvoicePaid(data);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 

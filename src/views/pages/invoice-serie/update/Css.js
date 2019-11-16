@@ -28,7 +28,7 @@ export default {
             return serie.dispatch('css', this.$route.params.id).then(({ data }) => {
                 this.form.css = data;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -36,20 +36,20 @@ export default {
             return serie.dispatch('cssPreview', { id: this.$route.params.id, payload: this.form }).then(response => {
                 return this.downloadBlob(response);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return serie.dispatch('cssUpdate', { id: this.$route.params.id, payload: this.form }).then(() => {
-                    this.$notify.success(this.$vs, 'OK :)');
+                    this.notifySuccess('OK :)');
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 })
             });
         }

@@ -53,7 +53,7 @@ export default {
             return invoice.dispatch('list').then(({ data }) => {
                 this.list = data.map(item => this.item(item));
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -61,7 +61,7 @@ export default {
             return invoice.dispatch('export').then(response => {
                 return this.downloadBlob(response);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -69,7 +69,7 @@ export default {
             return file.dispatch('main', selected.id).then(response => {
                 return this.downloadBlob(response);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 

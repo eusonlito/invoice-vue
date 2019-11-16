@@ -142,7 +142,7 @@ export default {
 
                 this.form.date_at = new Date;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -151,7 +151,7 @@ export default {
                 this.setRelations(data);
                 this.setInvoice(data.invoice);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -449,7 +449,7 @@ export default {
             return file.dispatch('download', selected.id).then(response => {
                 return this.downloadBlob(response);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -457,7 +457,7 @@ export default {
             return file.dispatch('create', { invoice_id: this.form.id, file: selected }).then(({ data }) => {
                 this.files.push(data);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
@@ -465,14 +465,14 @@ export default {
             return file.dispatch('delete', selected.id).then(() => {
                 this.files = this.files.filter(data => data.id !== selected.id);
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 
         submit() {
-            this.$validator.validateAll().then(result => {
+            this.$validator.validate().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 this.submitButton.disabled = true;
@@ -491,7 +491,7 @@ export default {
         },
 
         success(data) {
-            this.$notify.success(this.$vs, 'OK :)');
+            this.notifySuccess('OK :)');
 
             if (!this.id) {
                 this.$router.push({ name: this.$route.name , params: { id: data.id }});
@@ -504,7 +504,7 @@ export default {
         },
 
         error(e) {
-            this.$notify.error(this.$vs, e);
+            this.notifyError(e);
 
             this.submitButton.disabled = false;
             this.submitButton.text = 'Guardar';

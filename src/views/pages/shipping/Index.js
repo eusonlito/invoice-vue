@@ -30,7 +30,7 @@ export default {
             shipping.dispatch('list').then(({ data }) => {
                 this.list = data;
             }).catch(e => {
-                this.$notify.error(this.$vs, e);
+                this.notifyError(e);
             });
         },
 

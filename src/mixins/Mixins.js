@@ -4,7 +4,15 @@ import Vue from 'vue';
 
 Vue.mixin({
     methods: {
-        isMenuGroupSelected: (route, list) => {
+        notifySuccess(message) {
+            this.$notify.success(this.$vs, message);
+        },
+
+        notifyError(message) {
+            this.$notify.error(this.$vs, message);
+        },
+
+        isMenuGroupSelected(route, list) {
             const name = route.name;
             const slug = route.meta ? route.meta.parent : undefined;
 
@@ -19,7 +27,7 @@ Vue.mixin({
             return list.some(check);
         },
 
-        downloadBlob: (response) => {
+        downloadBlob(response) {
             const clickHandler = () => {
                 setTimeout(() => {
                     window.URL.revokeObjectURL(a.href);
@@ -67,7 +75,7 @@ Vue.mixin({
             return a;
         },
 
-        stringToHex: (string) => {
+        stringToHex(string) {
             if (string.length === 0) {
                 return 0;
             }

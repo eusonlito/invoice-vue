@@ -22,14 +22,14 @@ export default {
         submit() {
             this.$validator.validateAll().then(result => {
                 if (!result) {
-                    return;
+                    return this.notifyError(this.errors.all());
                 }
 
                 return user.dispatch('passwordResetFinish', { hash: this.$route.params.hash, payload: this.form }).then(() => {
-                    this.$notify.success(this.$vs, 'Tu contraseña ha sido actualizada :)');
+                    this.notifySuccess('Tu contraseña ha sido actualizada :)');
                     this.form.password = this.form.password_repeat = '';
                 }).catch(e => {
-                    this.$notify.error(this.$vs, e);
+                    this.notifyError(e);
                 });
             });
         },
