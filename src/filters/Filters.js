@@ -21,3 +21,7 @@ Vue.filter('percent', (total, partial) => {
 Vue.filter('date', value => {
     return value.split(' ')[0];
 });
+
+Vue.filter('stringToHex', string => {
+    return Vue.stringToHex(string);
+});

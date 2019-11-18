@@ -27,19 +27,7 @@ export default {
         return request.post('/client', payload);
     },
 
-    address(_, id) {
-        return request.get('/client-address/' + id);
-    },
-
-    addressEnabled() {
-        return request.get('/client-address/enabled');
-    },
-
-    addressUpdate(_, { id, payload }) {
-        if (payload.id) {
-            return request.patch('/client-address/' + id + '/' + payload.id, payload);
-        }
-
-        return request.post('/client-address/' + id, payload);
+    delete(_, id) {
+        return request.delete('/client/' + id);
     },
 }

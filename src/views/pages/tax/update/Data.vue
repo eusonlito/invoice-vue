@@ -7,7 +7,7 @@
             </div>
 
             <div class="mb-3">
-                <vs-input type="number" label="Valor" v-model="form.value" v-validate="'required'" data-vv-as="Valor" data-vv-validate-on="blur" />
+                <vs-input type="number" name="value" label="Valor" v-model="form.value" v-validate="'required'" data-vv-as="Valor" data-vv-validate-on="blur" />
                 <span class="text-danger text-sm">{{ errors.first('value') }}</span>
             </div>
 
@@ -28,6 +28,7 @@
         </vx-card>
 
         <div class="text-right">
+            <vs-button v-if="id" @click="deleteConfirm()" color="danger" type="flat" class="mr-10">Borrar</vs-button>
             <vs-button button="submit" :disabled="!validate">Guardar</vs-button>
         </div>
     </form>

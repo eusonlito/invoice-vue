@@ -1,6 +1,6 @@
 'use strict';
 
-import client from '@/store/client';
+import address from '@/store/client-address';
 
 export default {
     name: 'update-address-form',
@@ -11,6 +11,8 @@ export default {
 
     data() {
         return {
+            id: this.item.id,
+
             form: {
                 id: this.item.id,
                 name: this.item.name,
@@ -43,7 +45,11 @@ export default {
                     return this.notifyError(this.errors.all());
                 }
 
-                return client.dispatch('addressUpdate', { id: this.$route.params.id, payload: this.form }).then(({ data }) => {
+                return address.dispatch('createOrUpdate', {
+                    client_id: this.$route.params.id,
+                    id: this.form.id,
+                    payload: this.form
+                }).then(({ data }) => {
                     this.success(data);
                 }).catch(e => {
                     this.notifyError(e);
@@ -54,6 +60,23 @@ export default {
         success(data) {
             this.notifySuccess('OK :)');
             Object.assign(this.form, data);
-        }
+        },
+
+        deleteConfirm() {
+            this.confirmDanger({
+                title: 'Confirmar Borrado',
+                text: 'Sólo será posible si no tiene ninguna factura asociada. Recuerda que puedes desactivarlo para evitar salir en los selectores.',
+                accept: this.delete
+            });
+        },
+
+        delete() {
+            return address.dispatch('delete', this.form.id).then(() => {
+                this.notifySuccess('OK :)');
+                this.$emit('addressDeleted');
+            }).catch(e => {
+                this.notifyError(e);
+            });
+        },
     }
 }

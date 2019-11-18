@@ -22,4 +22,8 @@ export default {
 
         return request.post('/discount', payload);
     },
+
+    delete(_, id) {
+        return request.delete('/discount/' + id);
+    },
 }

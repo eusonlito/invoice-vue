@@ -3,31 +3,26 @@
 require('dotenv').config({ path: '../.env' });
 
 import Vue from 'vue';
-import * as Sentry from '@sentry/browser';
-import * as Integrations from '@sentry/integrations';
 
-Sentry.init({
-  dsn: process.env.SENTRY_DSN,
-  integrations: [new Integrations.Vue({Vue, attachProps: true})],
-});
+// Sentry
+import sentry from '@/plugins/Sentry';
 
-import App from './App.vue';
+Vue.use(sentry);
 
-// Plugins
+// Components
+import '@/plugins/Components.js';
+
 import theme from '@/plugins/Theme';
 import jwt from '@/plugins/Jwt';
-import notify from '@/plugins/Notify';
+import view from '@/plugins/View';
 import validation from '@/plugins/Validation';
 
 Vue.use(theme);
 Vue.use(jwt);
-Vue.use(notify);
+Vue.use(view);
 Vue.use(validation);
 
-// Globally Registered Components
-import '@/components.js';
-
-// Vue Router
+// Router
 import router from '@/router';
 
 // Filters
@@ -35,15 +30,6 @@ import '@/filters/Filters';
 
 // Mixins
 import '@/mixins/Mixins';
-
-// Vuejs - Vue wrapper for hammerjs
-import { VueHammer } from 'vue2-hammer';
-
-Vue.use(VueHammer);
-
-// PrismJS
-import 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
 
 // Feather font icon
 import '@/assets/css/iconfont.css';
@@ -58,11 +44,10 @@ import '@/assets/css/main.css';
 // Custom
 import '@/assets/scss/custom.scss';
 
-// Vue select css
-// Note: In latest version you have to add it separately
-// import 'vue-select/dist/vue-select.css';
-
 Vue.config.productionTip = false
+
+// App
+import App from './App.vue';
 
 new Vue({
     router,

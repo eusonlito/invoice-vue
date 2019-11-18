@@ -22,4 +22,8 @@ export default {
 
         return request.post('/invoice-status', payload);
     },
+
+    delete(_, id) {
+        return request.delete('/invoice-status/' + id);
+    },
 }

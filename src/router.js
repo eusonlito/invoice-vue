@@ -3,15 +3,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Auth from '@/middlewares/Auth';
+import Cache from '@/middlewares/Cache';
 import Company from '@/middlewares/Company';
-import LocalStorage from '@/middlewares/LocalStorage';
 import Session from '@/middlewares/Session';
 
 Vue.use(Router)
 
 const router = new Router({
     mode: 'history',
-    base: process.env.BASE_URL,
+    base: process.env.VUE_APP_BASE_URL,
     scrollBehavior() {
         return { x: 0, y: 0 }
     },
@@ -25,7 +25,7 @@ const router = new Router({
                     name: 'dashboard-index',
                     component: () => import('@/views/pages/dashboard/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -34,7 +34,7 @@ const router = new Router({
                     name: 'client-index',
                     component: () => import('@/views/pages/client/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -43,7 +43,7 @@ const router = new Router({
                     name: 'client-update',
                     component: () => import('@/views/pages/client/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -61,7 +61,7 @@ const router = new Router({
                     name: 'discount-index',
                     component: () => import('@/views/pages/discount/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -70,7 +70,7 @@ const router = new Router({
                     name: 'discount-update',
                     component: () => import('@/views/pages/discount/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company],
+                        middleware: [Cache, Session, Auth, Company],
                         parent: 'discount-index'
                     }
                 },
@@ -80,7 +80,7 @@ const router = new Router({
                     name: 'invoice-index',
                     component: () => import('@/views/pages/invoice/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -89,7 +89,7 @@ const router = new Router({
                     name: 'invoice-update',
                     component: () => import('@/views/pages/invoice/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -98,7 +98,7 @@ const router = new Router({
                     name: 'invoice-serie-index',
                     component: () => import('@/views/pages/invoice-serie/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -107,7 +107,7 @@ const router = new Router({
                     name: 'invoice-serie-update',
                     component: () => import('@/views/pages/invoice-serie/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company],
+                        middleware: [Cache, Session, Auth, Company],
                         parent: 'invoice-serie-index'
                     }
                 },
@@ -117,7 +117,7 @@ const router = new Router({
                     name: 'invoice-status-index',
                     component: () => import('@/views/pages/invoice-status/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -126,7 +126,7 @@ const router = new Router({
                     name: 'invoice-status-update',
                     component: () => import('@/views/pages/invoice-status/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company],
+                        middleware: [Cache, Session, Auth, Company],
                         parent: 'invoice-status-index'
                     }
                 },
@@ -136,7 +136,7 @@ const router = new Router({
                     name: 'payment-index',
                     component: () => import('@/views/pages/payment/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -145,7 +145,7 @@ const router = new Router({
                     name: 'payment-update',
                     component: () => import('@/views/pages/payment/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company],
+                        middleware: [Cache, Session, Auth, Company],
                         parent: 'payment-index'
                     }
                 },
@@ -155,7 +155,7 @@ const router = new Router({
                     name: 'shipping-index',
                     component: () => import('@/views/pages/shipping/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -164,7 +164,7 @@ const router = new Router({
                     name: 'product-index',
                     component: () => import('@/views/pages/product/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -173,7 +173,7 @@ const router = new Router({
                     name: 'product-update',
                     component: () => import('@/views/pages/product/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company],
+                        middleware: [Cache, Session, Auth, Company],
                         parent: 'product-index'
                     }
                 },
@@ -183,7 +183,7 @@ const router = new Router({
                     name: 'shipping-update',
                     component: () => import('@/views/pages/shipping/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company],
+                        middleware: [Cache, Session, Auth, Company],
                         parent: 'shipping-index'
                     }
                 },
@@ -193,7 +193,7 @@ const router = new Router({
                     name: 'tax-index',
                     component: () => import('@/views/pages/tax/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company]
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 
@@ -202,7 +202,7 @@ const router = new Router({
                     name: 'tax-update',
                     component: () => import('@/views/pages/tax/update/Index.vue'),
                     meta: {
-                        middleware: [Session, Auth, Company],
+                        middleware: [Cache, Session, Auth, Company],
                         parent: 'tax-index'
                     }
                 },
@@ -212,7 +212,7 @@ const router = new Router({
                     name: 'user-update',
                     component: () => import('@/views/pages/user/update/Update.vue'),
                     meta: {
-                        middleware: [Session, Auth]
+                        middleware: [Cache, Session, Auth]
                     }
                 }
             ],
@@ -225,42 +225,42 @@ const router = new Router({
                     path: '/user/auth',
                     name: 'user-auth',
                     component: () => import('@/views/pages/user/auth/Auth.vue'),
-                    meta: { middleware: [LocalStorage] }
+                    meta: { middleware: [Cache] }
                 },
 
                 {
                     path: '/user/signup',
                     name: 'user-signup',
                     component: () => import('@/views/pages/user/signup/Signup.vue'),
-                    meta: { middleware: [LocalStorage] }
+                    meta: { middleware: [Cache] }
                 },
 
                 {
                     path: '/user/confirm',
                     name: 'user-confirm-start',
                     component: () => import('@/views/pages/user/confirm/Start.vue'),
-                    meta: { middleware: [LocalStorage] }
+                    meta: { middleware: [Cache] }
                 },
 
                 {
                     path: '/user/confirm/:hash',
                     name: 'user-confirm-finish',
                     component: () => import('@/views/pages/user/confirm/Finish.vue'),
-                    meta: { middleware: [LocalStorage, Session] }
+                    meta: { middleware: [Cache, Session] }
                 },
 
                 {
                     path: '/user/password/reset',
                     name: 'user-password-reset-start',
                     component: () => import('@/views/pages/user/password-reset/Start.vue'),
-                    meta: { middleware: [LocalStorage] }
+                    meta: { middleware: [Cache] }
                 },
 
                 {
                     path: '/user/password/reset/:hash',
                     name: 'user-password-reset-finish',
                     component: () => import('@/views/pages/user/password-reset/Finish.vue'),
-                    meta: { middleware: [LocalStorage] }
+                    meta: { middleware: [Cache] }
                 },
 
                 {

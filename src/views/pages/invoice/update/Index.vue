@@ -334,6 +334,7 @@
             </vx-card>
 
             <vx-card class="mb-base text-right">
+                <vs-button v-if="id" @click="deleteConfirm()" color="danger" type="flat" class="mr-10">Borrar</vs-button>
                 <vs-button button="submit" :disabled="!validate || submitButton.disabled">{{ submitButton.text }}</vs-button>
             </vx-card>
         </form>

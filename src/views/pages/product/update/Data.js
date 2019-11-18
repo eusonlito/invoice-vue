@@ -7,6 +7,8 @@ export default {
 
     data() {
         return {
+            id: this.$route.params.id,
+
             form: {
                 reference: '',
                 name: '',
@@ -57,7 +59,24 @@ export default {
             if (!this.$route.params.id) {
                 this.$router.push({ name: this.$route.name , params: { id: data.id }});
             }
-        }
+        },
+
+        deleteConfirm() {
+            this.confirmDanger({
+                title: 'Confirmar Borrado',
+                text: 'Si quieres evitar que esté disponible para las facturas lo mejor es simplemente desactivarlo :)',
+                accept: this.delete
+            });
+        },
+
+        delete() {
+            return product.dispatch('delete', this.$route.params.id).then(() => {
+                this.notifySuccess('OK :)');
+                this.$router.push({ name: 'product-index' });
+            }).catch(e => {
+                this.notifyError(e);
+            });
+        },
     },
 
     created() {

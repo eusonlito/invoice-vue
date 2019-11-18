@@ -9,6 +9,8 @@ export default {
             return false
         }
 
+        this.version();
+
         return true;
     },
 
@@ -63,7 +65,16 @@ export default {
     },
 
     tag(tag) {
-        return 'cache-' + tag;
+        return 'cache-' + process.env.VUE_APP_CACHE_VERSION + '-' + tag;
+    },
+
+    version() {
+        if (sessionStorage.getItem('version') === process.env.VUE_APP_CACHE_VERSION) {
+            return;
+        }
+
+        sessionStorage.clear();
+        sessionStorage.setItem('version', process.env.VUE_APP_CACHE_VERSION);
     },
 
     key(value) {

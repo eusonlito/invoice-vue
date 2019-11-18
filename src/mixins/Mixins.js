@@ -5,11 +5,15 @@ import Vue from 'vue';
 Vue.mixin({
     methods: {
         notifySuccess(message) {
-            this.$notify.success(this.$vs, message);
+            return this.$notify.success(this.$vs, message);
         },
 
         notifyError(message) {
-            this.$notify.error(this.$vs, message);
+            return this.$notify.error(this.$vs, message);
+        },
+
+        confirmDanger(options) {
+            return this.$dialog.confirmDanger(this.$vs, options);
         },
 
         isMenuGroupSelected(route, list) {

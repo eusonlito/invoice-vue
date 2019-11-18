@@ -15,7 +15,7 @@ export default {
             breadcrumb: {
                 items: [
                     {
-                        title: 'Invoices',
+                        title: 'Facturas',
                         url: 'invoice-index'
                     }
                 ]
@@ -508,7 +508,24 @@ export default {
 
             this.submitButton.disabled = false;
             this.submitButton.text = 'Guardar';
-        }
+        },
+
+        deleteConfirm() {
+            this.confirmDanger({
+                title: 'Confirmar Borrado',
+                text: 'Recuerda que esta acción no se puede deshacer!',
+                accept: this.delete
+            });
+        },
+
+        delete() {
+            return invoice.dispatch('delete', this.$route.params.id).then(() => {
+                this.notifySuccess('OK :)');
+                this.$router.push({ name: 'invoice-index' });
+            }).catch(e => {
+                this.notifyError(e);
+            });
+        },
     },
 
     created() {

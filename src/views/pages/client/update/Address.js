@@ -1,6 +1,6 @@
 'use strict';
 
-import client from '@/store/client';
+import address from '@/store/client-address';
 import updateAddressForm from './AddressForm.vue';
 
 export default {
@@ -20,8 +20,10 @@ export default {
         },
 
         getClientAddress() {
-            return client.dispatch('address', this.$route.params.id).then(({ data }) => {
-                this.list = data;
+            return address.dispatch('list', this.$route.params.id).then(({ data }) => {
+                this.list = data.map(item => {
+                    return {...item, ...{ key: item.id } };
+                });
             }).catch(e => {
                 this.notifyError(e);
             });
@@ -29,7 +31,12 @@ export default {
 
         duplicate() {
             this.list.push({});
-        }
+        },
+
+        addressDeleted(index) {
+            this.$refs.list[index].form = {};
+            this.list.splice(index, 1);
+        },
     },
 
     created() {

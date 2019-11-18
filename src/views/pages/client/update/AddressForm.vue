@@ -67,6 +67,7 @@
             </div>
 
             <div class="text-right mt-5">
+                <vs-button v-if="id" @click="deleteConfirm()" color="danger" type="flat" class="mr-10">Borrar</vs-button>
                 <vs-button button="submit" :disabled="!validate">Guardar</vs-button>
             </div>
         </form>

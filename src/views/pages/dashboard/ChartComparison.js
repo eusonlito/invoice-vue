@@ -10,7 +10,8 @@ export default {
     props: {
         title: String,
         categories: Array,
-        series: Array
+        series: Array,
+        total: Boolean
     },
 
     data() {

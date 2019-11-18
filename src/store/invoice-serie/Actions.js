@@ -36,5 +36,9 @@ export default {
 
     cssUpdate(_, { id, payload }) {
         return request.patch('/invoice-serie/' + id + '/css', payload);
-    }
+    },
+
+    delete(_, id) {
+        return request.delete('/invoice-serie/' + id);
+    },
 }

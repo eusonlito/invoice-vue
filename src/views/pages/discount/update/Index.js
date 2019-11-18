@@ -12,7 +12,7 @@ export default {
             breadcrumb: {
                 items: [
                     {
-                        title: 'Discounts',
+                        title: 'Descuentos',
                         url: 'discount-index'
                     }
                 ]

@@ -22,4 +22,8 @@ export default {
 
         return request.post('/payment', payload);
     },
+
+    delete(_, id) {
+        return request.delete('/payment/' + id);
+    },
 }
