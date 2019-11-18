@@ -128,9 +128,9 @@ export default {
             this.form.company_name = company.state.company.name;
             this.form.company_address = company.state.company.address;
             this.form.company_city = company.state.company.city;
-            this.form.company_state = company.state.company.state.name;
+            this.form.company_state = company.state.company.state;
             this.form.company_postal_code = company.state.company.postal_code;
-            this.form.company_country = company.state.company.state.country.name;
+            this.form.company_country = company.state.company.country.name;
             this.form.company_tax_number = company.state.company.tax_number;
 
             this.itemAdded(0);

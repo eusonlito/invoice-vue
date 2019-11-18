@@ -1,6 +1,7 @@
 'use strict';
 
 import invoice from '@/store/invoice';
+import serie from '@/store/invoice-serie';
 import stat from '@/views/pages/invoice/Stat.vue';
 import ChartComparison from './ChartComparison.vue';
 
@@ -34,24 +35,27 @@ export default{
                 amount_due: parseFloat(item.amount_due),
                 date_at: item.date_at,
                 paid_at: item.paid_at,
+                serie: item.serie,
                 status: item.status
             };
         },
 
         load() {
             return invoice.dispatch('list').then(({ data }) => {
-                this.invoice = data.map(item => this.invoiceItem(item));
+                this.invoice = this.chartData(data.map(item => this.invoiceItem(item)));
             }).then(() => {
-                const data = this.cartData(this.invoice);
+                return serie.dispatch('list').then(({ data }) => {
+                    const filter = data.filter(item => item.default)[0] || {};
 
-                this.setRevenueComparison(data);
-                this.setInvoicePaid(data);
+                    this.setRevenueComparison(filter, this.invoice);
+                    this.setInvoicePaid(filter, this.invoice);
+                });
             }).catch(e => {
                 this.notifyError(e);
             });
         },
 
-        setRevenueComparison(list) {
+        setRevenueComparison(invoiceSerie, list) {
             let series = [
                 { name: 'Este Año', data: new Map(), total: 0 },
                 { name: 'Año anterior', data: new Map(), total: 0 }
@@ -66,7 +70,7 @@ export default{
             const categories = this.chartCategories(lastYearEnd, series);
 
             list.forEach(item => {
-                if (item.date_key < lastYearStart) {
+                if ((item.serie.id !== invoiceSerie.id) || (item.date_key < lastYearStart)) {
                     return;
                 }
 
@@ -84,7 +88,7 @@ export default{
             this.revenueComparison.categories = categories;
         },
 
-        setInvoicePaid(list) {
+        setInvoicePaid(invoiceSerie, list) {
             let series = [
                 { name: 'Facturado', data: new Map(), total: 0 },
                 { name: 'Cobrado', data: new Map(), total: 0 },
@@ -101,7 +105,7 @@ export default{
                 months = [{}, {}, {}];
 
             list.forEach(item => {
-                if (item.date_key < startAt) {
+                if ((item.serie.id !== invoiceSerie.id) || (item.date_key < startAt)) {
                     return;
                 }
 
@@ -118,14 +122,18 @@ export default{
 
             categories.forEach(each => {
                 if (!months[0][each]) {
-                    months[0][each] = previous[0];
-                    months[1][each] = previous[1];
-                    months[2][each] = previous[2];
+                    months[0][each] = previous[0] || 0;
+                    months[1][each] = previous[1] || 0;
+                    months[2][each] = previous[2] || 0;
                 }
 
                 series[0].data.set(each, months[0][each]);
                 series[1].data.set(each, months[1][each]);
                 series[2].data.set(each, months[2][each]);
+
+                series[0].total = months[0][each];
+                series[1].total = months[1][each];
+                series[2].total = months[2][each];
 
                 previous = [months[0][each], months[1][each], months[2][each]];
             });
@@ -138,7 +146,7 @@ export default{
             this.invoicePaid.categories = categories;
         },
 
-        cartData(data) {
+        chartData(data) {
             return data.slice(0)
                 .map(item => {
                     const date = item.date_at.split('-');

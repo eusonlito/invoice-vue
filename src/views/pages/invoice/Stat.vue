@@ -1,7 +1,7 @@
 <template>
     <vx-card class="mb-base">
         <template slot="actions">
-            <time-selector-dropdown :options="options" :selected="change" :current="current" />
+            <time-selector-dropdown :options="options" :selected="change" />
         </template>
 
         <div class="vx-row">

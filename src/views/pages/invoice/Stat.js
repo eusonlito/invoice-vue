@@ -45,9 +45,7 @@ export default {
                     title: '1 año',
                     value: 365
                 }
-            ],
-
-            current: {}
+            ]
         }
     },
 
@@ -58,10 +56,6 @@ export default {
     },
 
     methods: {
-        load(selected) {
-            this.list.forEach(item => this.filterDate(selected, item));
-        },
-
         reset() {
             this.stats = {
                 count_total: 0,
@@ -87,23 +81,26 @@ export default {
             this.stats.amount_partial += item.amount_due;
         },
 
-        change(selected) {
-            this.current = selected;
-
+        change(serie, option) {
             this.reset();
-            this.load(selected);
-        },
 
-        filterDate(selected, item) {
-            if (!selected.value) {
-                return this.count(item);
+            let date = new Date();
+
+            if (option.value === 365) {
+                date = new Date((date.getFullYear() - 1) + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-01 00:00:00');
+            } else {
+                date.setDate(-option.value);
             }
 
-            const date = new Date();
+            this.list.forEach(item => {
+                if (item.serie.id === serie.id) {
+                    this.filterDate(date, option, item)
+                }
+            });
+        },
 
-            date.setDate(-selected.value);
-
-            if (new Date(item.date_at) >= date) {
+        filterDate(date, option, item) {
+            if (!option.value || (new Date(item.date_key || item.date_at) >= date)) {
                 this.count(item);
             }
         },
@@ -129,9 +126,5 @@ export default {
 
             return reverse ? 'success' : 'danger';
         },
-    },
-
-    created() {
-        this.load({});
-    },
+    }
 }

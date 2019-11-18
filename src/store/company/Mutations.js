@@ -18,7 +18,11 @@ export default {
             state.company = {};
         }
 
-        state.company = {...state.company, ...payload};
+        if (!payload) {
+            payload = {};
+        }
+
+        state.company = { ...state.company, ...payload };
 
         cache.set('company', state.company);
 

@@ -25,17 +25,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <vs-select v-model="form.country_id" name="country_id" class="w-full select-large" label="País" v-on:change="getStates" autocomplete v-validate="'required'" data-vv-as="País">
-                        <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in countries" :selected="item.id === form.country_id" />
-                    </vs-select>
-                    <span class="text-danger text-sm">{{ errors.first('country_id') }}</span>
+                    <vs-input type="text" name="state" label="Provincia" v-model="form.state" v-validate="'required'" data-vv-as="Provincia" />
+                    <span class="text-danger text-sm">{{ errors.first('state') }}</span>
                 </div>
 
                 <div class="mb-3">
-                    <vs-select v-model="form.state_id" name="state_id" class="w-full select-large" label="Provincia" autocomplete v-validate="'required'" data-vv-as="Provincia">
-                        <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in states" :selected="item.id === form.state_id" />
+                    <vs-select v-model="form.country_id" name="country_id" class="w-full select-large" label="País" autocomplete v-validate="'required'" data-vv-as="País">
+                        <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in countries" :selected="item.id === form.country_id" />
                     </vs-select>
-                    <span class="text-danger text-sm">{{ errors.first('state_id') }}</span>
+                    <span class="text-danger text-sm">{{ errors.first('country_id') }}</span>
                 </div>
 
                 <div class="mb-3">

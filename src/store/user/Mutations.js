@@ -25,7 +25,11 @@ export default {
             state.user = {};
         }
 
-        state.user = {...state.user, ...payload};
+        if (!payload) {
+            payload = {};
+        }
+
+        state.user = { ...state.user, ...payload };
 
         cacheLocal.set('user', state.user);
 

@@ -2,7 +2,6 @@
 
 import company from '@/store/company';
 import country from '@/store/country';
-import state from '@/store/state';
 
 export default {
     data() {
@@ -17,20 +16,18 @@ export default {
             },
 
             country_id: null,
-            state_id: null,
             countries: [],
-            states: [],
 
             form: {
                 name: '',
                 address: '',
                 city: '',
+                state: '',
                 postal_code: '',
                 tax: '',
                 phone: '',
                 email: '',
                 country_id: null,
-                state_id: null
             }
         }
     },
@@ -54,13 +51,13 @@ export default {
             this.form.name = store.name;
             this.form.address = store.address;
             this.form.city = store.city;
+            this.form.state = store.state;
             this.form.postal_code = store.postal_code;
             this.form.tax_number = store.tax_number;
             this.form.phone = store.phone;
             this.form.email = store.email;
 
-            this.country_id = this.form.country_id = store.state.country.id;
-            this.state_id = this.form.state_id = store.state.id;
+            this.country_id = this.form.country_id = store.country.id;
         },
 
         getCountries() {
@@ -71,22 +68,6 @@ export default {
                     this.form.country_id = this.country_id;
                 } else {
                     this.form.country_id = this.countries[0].id;
-                }
-            });
-        },
-
-        getStates() {
-            if (!this.form.country_id) {
-                return [];
-            }
-
-            return state.dispatch('list', { country_id: this.form.country_id }).then(({ data }) => {
-                this.states = data;
-
-                if (this.state_id && (this.country_id === this.form.country_id)) {
-                    this.form.state_id = this.state_id;
-                } else {
-                    this.form.state_id = this.states[0].id;
                 }
             });
         },
@@ -108,6 +89,6 @@ export default {
 
     created() {
         this.getCompany();
-        this.getCountries().then(() => this.getStates());
+        this.getCountries();
     }
 }

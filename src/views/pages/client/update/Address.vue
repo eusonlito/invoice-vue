@@ -12,7 +12,7 @@
 
         <vx-card noShadow>
             <div class="text-right">
-                <vs-button @click.prevent="duplicate">Añadir Más</vs-button>
+                <vs-button @click.prevent="duplicate">Añadir</vs-button>
             </div>
         </vx-card>
     </div>
