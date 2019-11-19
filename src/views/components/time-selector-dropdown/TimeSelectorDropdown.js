@@ -7,11 +7,14 @@ export default {
 
     props: {
         options: {
-          type: Array,
-          required: true
+            type: Array,
+            required: true
         },
 
-        selected: Function
+        selected: {
+            type: Function,
+            required: true
+        }
     },
 
     data() {

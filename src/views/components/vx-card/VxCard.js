@@ -2,7 +2,7 @@
 
 import _color from '@/assets/utils/color'
 
-export default{
+export default {
     name: 'vx-card',
     props: {
         title: String,
@@ -20,24 +20,24 @@ export default{
             type: Boolean,
         },
         headerBackground: {
-          default: '',
-          type: String
+            default: '',
+            type: String
         },
         cardBackground: {
-          default: '',
-          type: String
+            default: '',
+            type: String
         },
         contentColor: {
-          default: '',
-          type: String
+            default: '',
+            type: String
         },
         titleColor: {
-          default: '',
-          type: String
+            default: '',
+            type: String
         },
         subtitleColor: {
-          default: '#b8c2cc',
-          type: String
+            default: '#b8c2cc',
+            type: String
         }
     },
 
@@ -86,7 +86,7 @@ export default{
             }
 
             // add content color
-            if (_color.isColor(this.contentColor)){
+            if (_color.isColor(this.contentColor)) {
                 str += ` text-${this.contentColor}`
             }
 
@@ -117,6 +117,7 @@ export default{
 
             return obj
         },
+
         subtitleClasses() {
             let str = '';
 

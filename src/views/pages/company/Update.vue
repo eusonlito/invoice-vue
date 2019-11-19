@@ -30,9 +30,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <vs-select v-model="form.country_id" name="country_id" class="w-full select-large" label="País" autocomplete v-validate="'required'" data-vv-as="País">
-                        <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in countries" :selected="item.id === form.country_id" />
-                    </vs-select>
+                    <custom-select v-model="form.country_id" name="country_id" label="País" v-validate="'required'" data-vv-as="País" :options="countries" option-value="id" option-title="name" :selected="form.country_id" />
                     <span class="text-danger text-sm">{{ errors.first('country_id') }}</span>
                 </div>
 

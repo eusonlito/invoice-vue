@@ -8,10 +8,25 @@ export default {
     components: { VueApexCharts },
 
     props: {
-        title: String,
-        categories: Array,
-        series: Array,
-        total: Boolean
+        title: {
+            type: String,
+            required: false
+        },
+
+        categories: {
+            type: Array,
+            required: true
+        },
+
+        series: {
+            type: Array,
+            required: true
+        },
+
+        total: {
+            type: Boolean,
+            required: false
+        }
     },
 
     data() {
@@ -99,7 +114,7 @@ export default {
 
     created() {
         this.series.forEach(item => {
-            this.chart.options.colors.push(this.stringToHex(item.name));
+            this.chart.options.colors.push(item.color = item.color || this.stringToHex(item.name));
         });
 
         this.chart.options.yaxis.labels.formatter = value => this.money(value);

@@ -62,34 +62,22 @@
             <div class="vx-col w-full sm:w-1/3 md:w-1/3 mb-base">
                 <vx-card title="Preferencias" noShadow>
                     <div class="mb-3" v-if="discount.length">
-                        <vs-select v-model="form.discount_id" name="discount_id" class="w-full select-large" label="Descuento">
-                            <vs-select-item value="" text="Sin preferencia" :selected="!form.discount_id" />
-                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in discount" :selected="item.id === form.discount_id" />
-                        </vs-select>
+                        <custom-select v-model="form.discount_id" name="discount_id" label="Descuento" empty="Sin preferencia" :options="discount" option-value="id" option-title="name" :selected="form.discount_id" />
                         <span class="text-danger text-sm">{{ errors.first('discount_id') }}</span>
                     </div>
 
                     <div class="mb-3" v-if="payment.length">
-                        <vs-select v-model="form.payment_id" name="payment_id" class="w-full select-large" label="Forma de pago">
-                            <vs-select-item value="" text="Sin preferencia" :selected="!form.payment_id" />
-                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in payment" :selected="item.id === form.payment_id" />
-                        </vs-select>
+                        <custom-select v-model="form.payment_id" name="payment_id" label="Forma de pago" empty="Sin preferencia" :options="payment" option-value="id" option-title="name" :selected="form.payment_id" />
                         <span class="text-danger text-sm">{{ errors.first('payment_id') }}</span>
                     </div>
 
                     <div class="mb-3" v-if="shipping.length">
-                        <vs-select v-model="form.shipping_id" name="shipping_id" class="w-full select-large" label="Método de envío">
-                            <vs-select-item value="" text="Sin preferencia" :selected="!form.shipping_id" />
-                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in shipping" :selected="item.id === form.shipping_id" />
-                        </vs-select>
+                        <custom-select v-model="form.shipping_id" name="shipping_id" label="Método de envío" empty="Sin preferencia" :options="shipping" option-value="id" option-title="name" :selected="form.shipping_id" />
                         <span class="text-danger text-sm">{{ errors.first('shipping_id') }}</span>
                     </div>
 
                     <div class="mb-3" v-if="tax.length">
-                        <vs-select v-model="form.tax_id" name="tax_id" class="w-full select-large" label="IVA">
-                            <vs-select-item value="" text="Sin preferencia" :selected="!form.tax_id" />
-                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in tax" :selected="item.id === form.tax_id" />
-                        </vs-select>
+                        <custom-select v-model="form.tax_id" name="tax_id" label="IVA" empty="Sin preferencia" :options="tax" option-value="id" option-title="name" :selected="form.tax_id" />
                         <span class="text-danger text-sm">{{ errors.first('tax_id') }}</span>
                     </div>
                 </vx-card>
