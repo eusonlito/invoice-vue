@@ -16,11 +16,11 @@ export default {
     },
 
     createWrapper() {
-        return request.get('/w/invoice');
+        return request.get('/invoice/w');
     },
 
     updateWrapper(_, id) {
-        return request.get('/w/invoice/' + id);
+        return request.get('/invoice/w/' + id);
     },
 
     createOrUpdate(_, { id, payload }) {

@@ -1,10 +1,6 @@
 'use strict';
 
 import client from '@/store/client';
-import discount from '@/store/discount';
-import payment from '@/store/payment';
-import shipping from '@/store/shipping';
-import tax from '@/store/tax';
 
 export default {
     name: 'update-data',
@@ -17,6 +13,7 @@ export default {
             payment: [],
             shipping: [],
             tax: [],
+
             form: {
                 name: '',
                 phone: '',
@@ -46,59 +43,84 @@ export default {
 
     methods: {
         load() {
-            this.getDiscounts();
-            this.getPayments();
-            this.getShippments();
-            this.getTaxes();
-
             if (this.id) {
-                this.getClient();
+                this.getUpdateWrapper(this.id);
+            } else {
+                this.getCreateWrapper();
             }
         },
 
-        getDiscounts() {
-            return discount.dispatch('list').then(({ data }) => {
-                this.discount = data;
+        getCreateWrapper() {
+            return client.dispatch('createWrapper').then(({ data }) => {
+                this.setRelations(data);
             }).catch(e => {
                 this.notifyError(e);
             });
         },
 
-        getPayments() {
-            return payment.dispatch('list').then(({ data }) => {
-                this.payment = data;
+        getUpdateWrapper(id) {
+            return client.dispatch('updateWrapper', id).then(({ data }) => {
+                this.setRelations(data);
+                this.setClient(data.client);
             }).catch(e => {
                 this.notifyError(e);
             });
         },
 
-        getShippments() {
-            return shipping.dispatch('list').then(({ data }) => {
-                this.shipping = data;
-            }).catch(e => {
-                this.notifyError(e);
-            });
+        setRelations(data) {
+            this.setDiscount(data.discount);
+            this.setPayment(data.payment);
+            this.setShipping(data.shipping);
+            this.setTax(data.tax);
         },
 
-        getTaxes() {
-            return tax.dispatch('list').then(({ data }) => {
-                this.tax = data;
-            }).catch(e => {
-                this.notifyError(e);
-            });
+        setClient(data) {
+            Object.assign(this.form, data);
+
+            this.form.discount_id = data.discount ? data.discount.id : null;
+            this.form.payment_id = data.payment ? data.payment.id : null;
+            this.form.shipping_id = data.shipping ? data.shipping.id : null;
+            this.form.tax_id = data.tax ? data.tax.id : null;
         },
 
-        getClient() {
-            return client.dispatch('detail', this.id).then(({ data }) => {
-                Object.assign(this.form, data);
+        setDiscount(data) {
+            const selected = data.filter(value => value.default)[0];
 
-                this.form.discount_id = data.discount ? data.discount.id : null;
-                this.form.payment_id = data.payment ? data.payment.id : null;
-                this.form.shipping_id = data.shipping ? data.shipping.id : null;
-                this.form.tax_id = data.tax ? data.tax.id : null;
-            }).catch(e => {
-                this.notifyError(e);
-            });
+            this.discount = data;
+
+            if (selected) {
+                this.form.discount_id = selected.id;
+            }
+        },
+
+        setPayment(data) {
+            const selected = data.filter(value => value.default)[0];
+
+            this.payment = data;
+
+            if (selected) {
+                this.form.payment_id = selected.id;
+            }
+        },
+
+        setShipping(data) {
+            const selected = data.filter(value => value.default)[0];
+
+            this.shipping = data;
+
+            if (selected) {
+                this.form.shipping_id = selected.id;
+            }
+        },
+
+        setTax(data) {
+            const selected = data.filter(value => value.default)[0];
+
+            this.tax = data;
+
+            if (selected) {
+                this.form.tax_id = selected.id;
+            }
         },
 
         submit() {

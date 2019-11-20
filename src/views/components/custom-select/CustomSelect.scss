@@ -1,5 +1,9 @@
 .vs-select-custom {
     .vs-input--input {
         background: white;
+
+        &.normal {
+            padding: 0.629rem !important;
+        }
     }
 }

@@ -5,7 +5,7 @@
                 <div slot="no-body" class="full-page-bg-color">
                     <div class="vx-row">
                         <div class="vx-col hidden sm:hidden md:hidden lg:block lg:w-1/2 mx-auto self-center">
-                            <img src="@/assets/images/pages/login.png" alt="Acceso" class="mx-auto">
+                            <img src="@/assets/images/pages/login.jpg" alt="Acceso" class="mx-auto">
                         </div>
 
                         <div class="vx-col sm:w-full md:w-full lg:w-1/2 mx-auto self-center d-theme-dark-bg">

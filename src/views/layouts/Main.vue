@@ -1,8 +1,6 @@
 <template>
-    <div class="layout--main" :class="[layoutTypeClass, navbarClasses, {'app-page': isAppPage}]">
-        <div id="content-area" :class="[contentAreaClass, {'show-overlay': bodyOverlay}]">
-            <div id="content-overlay"></div>
-
+    <div class="layout--main" :class="[layoutTypeClass, navbarClasses, { 'app-page': isAppPage }]">
+        <div id="content-area" :class="contentAreaClass">
             <navbar-horizontal :navbarType="navbarType" class="text-base" />
 
             <div class="content-wrapper">
@@ -20,6 +18,8 @@
                     </div>
                 </div>
             </div>
+
+            <main-footer />
         </div>
     </div>
 </template>

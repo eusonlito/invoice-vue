@@ -1,5 +1,5 @@
 <template>
-    <vx-card :title="title" class="mb-base">
+    <vx-card :title="title">
         <div v-if="total" class="flex">
             <div class="mr-6" :key="index" v-for="(serie, index) in chart.series">
                 <p class="mb-1 font-semibold">{{ serie.name }}</p>

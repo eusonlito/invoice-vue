@@ -8,7 +8,7 @@ export default {
     props: {
         label: {
             type: String,
-            required: true
+            required: false
         },
 
         options: {
@@ -39,11 +39,15 @@ export default {
 
     methods: {
         focus() {
-            this.$refs.inputSelectLabel.classList.add('input-select-label-primary--active');
+            if (this.label) {
+                this.$refs.inputSelectLabel.classList.add('input-select-label-primary--active');
+            }
         },
 
         blur() {
-            this.$refs.inputSelectLabel.classList.remove('input-select-label-primary--active');
+            if (this.label) {
+                this.$refs.inputSelectLabel.classList.remove('input-select-label-primary--active');
+            }
         }
     }
 };

@@ -2,7 +2,7 @@
     <div class="content-with-breadcrumb">
         <breadcrumb :items="breadcrumb.items" />
 
-        <form method="post" @submit.prevent="submit">
+        <form v-if="clientAddress && clientAddress.length" method="post" @submit.prevent="submit">
             <div class="vx-row match-height">
                 <div class="vx-col w-full md:w-1/3 mb-base">
                     <vx-card title="Datos de Empresa">
@@ -125,9 +125,7 @@
             <vx-card class="mb-base">
                 <div class="vx-row flex-nowrap">
                     <div class="vx-col">
-                        <vs-select v-model="form.invoice_serie_id" name="invoice_serie_id" label="Serie" class="w-full select-large" v-validate="'required'" data-vv-as="Serie" data-vv-validate-on="blur">
-                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in invoice_serie" :selected="item.id === form.invoice_serie_id" />
-                        </vs-select>
+                        <custom-select v-model="form.invoice_serie_id" name="invoice_serie_id" label="Serie" v-validate="'required'" data-vv-as="Serie" data-vv-validate-on="blur" option-value="id" option-title="name" :options="invoice_serie" :selected="form.invoice_serie_id" />
                         <span class="text-danger text-sm">{{ errors.first('invoice_serie_id') }}</span>
                     </div>
 
@@ -164,17 +162,12 @@
                     </div>
 
                     <div class="vx-col">
-                        <vs-select v-model="form.invoice_status_id" name="invoice_status_id" label="Estado" class="w-full select-large">
-                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in invoice_status" :selected="item.id === form.invoice_status_id" />
-                        </vs-select>
+                        <custom-select v-model="form.invoice_status_id" name="invoice_status_id" label="Estado" option-value="id" option-title="name" :options="invoice_status" :selected="form.invoice_status_id" />
                         <span class="text-danger text-sm">{{ errors.first('invoice_status_id') }}</span>
                     </div>
 
                     <div class="vx-col">
-                        <vs-select v-model="form.payment_id" name="payment_id" label="Pago" class="w-full select-large">
-                            <vs-select-item value="" text="Sin especificar" :selected="!form.payment_id" />
-                            <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in payment" :selected="item.id === form.payment_id" />
-                        </vs-select>
+                        <custom-select v-model="form.payment_id" name="payment_id" label="Pago" option-value="id" option-title="name" :options="payment" :selected="form.payment_id" empty="Sin especificar" />
                         <span class="text-danger text-sm">{{ errors.first('payment_id') }}</span>
                     </div>
                 </div>
@@ -229,10 +222,7 @@
                             <th colspan="4"></th>
                             <th class="col text-right">
                                 <div v-if="discount.length">
-                                    <vs-select v-model="form.discount_id" name="discount_id" class="w-full select-large">
-                                        <vs-select-item value="" text="Sin descuento" :selected="!form.discount_id" />
-                                        <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in discount" :selected="item.id === form.discount_id" />
-                                    </vs-select>
+                                    <custom-select v-model="form.discount_id" name="discount_id" option-value="id" option-title="name" :options="discount" :selected="form.discount_id" empty="Sin descuento" />
                                     <span class="text-danger text-sm">{{ errors.first('discount_id') }}</span>
                                 </div>
                             </th>
@@ -246,10 +236,7 @@
                             <th colspan="4"></th>
                             <th class="col text-right">
                                 <div v-if="tax.length">
-                                    <vs-select v-model="form.tax_id" name="tax_id" class="w-full select-large">
-                                        <vs-select-item value="" text="Sin impuestos" :selected="!form.tax_id" />
-                                        <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in tax" :selected="item.id === form.tax_id" />
-                                    </vs-select>
+                                    <custom-select v-model="form.tax_id" name="tax_id" option-value="id" option-title="name" :options="tax" :selected="form.tax_id" empty="Sin impuestos" />
                                     <span class="text-danger text-sm">{{ errors.first('tax_id') }}</span>
                                 </div>
                             </th>
@@ -263,10 +250,7 @@
                             <th colspan="4"></th>
                             <th class="col text-right">
                                 <div v-if="shipping.length">
-                                    <vs-select v-model="form.shipping_id" name="shipping_id" class="w-full select-large">
-                                        <vs-select-item value="" text="Sin envío" :selected="!form.shipping_id" />
-                                        <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in shipping" :selected="item.id === form.shipping_id" />
-                                    </vs-select>
+                                    <custom-select v-model="form.shipping_id" name="shipping_id" option-value="id" option-title="name" :options="shipping" :selected="form.shipping_id" empty="Sin envío" />
                                     <span class="text-danger text-sm">{{ errors.first('shipping_id') }}</span>
                                 </div>
 
@@ -338,6 +322,15 @@
                 <vs-button button="submit" :disabled="!validate || submitButton.disabled">{{ submitButton.text }}</vs-button>
             </vx-card>
         </form>
+
+        <vx-card v-else-if="clientAddress" class="faq-jumbotron lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base">
+            <h1 class="mb-10 text-center">Aún no tienes ningún cliente 🤷</h1>
+
+            <p class="text-center">
+                Puedes empezar dando <router-link :to="{ name: 'client-update' }">uno de alta</router-link>,
+                y después ya te tendrás posibilidad de añadir facturas.
+            </p>
+        </vx-card>
     </div>
 </template>
 

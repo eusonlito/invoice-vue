@@ -7,9 +7,7 @@
             </div>
 
             <div class="mb-3">
-                <vs-select v-model="form.type" name="type" class="w-full select-large" label="Tipo">
-                    <vs-select-item :key="index" :value="item.id" :text="item.name" v-for="(item, index) in getType()" :selected="item.id === form.type" />
-                </vs-select>
+                <custom-select v-model="form.type" name="type" label="Tipo" option-value="id" option-title="name" :options="getType()" :selected="form.type" />
                 <span class="text-danger text-sm">{{ errors.first('type') }}</span>
             </div>
 

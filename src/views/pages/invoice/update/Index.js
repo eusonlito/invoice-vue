@@ -23,7 +23,7 @@ export default {
 
             items: [],
 
-            clientAddress: [],
+            clientAddress: null,
             discount: [],
             invoice_serie: [],
             invoice_status: [],
@@ -455,6 +455,7 @@ export default {
 
         fileUpload(selected) {
             return file.dispatch('create', { invoice_id: this.form.id, file: selected }).then(({ data }) => {
+                this.notifySuccess('OK :)');
                 this.files.push(data);
             }).catch(e => {
                 this.notifyError(e);
@@ -463,6 +464,7 @@ export default {
 
         fileDelete(selected) {
             return file.dispatch('delete', selected.id).then(() => {
+                this.notifySuccess('OK :)');
                 this.files = this.files.filter(data => data.id !== selected.id);
             }).catch(e => {
                 this.notifyError(e);

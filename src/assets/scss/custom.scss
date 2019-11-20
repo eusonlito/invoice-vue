@@ -27,7 +27,7 @@
 
 #content-area {
     .content-wrapper {
-        min-height: auto;
+        min-height: calc(var(--vh, 1vh) * 100 - 9rem);
 
         .router-view {
             padding: 1rem 2.5rem 2.5rem 2.5rem;
@@ -112,4 +112,17 @@ input[type="file"].vs-input--input.normal {
     .con-input-upload {
         margin: 0;
     }
+}
+
+.the-footer {
+    color: #999;
+
+    > a {
+        color: #999;
+        margin-left: 10px;
+    }
+}
+
+.layout--full-page .bg-img {
+    background: #aebcce;
 }

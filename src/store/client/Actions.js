@@ -19,6 +19,14 @@ export default {
         return request.get('/client/' + id);
     },
 
+    createWrapper() {
+        return request.get('/client/w');
+    },
+
+    updateWrapper(_, id) {
+        return request.get('/client/w/' + id);
+    },
+
     createOrUpdate(_, { id, payload }) {
         if (id) {
             return request.patch('/client/' + id, payload);

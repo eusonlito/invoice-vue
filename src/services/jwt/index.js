@@ -8,34 +8,37 @@ export default {
     refreshing: false,
 
     install() {
-        axios.interceptors.response.use(response => response, error => this.tokenRefresh(error));
+        axios.interceptors.response.use(response => response, error => this.error(error));
     },
 
-    tokenRefresh(error) {
+    error(error) {
         const { config, response } = error
 
-        if (this.tokenRefreshIsErrorOther(response)) {
+        if (this.notRelatedSessionError(response)) {
             throw error;
         }
 
-        if (response.data.status === 'user_auth') {
-            return user.dispatch('logout');
+        if (this.sessionExpired(response)) {
+            return this.logout();
         }
 
-        if (response.data.status === 'token_expired') {
+        if (this.tokenExpired(response)) {
             return this.tokenRefreshRequest(config);
         }
 
         throw error;
     },
 
-    tokenRefreshIsErrorOther(response) {
-        return this.refreshing
-            || !user.user
-            || !response
-            || (response.status !== 401)
-            || !response.data
-            || !response.data.status;
+    notRelatedSessionError(response) {
+        return (response.status !== 401) || !response || !response.data || !response.data.status;
+    },
+
+    sessionExpired(response) {
+        return response.data.status === 'user_auth';
+    },
+
+    tokenExpired(response) {
+        return response.data.status === 'token_expired';
     },
 
     tokenRefreshRequest(config) {
@@ -46,12 +49,18 @@ export default {
 
             const { response } = error
 
-            if (response && (response.status === 401)) {
-                router.go({ name: 'user-auth' });
+            if (!response || (response.status !== 401)) {
+                throw error;
             }
 
-            throw error;
+            return this.logout();
         });
+    },
+
+    logout() {
+        user.commit('LOGOUT');
+
+        return router.go({ name: 'user-auth' });
     },
 
     header(token) {

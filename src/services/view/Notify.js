@@ -26,13 +26,19 @@ export default {
     },
 
     error($vs, error) {
+        const text = this.errorText(error);
+
+        if (!text) {
+            return;
+        }
+
         if (process.env.NODE_ENV !== 'production') {
             console.error(error);
         }
 
         $vs.notify({
             title: 'Error',
-            text: this.errorText(error),
+            text: text,
             iconPack: 'feather',
             icon: 'icon-alert-circle',
             color: 'danger'
@@ -44,14 +50,16 @@ export default {
             return error[0];
         }
 
-        if ((error.request.responseType === 'arraybuffer') && error.response.data) {
-            error.response.data = JSON.parse(Buffer.from(error.response.data).toString('utf8'));
+        let data = error.response ? error.response.data : null;
+
+        if (!error.response || !data) {
+            return error.message;
         }
 
-        if (error.response && error.response.data && error.response.data.message) {
-            return error.response.data.message;
+        if (error.request.responseType === 'arraybuffer') {
+            data = JSON.parse(Buffer.from(data).toString('utf8'));
         }
 
-        return error.message;
+        return data.message ? data.message : error.message;
     }
 }

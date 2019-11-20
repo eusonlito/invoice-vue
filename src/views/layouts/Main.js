@@ -1,11 +1,11 @@
-import NavbarHorizontal from '@/views/components/navbar-horizontal/NavbarHorizontal.vue'
 import theme from '@/services/theme'
 import view from '@/store/view'
+import MainFooter from '@/views/components/main-footer/MainFooter.vue'
+import NavbarHorizontal from '@/views/components/navbar-horizontal/NavbarHorizontal.vue'
 
 export default {
-    components: {
-        NavbarHorizontal,
-    },
+    components: { NavbarHorizontal, MainFooter },
+
     data() {
         return {
             hideScrollToTop: theme.config.hideScrollToTop,
@@ -15,11 +15,13 @@ export default {
             routeTitle: this.$route.meta.pageTitle
         }
     },
+
     watch: {
         '$route'() {
             this.routeTitle = this.$route.meta.pageTitle
         }
     },
+
     computed: {
         bodyOverlay() {
             return false
@@ -67,6 +69,7 @@ export default {
             return view.state.windowWidth
         }
     },
+
     methods: {
         changeRouteTitle(title) {
             this.routeTitle = title
