@@ -11,6 +11,10 @@ export default {
         return request.get('/tax/enabled');
     },
 
+    export() {
+        return request.get('/tax/export', { nocache: true });
+    },
+
     detail(_, id) {
         return request.get('/tax/' + id);
     },

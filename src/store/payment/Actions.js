@@ -11,6 +11,10 @@ export default {
         return request.get('/payment/enabled');
     },
 
+    export() {
+        return request.get('/payment/export', { nocache: true });
+    },
+
     detail(_, id) {
         return request.get('/payment/' + id);
     },

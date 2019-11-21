@@ -2,10 +2,10 @@
     <div class="content-with-breadcrumb">
         <breadcrumb :items="breadcrumb.items" :buttons="breadcrumb.buttons" />
 
-        <stat v-if="list.length" :list="list"></stat>
+        <stat v-if="list && list.length" :list="list"></stat>
 
         <vx-card>
-            <vs-table :data="list" @selected="update" search pagination max-items="20">
+            <vs-table v-if="list && list.length" :data="list" @selected="update" search pagination max-items="20">
                 <template slot="thead">
                     <vs-th sort-key="number">Número</vs-th>
                     <vs-th>Serie</vs-th>
@@ -40,6 +40,14 @@
                     </vs-tr>
                 </template>
             </vs-table>
+
+            <jumbotron v-else-if="list">
+                <template slot="title">Aún no has creado ninguna factura 🤔</template>
+
+                <template slot="text">
+                    Puedes empezar <router-link :to="{ name: 'invoice-update' }">por aquí</router-link>.
+                </template>
+            </jumbotron>
         </vx-card>
     </div>
 </template>

@@ -5,7 +5,7 @@ import discount from '@/store/discount';
 export default {
     data() {
         return {
-            list: [],
+            list: null,
 
             breadcrumb: {
                 items: [
@@ -19,6 +19,10 @@ export default {
                     {
                         title: 'Añadir',
                         url: 'discount-update'
+                    },
+                    {
+                        title: 'Exportar',
+                        click: () => this.export()
                     }
                 ]
             }
@@ -29,6 +33,14 @@ export default {
         load() {
             return discount.dispatch('list').then(({ data }) => {
                 this.list = data;
+            }).catch(e => {
+                this.notifyError(e);
+            });
+        },
+
+        export() {
+            return discount.dispatch('export').then(response => {
+                return this.downloadBlob(response);
             }).catch(e => {
                 this.notifyError(e);
             });

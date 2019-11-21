@@ -11,6 +11,10 @@ export default {
         return request.get('/invoice-serie/enabled');
     },
 
+    export() {
+        return request.get('/invoice-serie/export', { nocache: true });
+    },
+
     detail(_, id) {
         return request.get('/invoice-serie/' + id);
     },

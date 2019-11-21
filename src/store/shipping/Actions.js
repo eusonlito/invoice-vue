@@ -11,6 +11,10 @@ export default {
         return request.get('/shipping/enabled');
     },
 
+    export() {
+        return request.get('/shipping/export', { nocache: true });
+    },
+
     detail(_, id) {
         return request.get('/shipping/' + id);
     },

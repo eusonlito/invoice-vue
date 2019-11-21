@@ -8,7 +8,7 @@ export default {
     },
 
     export() {
-        return request.get('/invoice/export');
+        return request.get('/invoice/export', { nocache: true });
     },
 
     detail(_, id) {

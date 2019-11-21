@@ -12,7 +12,7 @@ export default {
     },
 
     export() {
-        return request.get('/product/export');
+        return request.get('/product/export', { nocache: true });
     },
 
     detail(_, id) {

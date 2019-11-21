@@ -44,8 +44,14 @@
             display: none !important;
         }
 
-        button + button {
+        .vs-button + .vs-button {
             margin-left: 15px;
+        }
+
+        @media(max-width: 575px) {
+            .vs-button {
+                padding: 0.5rem !important;
+            }
         }
     }
 }
@@ -115,6 +121,7 @@ input[type="file"].vs-input--input.normal {
 }
 
 .the-footer {
+    display: block;
     color: #999;
 
     > a {

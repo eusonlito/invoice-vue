@@ -5,7 +5,7 @@ import product from '@/store/product';
 export default {
     data() {
         return {
-            list: [],
+            list: null,
 
             breadcrumb: {
                 items: [

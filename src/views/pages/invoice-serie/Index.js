@@ -5,7 +5,7 @@ import serie from '@/store/invoice-serie';
 export default {
     data() {
         return {
-            list: [],
+            list: null,
 
             breadcrumb: {
                 items: [
@@ -19,6 +19,10 @@ export default {
                     {
                         title: 'Añadir',
                         url: 'invoice-serie-update'
+                    },
+                    {
+                        title: 'Exportar',
+                        click: () => this.export()
                     }
                 ]
             }
@@ -29,6 +33,14 @@ export default {
         load() {
             serie.dispatch('list').then(({ data }) => {
                 this.list = data;
+            }).catch(e => {
+                this.notifyError(e);
+            });
+        },
+
+        export() {
+            return serie.dispatch('export').then(response => {
+                return this.downloadBlob(response);
             }).catch(e => {
                 this.notifyError(e);
             });

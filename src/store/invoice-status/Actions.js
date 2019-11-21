@@ -11,6 +11,10 @@ export default {
         return request.get('/invoice-status/enabled');
     },
 
+    export() {
+        return request.get('/invoice-status/export', { nocache: true });
+    },
+
     detail(_, id) {
         return request.get('/invoice-status/' + id);
     },

@@ -11,6 +11,10 @@ export default {
         return request.get('/discount/enabled');
     },
 
+    export() {
+        return request.get('/discount/export', { nocache: true });
+    },
+
     detail(_, id) {
         return request.get('/discount/' + id);
     },

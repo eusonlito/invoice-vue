@@ -5,7 +5,7 @@ import cache from './cache'
 
 export default {
     get(path, payload) {
-        if (payload && payload.responseType === 'arraybuffer') {
+        if (payload && (payload.nocache || payload.responseType === 'arraybuffer')) {
             return axios.get(path, payload);
         }
 

@@ -5,7 +5,7 @@ import client from '@/store/client';
 export default {
     data() {
         return {
-            list: [],
+            list: null,
 
             breadcrumb: {
                 items: [
