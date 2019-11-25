@@ -4,7 +4,7 @@ import user from '@/store/user';
 
 export default function ({ next, router }) {
     if (!user.state.user) {
-        return router.push({ name: 'user-auth' });
+        return router.push({ name: 'user-auth' }).catch(() => {});
     }
 
     if (!user.state.user.confirmed_at) {
