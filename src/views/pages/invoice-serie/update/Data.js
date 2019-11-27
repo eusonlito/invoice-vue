@@ -14,9 +14,16 @@ export default {
                 number_prefix: '',
                 number_fill: 0,
                 number_next: 0,
-                default: false,
-                enabled: true,
-            }
+                certificate_password: '',
+                default: 0,
+                enabled: 1,
+            },
+
+            data: {
+                certificate_file: false
+            },
+
+            files: []
         }
     },
 
@@ -35,10 +42,17 @@ export default {
 
         detail() {
             return serie.dispatch('detail', this.$route.params.id).then(({ data }) => {
+                Object.assign(this.data, data);
                 Object.assign(this.form, data);
+
+                delete this.form.certificate_file;
             }).catch(e => {
                 this.notifyError(e);
             });
+        },
+
+        file(e) {
+            this.files[e.target.name] = [e.target.files[0], e.target.files[0].name];
         },
 
         submit() {
@@ -47,7 +61,12 @@ export default {
                     return this.notifyError(this.errors.all());
                 }
 
-                return serie.dispatch('createOrUpdate', { id: this.$route.params.id, payload: this.form }).then(({ data }) => {
+                const params = {
+                    id: this.$route.params.id,
+                    payload: { ...this.form, ...{ files: this.files } }
+                };
+
+                return serie.dispatch('createOrUpdate', params).then(({ data }) => {
                     this.success(data);
                 }).catch(e => {
                     this.notifyError(e);

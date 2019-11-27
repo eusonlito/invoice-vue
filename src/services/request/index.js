@@ -4,31 +4,39 @@ import axios from '@/services/axios'
 import cache from './cache'
 
 export default {
-    get(path, payload) {
-        if (payload && (payload.nocache || payload.responseType === 'arraybuffer')) {
-            return axios.get(path, payload);
+    get(path, config) {
+        if (config && (config.nocache || (config.responseType === 'arraybuffer'))) {
+            return axios.get(path, config);
         }
 
-        return cache.get(path, payload).catch(() => {
-            return axios.get(path, payload).then(data => {
-                return cache.set(path, payload, data);
+        return cache.get(path, config).catch(() => {
+            return axios.get(path, config).then(data => {
+                return cache.set(path, config, data);
             });
         });
     },
 
     post(path, payload, config) {
-        return axios.post(path, payload, config).then(data => {
+        return axios.post(path, this.postPayload(payload), config).then(data => {
             return cache.remove(path, data);
         });
     },
 
     put(path, payload, config) {
+        if (this.postForm(payload, 'put')) {
+            return this.post(path, payload, config);
+        }
+
         return axios.put(path, payload, config).then(data => {
             return cache.remove(path, data);
         });
     },
 
     patch(path, payload, config) {
+        if (this.postForm(payload, 'patch')) {
+            return this.post(path, payload, config);
+        }
+
         return axios.patch(path, payload, config).then(data => {
             return cache.remove(path, data);
         });
@@ -38,5 +46,45 @@ export default {
         return axios.delete(path, payload, config).then(data => {
             return cache.remove(path, data);
         });
+    },
+
+    postForm(payload, method) {
+        if (!payload || !Object.keys(payload.files || {}).length) {
+            return false;
+        }
+
+        if (method) {
+            payload._method = method;
+        }
+
+        return true;
+    },
+
+    postPayload(payload) {
+        if (!this.postForm(payload)) {
+            return payload;
+        }
+
+        const form = new FormData();
+
+        Object.entries(payload).forEach(([key, value]) => {
+            if (key === 'files') {
+                return;
+            }
+
+            if ((value === 'true') || (value === true)) {
+                form.set(key, 1);
+            } else if ((value === 'false') || (value === false)) {
+                form.set(key, 0);
+            } else {
+                form.set(key, value);
+            }
+        });
+
+        Object.entries(payload.files).forEach(([key, value]) => {
+            form.append(key, value[0], value[1]);
+        });
+
+        return form;
     }
 }

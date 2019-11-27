@@ -1,5 +1,5 @@
 <template>
-    <form method="post" @submit.prevent="submit">
+    <form method="post" @submit.prevent="submit" enctype="multipart/form-data">
         <vx-card noShadow>
             <div class="mb-3">
                 <vs-input type="text" name="name" label="Nombre" v-model="form.name" v-validate="'required'" data-vv-as="Nombre" data-vv-validate-on="blur" />
@@ -19,6 +19,24 @@
             <div class="mb-3">
                 <vs-input type="number" name="number_next" label="Siguiente" v-model="form.number_next" min="0" step="1" />
                 <span class="text-danger text-sm">{{ errors.first('number_next') }}</span>
+            </div>
+
+            <div class="mb-3">
+                <div class="vx-row flex-nowrap">
+                    <div class="vx-col">
+                        <div class="vs-component vs-con-input-label vs-input vs-input-primary">
+                            <label class="vs-input--label">Certificado de firma</label>
+
+                            <div class="vs-con-input">
+                                <input type="file" name="certificate_file" class="vs-inputx vs-input--input normal" @change="file" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vx-col flex-1">
+                        <vs-input type="password" name="certificate_password" label="Contraseña" v-model="form.certificate_password" />
+                    </div>
+                </div>
             </div>
 
             <div class="mb-3">
