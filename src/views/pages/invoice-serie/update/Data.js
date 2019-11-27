@@ -63,7 +63,7 @@ export default {
 
                 const params = {
                     id: this.$route.params.id,
-                    payload: { ...this.form, ...{ files: this.files } }
+                    payload: { ...this.form, ...{ _files: this.files } }
                 };
 
                 return serie.dispatch('createOrUpdate', params).then(({ data }) => {

@@ -24,7 +24,7 @@
         <td class="td vs-table--td">
             <vs-input type="number" name="amount_subtotal" v-model="form.amount_subtotal" readonly />
         </td>
-        <td class="td vs-table--td">
+        <td class="td vs-table--td whitespace-no-wrap">
             <vs-button radius type="border" icon-pack="feather" icon="icon-plus" class="small" color="success" @click="duplicate"></vs-button>
             <vs-button radius type="border" icon-pack="feather" icon="icon-minus" class="small" color="danger" @click="remove"></vs-button>
         </td>

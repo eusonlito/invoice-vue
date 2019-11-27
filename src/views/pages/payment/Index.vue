@@ -11,7 +11,7 @@
                 </template>
 
                 <template slot-scope="{data}">
-                    <vs-tr :data="item.id" :key="index" v-for="(item, index) in data">
+                    <vs-tr :data="item.id" :key="index" v-for="(item, index) in data" class="whitespace-no-wrap">
                         <vs-td>{{ item.name }}</vs-td>
                         <vs-td>
                             <vs-chip :color="item.default ? 'success' : 'danger'" class="product-order-status">{{ item.default ? 'Sí' : 'No' }}</vs-chip>

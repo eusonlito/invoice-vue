@@ -49,7 +49,7 @@ export default {
     },
 
     postForm(payload, method) {
-        if (!payload || !Object.keys(payload.files || {}).length) {
+        if (!payload || !Object.keys(payload._files || {}).length) {
             return false;
         }
 
@@ -68,7 +68,7 @@ export default {
         const form = new FormData();
 
         Object.entries(payload).forEach(([key, value]) => {
-            if (key === 'files') {
+            if (key === '_files') {
                 return;
             }
 
@@ -81,7 +81,7 @@ export default {
             }
         });
 
-        Object.entries(payload.files).forEach(([key, value]) => {
+        Object.entries(payload._files).forEach(([key, value]) => {
             form.append(key, value[0], value[1]);
         });
 

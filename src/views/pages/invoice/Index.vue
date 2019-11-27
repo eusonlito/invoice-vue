@@ -19,10 +19,10 @@
 
                 <template slot-scope="{data}">
                     <vs-tr :data="item.id" :key="index" v-for="(item, index) in data">
-                        <vs-td>{{ item.number }}</vs-td>
-                        <vs-td>{{ item.serie ? item.serie.name : '-' }}</vs-td>
-                        <vs-td>{{ item.status.name }}</vs-td>
-                        <vs-td>{{ item.billing_name }}</vs-td>
+                        <vs-td class="whitespace-no-wrap">{{ item.number }}</vs-td>
+                        <vs-td class="whitespace-no-wrap">{{ item.serie ? item.serie.name : '-' }}</vs-td>
+                        <vs-td class="whitespace-no-wrap">{{ item.status.name }}</vs-td>
+                        <vs-td class="whitespace-no-wrap">{{ item.billing_name }}</vs-td>
 
                         <vs-td>
                             {{ money(item.amount_total) }}
@@ -30,8 +30,8 @@
                             <vs-progress :percent="percent(item.amount_total, item.amount_paid)" :color="color(item.amount_total, item.amount_paid)"></vs-progress>
                         </vs-td>
 
-                        <vs-td>{{ item.date_at }}</vs-td>
-                        <vs-td>{{ item.paid_at }}</vs-td>
+                        <vs-td class="whitespace-no-wrap">{{ item.date_at }}</vs-td>
+                        <vs-td class="whitespace-no-wrap">{{ item.paid_at }}</vs-td>
                         <vs-td>
                             <vs-tooltip text="Descargar Factura">
                                 <vs-button radius color="primary" type="flat" icon-pack="feather" icon="icon-file"  @click.stop="download(item)"></vs-button>

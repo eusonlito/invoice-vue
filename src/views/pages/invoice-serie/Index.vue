@@ -13,7 +13,7 @@
                 </template>
 
                 <template slot-scope="{data}">
-                    <vs-tr :data="item.id" :key="index" v-for="(item, index) in data">
+                    <vs-tr :data="item.id" :key="index" v-for="(item, index) in data" class="whitespace-no-wrap">
                         <vs-td>{{ item.name }}</vs-td>
                         <vs-td>{{ item.number_prefix }}</vs-td>
                         <vs-td>{{ item.number_next }}</vs-td>
