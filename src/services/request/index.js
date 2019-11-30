@@ -18,7 +18,7 @@ export default {
 
     post(path, payload, config) {
         return axios.post(path, this.postPayload(payload), config).then(data => {
-            return cache.remove(path, data);
+            return cache.clear(data);
         });
     },
 
@@ -28,7 +28,7 @@ export default {
         }
 
         return axios.put(path, payload, config).then(data => {
-            return cache.remove(path, data);
+            return cache.clear(data);
         });
     },
 
@@ -38,13 +38,13 @@ export default {
         }
 
         return axios.patch(path, payload, config).then(data => {
-            return cache.remove(path, data);
+            return cache.clear(data);
         });
     },
 
     delete(path, payload, config) {
         return axios.delete(path, payload, config).then(data => {
-            return cache.remove(path, data);
+            return cache.clear(data);
         });
     },
 

@@ -125,7 +125,7 @@
             <vx-card class="mb-base">
                 <div class="vx-row flex-nowrap">
                     <div class="vx-col">
-                        <custom-select v-model="form.invoice_serie_id" name="invoice_serie_id" label="Serie" v-validate="'required'" data-vv-as="Serie" data-vv-validate-on="blur" option-value="id" option-title="name" :options="invoice_serie" :selected="form.invoice_serie_id" />
+                        <custom-select v-model="form.invoice_serie_id" name="invoice_serie_id" label="Serie" v-validate="'required'" data-vv-as="Serie" data-vv-validate-on="blur" option-value="id" option-title="name" :options="invoice_serie" />
                         <span class="text-danger text-sm">{{ errors.first('invoice_serie_id') }}</span>
                     </div>
 
@@ -162,12 +162,12 @@
                     </div>
 
                     <div class="vx-col">
-                        <custom-select v-model="form.invoice_status_id" name="invoice_status_id" label="Estado" option-value="id" option-title="name" :options="invoice_status" :selected="form.invoice_status_id" />
+                        <custom-select v-model="form.invoice_status_id" name="invoice_status_id" label="Estado" option-value="id" option-title="name" :options="invoice_status" />
                         <span class="text-danger text-sm">{{ errors.first('invoice_status_id') }}</span>
                     </div>
 
                     <div class="vx-col">
-                        <custom-select v-model="form.payment_id" name="payment_id" label="Pago" option-value="id" option-title="name" :options="payment" :selected="form.payment_id" empty="Sin especificar" />
+                        <custom-select v-model="form.payment_id" name="payment_id" label="Pago" option-value="id" option-title="name" :options="payment" empty="Sin especificar" />
                         <span class="text-danger text-sm">{{ errors.first('payment_id') }}</span>
                     </div>
                 </div>
@@ -222,7 +222,7 @@
                             <th colspan="4"></th>
                             <th class="col text-right">
                                 <div v-if="discount.length">
-                                    <custom-select v-model="form.discount_id" name="discount_id" option-value="id" option-title="name" :options="discount" :selected="form.discount_id" empty="Sin descuento" />
+                                    <custom-select v-model="form.discount_id" name="discount_id" option-value="id" option-title="name" :options="discount" empty="Sin descuento" />
                                     <span class="text-danger text-sm">{{ errors.first('discount_id') }}</span>
                                 </div>
                             </th>
@@ -236,7 +236,7 @@
                             <th colspan="4"></th>
                             <th class="col text-right">
                                 <div v-if="tax.length">
-                                    <custom-select v-model="form.tax_id" name="tax_id" option-value="id" option-title="name" :options="tax" :selected="form.tax_id" empty="Sin impuestos" />
+                                    <custom-select v-model="form.tax_id" name="tax_id" option-value="id" option-title="name" :options="tax" empty="Sin impuestos" />
                                     <span class="text-danger text-sm">{{ errors.first('tax_id') }}</span>
                                 </div>
                             </th>
@@ -250,7 +250,7 @@
                             <th colspan="4"></th>
                             <th class="col text-right">
                                 <div v-if="shipping.length">
-                                    <custom-select v-model="form.shipping_id" name="shipping_id" option-value="id" option-title="name" :options="shipping" :selected="form.shipping_id" empty="Sin envío" />
+                                    <custom-select v-model="form.shipping_id" name="shipping_id" option-value="id" option-title="name" :options="shipping" empty="Sin envío" />
                                     <span class="text-danger text-sm">{{ errors.first('shipping_id') }}</span>
                                 </div>
 

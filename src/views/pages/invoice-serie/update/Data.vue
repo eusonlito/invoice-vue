@@ -25,7 +25,7 @@
                 <div class="vx-row flex-nowrap">
                     <div class="vx-col">
                         <div class="vs-component vs-con-input-label vs-input vs-input-primary">
-                            <label class="vs-input--label">Certificado de firma</label>
+                            <label class="vs-input--label">Certificado de firma (FNMT o Camerfirma)</label>
 
                             <div class="vs-con-input">
                                 <input type="file" name="certificate_file" class="vs-inputx vs-input--input normal" @change="file" />

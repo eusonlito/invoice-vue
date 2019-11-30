@@ -1,5 +1,7 @@
 'use strict';
 
+import configuration from '@/store/configuration'
+
 export default {
     enabled() {
         try {
@@ -8,8 +10,6 @@ export default {
         } catch (e) {
             return false
         }
-
-        this.version();
 
         return true;
     },
@@ -60,8 +60,12 @@ export default {
         });
     },
 
-    clear() {
-        sessionStorage.clear();
+    clear(value) {
+        return new Promise((resolve) => {
+            sessionStorage.clear();
+
+            return resolve(value);
+        });
     },
 
     tag(tag) {
@@ -69,12 +73,25 @@ export default {
     },
 
     version() {
-        if (sessionStorage.getItem('version') === process.env.VUE_APP_CACHE_VERSION) {
-            return;
-        }
+        configuration.dispatch('cacheVersion').then(server => {
+            const local = process.env.VUE_APP_CACHE_VERSION;
 
-        sessionStorage.clear();
-        sessionStorage.setItem('version', process.env.VUE_APP_CACHE_VERSION);
+            if (this.versionLocalCheck(local) && this.versionServerCheck(server)) {
+                return;
+            }
+
+            sessionStorage.clear();
+            sessionStorage.setItem('version-local', local);
+            sessionStorage.setItem('version-server', server);
+        });
+    },
+
+    versionLocalCheck(version) {
+        return sessionStorage.getItem('version-local') === version;
+    },
+
+    versionServerCheck(version) {
+        return sessionStorage.getItem('version-server') === version;
     },
 
     key(value) {

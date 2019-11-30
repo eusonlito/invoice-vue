@@ -15,6 +15,10 @@ export default {
         return cache.remove(this.tag(path), data);
     },
 
+    clear(data) {
+        return cache.clear(data);
+    },
+
     tag(path) {
         return path.split('/')[1];
     }

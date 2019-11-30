@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <custom-select v-model="form.country_id" name="country_id" label="País" v-validate="'required'" data-vv-as="País" :options="countries" option-value="id" option-title="name" :selected="form.country_id" />
+                    <custom-select v-model="form.country_id" name="country_id" label="País" v-validate="'required'" data-vv-as="País" :options="countries" option-value="id" option-title="name" />
                     <span class="text-danger text-sm">{{ errors.first('country_id') }}</span>
                 </div>
 

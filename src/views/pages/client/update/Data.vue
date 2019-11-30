@@ -62,22 +62,22 @@
             <div class="vx-col w-full sm:w-1/3 md:w-1/3 mb-base">
                 <vx-card title="Preferencias" noShadow>
                     <div class="mb-3" v-if="discount.length">
-                        <custom-select v-model="form.discount_id" name="discount_id" label="Descuento" empty="Sin preferencia" :options="discount" option-value="id" option-title="name" :selected="form.discount_id" />
+                        <custom-select v-model="form.discount_id" name="discount_id" label="Descuento" empty="Sin preferencia" :options="discount" option-value="id" option-title="name" />
                         <span class="text-danger text-sm">{{ errors.first('discount_id') }}</span>
                     </div>
 
                     <div class="mb-3" v-if="payment.length">
-                        <custom-select v-model="form.payment_id" name="payment_id" label="Forma de pago" empty="Sin preferencia" :options="payment" option-value="id" option-title="name" :selected="form.payment_id" />
+                        <custom-select v-model="form.payment_id" name="payment_id" label="Forma de pago" empty="Sin preferencia" :options="payment" option-value="id" option-title="name" />
                         <span class="text-danger text-sm">{{ errors.first('payment_id') }}</span>
                     </div>
 
                     <div class="mb-3" v-if="shipping.length">
-                        <custom-select v-model="form.shipping_id" name="shipping_id" label="Método de envío" empty="Sin preferencia" :options="shipping" option-value="id" option-title="name" :selected="form.shipping_id" />
+                        <custom-select v-model="form.shipping_id" name="shipping_id" label="Método de envío" empty="Sin preferencia" :options="shipping" option-value="id" option-title="name" />
                         <span class="text-danger text-sm">{{ errors.first('shipping_id') }}</span>
                     </div>
 
                     <div class="mb-3" v-if="tax.length">
-                        <custom-select v-model="form.tax_id" name="tax_id" label="IVA" empty="Sin preferencia" :options="tax" option-value="id" option-title="name" :selected="form.tax_id" />
+                        <custom-select v-model="form.tax_id" name="tax_id" label="IVA" empty="Sin preferencia" :options="tax" option-value="id" option-title="name" />
                         <span class="text-danger text-sm">{{ errors.first('tax_id') }}</span>
                     </div>
                 </vx-card>

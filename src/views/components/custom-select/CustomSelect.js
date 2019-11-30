@@ -6,6 +6,11 @@ export default {
     inheritAttrs: false,
 
     props: {
+        value: {
+            type: [Number, String],
+            required: false
+        },
+
         label: {
             type: String,
             required: false
@@ -26,14 +31,21 @@ export default {
             required: true
         },
 
-        selected: {
-            type: [Number, String],
-            required: false
-        },
-
         empty: {
             type: String,
             required: false
+        }
+    },
+
+    computed:{
+        selected:{
+            get() {
+                return this.value;
+            },
+
+            set(value) {
+                this.$emit('input', value);
+            }
         }
     },
 

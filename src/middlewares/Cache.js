@@ -4,11 +4,11 @@ import local from '@/services/cache/Local'
 import session from '@/services/cache/Session'
 
 export default function({ next, router }) {
-    session.enabled();
-
-    if (local.enabled()) {
-        return next();
+    if (!local.enabled() || !session.enabled()) {
+        return router.push({ name: 'cookie-unavailable' }).catch(() => {});
     }
 
-    return router.push({ name: 'cookie-unavailable' }).catch(() => {});
+    session.version();
+
+    return next();
 }

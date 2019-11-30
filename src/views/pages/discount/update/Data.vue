@@ -7,7 +7,7 @@
             </div>
 
             <div class="mb-3">
-                <custom-select v-model="form.type" name="type" label="Tipo" option-value="id" option-title="name" :options="getType()" :selected="form.type" />
+                <custom-select v-model="form.type" name="type" label="Tipo" option-value="id" option-title="name" :options="getType()" />
                 <span class="text-danger text-sm">{{ errors.first('type') }}</span>
             </div>
 

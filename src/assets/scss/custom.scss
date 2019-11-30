@@ -44,6 +44,10 @@
             display: none !important;
         }
 
+        .active {
+            margin-bottom: 2px;
+        }
+
         .vs-button + .vs-button {
             margin-left: 15px;
         }

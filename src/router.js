@@ -94,6 +94,25 @@ const router = new Router({
                 },
 
                 {
+                    path: '/invoice-recurring',
+                    name: 'invoice-recurring-index',
+                    component: () => import('@/views/pages/invoice-recurring/Index.vue'),
+                    meta: {
+                        middleware: [Cache, Session, Auth, Company]
+                    }
+                },
+
+                {
+                    path: '/invoice-recurring/update/:id?',
+                    name: 'invoice-recurring-update',
+                    component: () => import('@/views/pages/invoice-recurring/update/Index.vue'),
+                    meta: {
+                        middleware: [Cache, Session, Auth, Company],
+                        parent: 'invoice-recurring-index'
+                    }
+                },
+
+                {
                     path: '/invoice-serie',
                     name: 'invoice-serie-index',
                     component: () => import('@/views/pages/invoice-serie/Index.vue'),
