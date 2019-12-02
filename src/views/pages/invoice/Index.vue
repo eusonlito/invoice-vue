@@ -12,13 +12,13 @@
                     <vs-th>Estado</vs-th>
                     <vs-th sort-key="billing_name">Cliente</vs-th>
                     <vs-th sort-key="amount_total">Importe</vs-th>
-                    <vs-th sort-key="date_at" class="text-center">Fecha</vs-th>
-                    <vs-th sort-key="paid_at" class="text-center">Fecha Pago</vs-th>
+                    <vs-th sort-key="date_at">Fecha</vs-th>
+                    <vs-th sort-key="paid_at">Fecha Pago</vs-th>
                     <vs-th></vs-th>
                 </template>
 
                 <template slot-scope="{data}">
-                    <vs-tr :data-id="item.id" :data="item.id" :key="index" v-for="(item, index) in data">
+                    <vs-tr :data="item.id" :key="index" v-for="(item, index) in data">
                         <vs-td class="whitespace-no-wrap">{{ item.number }}</vs-td>
                         <vs-td class="whitespace-no-wrap">{{ item.serie ? item.serie.name : '-' }}</vs-td>
                         <vs-td class="whitespace-no-wrap">{{ item.status.name }}</vs-td>
@@ -30,11 +30,12 @@
                             <vs-progress :percent="percent(item.amount_total, item.amount_paid)" :color="color(item.amount_total, item.amount_paid)"></vs-progress>
                         </vs-td>
 
-                        <vs-td class="whitespace-no-wrap text-center">{{ item.date_at }}</vs-td>
-                        <vs-td class="whitespace-no-wrap text-center">{{ item.paid_at }}</vs-td>
-                        <vs-td class="whitespace-no-wrap text-center">
-                            <i class="feather icon-file vs-table-icon mr-3 text-primary" title="Descargar Factura" @click.stop="download(item)"></i>
-                            <i class="feather icon-check-circle vs-table-icon text-success" :class="item.status.paid ? 'disabled' : ''" title="Marcar como Pagada" @click.stop="paid(item)"></i>
+                        <vs-td class="whitespace-no-wrap">{{ item.date_at }}</vs-td>
+                        <vs-td class="whitespace-no-wrap">{{ item.paid_at }}</vs-td>
+                        <vs-td>
+                            <vs-tooltip text="Descargar Factura">
+                                <vs-button radius color="primary" type="flat" icon-pack="feather" icon="icon-file"  @click.stop="download(item)"></vs-button>
+                            </vs-tooltip>
                         </vs-td>
                     </vs-tr>
                 </template>

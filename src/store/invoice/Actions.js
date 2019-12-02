@@ -31,10 +31,6 @@ export default {
         return request.post('/invoice', payload);
     },
 
-    paid(_, id) {
-        return request.patch('/invoice/' + id + '/paid');
-    },
-
     delete(_, id) {
         return request.delete('/invoice/' + id);
     },
