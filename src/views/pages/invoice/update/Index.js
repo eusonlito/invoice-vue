@@ -496,7 +496,11 @@ export default {
 
                 return invoice.dispatch('createOrUpdate', { id: this.$route.params.id, payload: this.form })
                     .then(({ data }) => this.success(data))
-                    .catch(e => this.error(e));
+                    .catch(e => this.notifyError(e))
+                    .finally(() => {
+                        this.submitButton.disabled = false;
+                        this.submitButton.text = 'Guardar';
+                    });
             });
         },
 
@@ -507,17 +511,7 @@ export default {
                 this.$router.push({ name: this.$route.name , params: { id: data.id }});
             }
 
-            this.submitButton.disabled = false;
-            this.submitButton.text = 'Guardar';
-
             this.files = data.files;
-        },
-
-        error(e) {
-            this.notifyError(e);
-
-            this.submitButton.disabled = false;
-            this.submitButton.text = 'Guardar';
         },
 
         deleteConfirm() {

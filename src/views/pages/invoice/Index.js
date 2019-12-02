@@ -11,6 +11,8 @@ export default {
         return {
             list: null,
 
+            events: {},
+
             breadcrumb: {
                 items: [
                     {
@@ -58,19 +60,54 @@ export default {
         },
 
         export() {
-            return invoice.dispatch('export').then(response => {
-                return this.downloadBlob(response);
-            }).catch(e => {
-                this.notifyError(e);
-            });
+            const event = 'invoice-export';
+
+            if (this.eventRunning(event)) {
+                return;
+            }
+
+            this.eventRun(event);
+
+            return invoice.dispatch('export').then(response => this.downloadBlob(response))
+                .catch(e => this.notifyError(e))
+                .finally(() => this.eventFinish(event));
         },
 
         download(selected) {
-            return file.dispatch('main', selected.id).then(response => {
-                return this.downloadBlob(response);
-            }).catch(e => {
-                this.notifyError(e);
-            });
+            const event = 'invoice-download-' + selected.id;
+
+            if (this.eventRunning(event)) {
+                return;
+            }
+
+            this.eventRun(event);
+
+            return file.dispatch('main', selected.id).then(response => this.downloadBlob(response))
+                .catch(e => this.notifyError(e))
+                .finally(() => this.eventFinish(event));
+        },
+
+        paid(selected) {
+            const event = 'invoice-paid-' + selected.id;
+
+            if (selected.status.paid || this.eventRunning(event)) {
+                return;
+            }
+
+            this.eventRun(event);
+
+            return invoice.dispatch('paid', selected.id).then(({ data }) => this.paidSuccess(selected, data))
+                .catch(e => this.notifyError(e))
+                .finally(() => this.eventFinish(event));
+        },
+
+        paidSuccess(selected, data) {
+            selected.amount_paid = data.amount_paid;
+            selected.amount_due = data.amount_due;
+            selected.paid_at = data.paid_at;
+            selected.status = data.status;
+
+            this.notifySuccess('OK :)');
         },
 
         update(selected) {
@@ -97,7 +134,7 @@ export default {
             }
 
             return reverse ? 'success' : 'danger';
-        },
+        }
     },
 
     created() {
