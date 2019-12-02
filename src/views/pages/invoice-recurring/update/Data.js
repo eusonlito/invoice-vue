@@ -20,14 +20,6 @@ export default {
     computed: {
         validate() {
             return !this.errors.any();
-        }
-    },
-
-    methods: {
-        load() {
-            if (this.$route.params.id) {
-                this.detail();
-            }
         },
 
         getEvery() {
@@ -47,6 +39,14 @@ export default {
                     name: 'Anual'
                 }
             ];
+        }
+    },
+
+    methods: {
+        load() {
+            if (this.$route.params.id) {
+                this.detail();
+            }
         },
 
         detail() {
@@ -82,7 +82,7 @@ export default {
         deleteConfirm() {
             this.confirmDanger({
                 title: 'Confirmar Borrado',
-                text: 'Esta acción no se puede deshacer, igual una opción mejor es simplemente desactivarla.',
+                text: 'Sólo será posible si no tiene ninguna factura asociada. Recuerda que puedes desactivarlo para evitar salir en los selectores.',
                 accept: this.delete
             });
         },

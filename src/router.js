@@ -57,6 +57,15 @@ const router = new Router({
                 },
 
                 {
+                    path: '/configuration/cache/clear',
+                    name: 'configuration-cache-clear',
+                    component: () => import('@/views/pages/configuration/cache/Clear.vue'),
+                    meta: {
+                        middleware: [Cache, Session, Auth]
+                    }
+                },
+
+                {
                     path: '/discount',
                     name: 'discount-index',
                     component: () => import('@/views/pages/discount/Index.vue'),

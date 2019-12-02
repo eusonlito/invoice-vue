@@ -162,6 +162,11 @@
                     </div>
 
                     <div class="vx-col">
+                        <custom-select v-model="form.invoice_recurring_id" name="invoice_recurring_id" label="Recurrencia" option-value="id" option-title="name" :options="invoice_recurring" empty="Sin especificar" />
+                        <span class="text-danger text-sm">{{ errors.first('invoice_recurring_id') }}</span>
+                    </div>
+
+                    <div class="vx-col">
                         <custom-select v-model="form.invoice_status_id" name="invoice_status_id" label="Estado" option-value="id" option-title="name" :options="invoice_status" />
                         <span class="text-danger text-sm">{{ errors.first('invoice_status_id') }}</span>
                     </div>

@@ -25,6 +25,7 @@ export default {
 
             clientAddress: null,
             discount: [],
+            invoice_recurring: [],
             invoice_serie: [],
             invoice_status: [],
             payment: [],
@@ -87,6 +88,7 @@ export default {
                 client_address_billing_id: null,
                 client_address_shipping_id: null,
                 discount_id: null,
+                invoice_recurring_id: null,
                 invoice_serie_id: null,
                 invoice_status_id: null,
                 payment_id: null,
@@ -158,6 +160,7 @@ export default {
         setRelations(data) {
             this.setClientAddress(data.client_address);
             this.setDiscount(data.discount);
+            this.setInvoiceRecurring(data.invoice_recurring);
             this.setInvoiceSerie(data.invoice_serie);
             this.setInvoiceStatus(data.invoice_status);
             this.setPayment(data.payment);
@@ -175,6 +178,7 @@ export default {
             this.form.discount_id = data.discount ? data.discount.id : null;
             this.form.payment_id = data.payment ? data.payment.id : null;
             this.form.shipping_id = data.shipping ? data.shipping.id : null;
+            this.form.invoice_recurring_id = data.recurring ? data.recurring.id : null;
             this.form.invoice_serie_id = data.serie ? data.serie.id : null;
             this.form.invoice_status_id = data.status ? data.status.id : null;
             this.form.tax_id = data.tax ? data.tax.id : null;
@@ -198,6 +202,10 @@ export default {
             if (selected) {
                 this.form.discount_id = selected.id;
             }
+        },
+
+        setInvoiceRecurring(data) {
+            this.invoice_recurring = data;
         },
 
         setInvoiceSerie(data) {
@@ -488,7 +496,11 @@ export default {
 
                 return invoice.dispatch('createOrUpdate', { id: this.$route.params.id, payload: this.form })
                     .then(({ data }) => this.success(data))
-                    .catch(e => this.error(e));
+                    .catch(e => this.notifyError(e))
+                    .finally(() => {
+                        this.submitButton.disabled = false;
+                        this.submitButton.text = 'Guardar';
+                    });
             });
         },
 
@@ -499,17 +511,7 @@ export default {
                 this.$router.push({ name: this.$route.name , params: { id: data.id }});
             }
 
-            this.submitButton.disabled = false;
-            this.submitButton.text = 'Guardar';
-
             this.files = data.files;
-        },
-
-        error(e) {
-            this.notifyError(e);
-
-            this.submitButton.disabled = false;
-            this.submitButton.text = 'Guardar';
         },
 
         deleteConfirm() {

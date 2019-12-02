@@ -31,6 +31,11 @@ export default [
                 url: { name: 'invoice-serie-index' },
                 name: 'Series',
                 slug: 'invoice-serie-index'
+            },
+            {
+                url: { name: 'invoice-recurring-index' },
+                name: 'Recurrentes',
+                slug: 'invoice-recurring-index'
             }
         ]
     },

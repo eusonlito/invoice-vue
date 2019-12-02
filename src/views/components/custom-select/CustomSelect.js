@@ -40,7 +40,15 @@ export default {
     computed:{
         selected:{
             get() {
-                return this.value;
+                if (this.value) {
+                    return this.value;
+                }
+
+                if (this.empty) {
+                    return '';
+                }
+
+                return this.options[0][this.optionValue];
             },
 
             set(value) {

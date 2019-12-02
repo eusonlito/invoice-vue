@@ -7,7 +7,7 @@
             </div>
 
             <div class="mb-3">
-                <custom-select v-model="form.every" name="every" label="Periodo" option-value="id" option-title="name" :options="getEvery()" v-validate="'required'" data-vv-as="Periodo" data-vv-validate-on="blur" />
+                <custom-select v-model="form.every" name="every" label="Periodo" option-value="id" option-title="name" :options="getEvery" v-validate="'required'" data-vv-as="Periodo" data-vv-validate-on="blur" />
                 <span class="text-danger text-sm">{{ errors.first('every') }}</span>
             </div>
 

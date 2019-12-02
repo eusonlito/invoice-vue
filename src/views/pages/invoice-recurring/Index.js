@@ -29,6 +29,16 @@ export default {
         }
     },
 
+    computed: {
+        getEvery() {
+            return {
+                'week': 'Semanal',
+                'month': 'Mensual',
+                'year': 'Anual'
+            };
+        }
+    },
+
     methods: {
         load() {
             recurring.dispatch('list').then(({ data }) => {

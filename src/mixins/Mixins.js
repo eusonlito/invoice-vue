@@ -31,6 +31,22 @@ Vue.mixin({
             return list.some(check);
         },
 
+        eventRunning(name) {
+            if (!this._eventsRunning) {
+                this._eventsRunning = {};
+            }
+
+            return this._eventsRunning[name] || false;
+        },
+
+        eventRun(name) {
+            return this._eventsRunning[name] = true;
+        },
+
+        eventFinish(name) {
+            return this._eventsRunning[name] = false;
+        },
+
         downloadBlob(response) {
             const clickHandler = () => {
                 setTimeout(() => {

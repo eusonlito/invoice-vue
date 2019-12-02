@@ -13,7 +13,7 @@
                 <template slot-scope="{data}">
                     <vs-tr :data="item.id" :key="index" v-for="(item, index) in data" class="whitespace-no-wrap">
                         <vs-td>{{ item.name }}</vs-td>
-                        <vs-td>{{ item.every }}</vs-td>
+                        <vs-td>{{ getEvery[item.every] }}</vs-td>
                         <vs-td>
                             <vs-chip :color="item.enabled ? 'success' : 'danger'" class="product-order-recurring">{{ item.enabled ? 'Sí' : 'No' }}</vs-chip>
                         </vs-td>

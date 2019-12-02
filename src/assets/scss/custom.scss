@@ -76,8 +76,40 @@ input[type="file"].vs-input--input.normal {
     padding: 0.486rem 0.7rem !important;
 }
 
-.vs-button + .vs-button {
-    margin-left: 20px;
+.vs-button {
+    + .vs-button {
+        margin-left: 20px;
+    }
+}
+
+.vs-table {
+    .text-center {
+        .vs-table-text {
+            display: block;
+        }
+    }
+
+    .whitespace-no-wrap {
+        > span {
+            white-space: nowrap !important;
+        }
+    }
+
+    .vs-table-icon {
+        display: inline-block;
+        padding: 8px;
+        font-size: 1.2rem;
+        border-radius: 50%;
+
+        &:hover {
+            background-color: #EEE;
+        }
+
+        &.disabled {
+            opacity: .4;
+            cursor: default;
+        }
+    }
 }
 
 #invoice-table {
