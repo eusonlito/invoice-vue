@@ -10,7 +10,6 @@ export default {
     },
 
     config: {
-        hideScrollToTop: true, // options[Boolean] : true, false(default)
         mainLayoutType: 'horizontal', // options[String]  : vertical(default) / horizontal
         navbarColor: '#FFF', // options[String]  : HEX color / rgb / rgba / Valid HTML Color name - (default: #fff)
         navbarType: 'sticky', // options[String]  : floating(default) / static / sticky / hidden

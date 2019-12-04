@@ -39,6 +39,10 @@ export default {
     },
 
     methods: {
+        load() {
+            this.getCountries().then(() => this.getCompany());
+        },
+
         getCompany() {
             company.commit('LOAD');
 
@@ -88,7 +92,6 @@ export default {
     },
 
     created() {
-        this.getCompany();
-        this.getCountries();
+        this.load();
     }
 }

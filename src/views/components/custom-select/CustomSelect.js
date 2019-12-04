@@ -48,7 +48,9 @@ export default {
                     return '';
                 }
 
-                return this.options[0][this.optionValue];
+                if (this.options.length) {
+                    return this.options[0][this.optionValue];
+                }
             },
 
             set(value) {

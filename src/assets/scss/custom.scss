@@ -76,12 +76,6 @@ input[type="file"].vs-input--input.normal {
     padding: 0.486rem 0.7rem !important;
 }
 
-.vs-button {
-    + .vs-button {
-        margin-left: 20px;
-    }
-}
-
 .vs-table {
     .text-center {
         .vs-table-text {
@@ -168,4 +162,10 @@ input[type="file"].vs-input--input.normal {
 
 .layout--full-page .bg-img {
     background: #aebcce;
+}
+
+.btn-addon {
+    .includeIconOnly {
+        height: 100% !important;
+    }
 }

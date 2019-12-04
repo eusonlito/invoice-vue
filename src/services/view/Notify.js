@@ -32,10 +32,6 @@ export default {
             return;
         }
 
-        if (process.env.NODE_ENV !== 'production') {
-            console.error(error);
-        }
-
         $vs.notify({
             title: 'Error',
             text: text,

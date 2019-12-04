@@ -1,13 +1,14 @@
 'use strict';
 
-import NavbarHorizontalMenu from '@/views/components/navbar-horizontal-menu/NavbarHorizontalMenu.vue'
-import NavbarMenuItem from '@/views/components/navbar-menu-item/NavbarMenuItem'
+import NavbarHorizontalMenu from '@/views/components/navbar-horizontal-menu/NavbarHorizontalMenu.vue';
+import NavbarMenuItem from '@/views/components/navbar-menu-item/NavbarMenuItem';
 
-import view from '@/store/view'
-import user from '@/store/user'
+import view from '@/store/view';
+import user from '@/store/user';
 
 export default {
     name: 'navbar-horizontal',
+
     props: {
         logo: { type: String },
 
@@ -17,54 +18,49 @@ export default {
         }
     },
 
-    components: {
-        NavbarHorizontalMenu,
-    },
+    components: { NavbarHorizontalMenu },
 
     data() {
-        return {
-            settings: {
-                maxScrollbarLength: 60,
-                wheelSpeed: .60,
-            },
-            autoFocusSearch: false,
-            navMenuItems: NavbarMenuItem,
-        }
+        return { navMenuItems: NavbarMenuItem };
     },
 
     computed: {
         navbarColor() {
-            let color = '#fff'
+            let color = '#fff';
 
             if (this.navbarType === 'sticky') {
-                color = '#f7f7f7'
+                color = '#f7f7f7';
             } else if ((this.navbarType === 'static') && (this.scrollY < 50)) {
-                color = '#f7f7f7'
+                color = '#f7f7f7';
             }
 
-            return color
+            return color;
         },
 
         navbarStyle() {
-            let style = {}
+            let style = {};
 
             if (this.navbarType === 'static') {
-                style.transition = 'all .25s ease-in-out'
+                style.transition = 'all .25s ease-in-out';
             }
 
-            return style
+            return style;
         },
 
         navbarClasses() {
-            return this.scrollY > 5 && this.navbarType === 'static' ? null : 'd-theme-dark-light-bg shadow-none'
+            if ((this.scrollY > 5) && (this.navbarType === 'static')) {
+                return null;
+            }
+
+            return 'd-theme-dark-light-bg shadow-none';
         },
 
         scrollY() {
-            return view.state.scrollY
+            return view.state.scrollY;
         },
 
         windowWidth() {
-            return view.state.windowWidth
+            return view.state.windowWidth;
         },
 
         user() {
@@ -83,22 +79,22 @@ export default {
     directives: {
         'click-outside': {
             bind: function(el, binding) {
-                const bubble = binding.modifiers.bubble
+                const bubble = binding.modifiers.bubble;
 
                 const handler = (e) => {
                     if (bubble || (!el.contains(e.target) && el !== e.target)) {
-                        binding.value(e)
+                        binding.value(e);
                     }
                 }
 
-                el.__vueClickOutside__ = handler
+                el.__vueClickOutside__ = handler;
 
-                document.addEventListener('click', handler)
+                document.addEventListener('click', handler);
             },
 
             unbind: function(el) {
-                document.removeEventListener('click', el.__vueClickOutside__)
-                el.__vueClickOutside__ = null
+                document.removeEventListener('click', el.__vueClickOutside__);
+                el.__vueClickOutside__ = null;
             }
         }
     }

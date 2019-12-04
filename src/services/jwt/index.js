@@ -14,7 +14,7 @@ export default {
     error(error) {
         const { config, response } = error
 
-        if (this.notRelatedSessionError(response)) {
+        if (!response || this.notRelatedSessionError(response)) {
             throw error;
         }
 

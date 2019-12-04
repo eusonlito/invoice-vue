@@ -95,5 +95,9 @@ export default {
         ['form.amount_subtotal']() {
             this.update();
         }
+    },
+
+    created() {
+        this.subtotal();
     }
 }
