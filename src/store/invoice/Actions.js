@@ -3,6 +3,10 @@
 import request from '@/services/request'
 
 export default {
+    listWrapper() {
+        return request.get('/invoice/w');
+    },
+
     list(_, payload) {
         return request.get('/invoice', { params: payload });
     },
@@ -11,12 +15,19 @@ export default {
         return request.get('/invoice/export', { nocache: true });
     },
 
+    exportFormatFilter(_, { format, filter, payload }) {
+        return request.get('/invoice/export/' + format + '/' + filter, {
+            responseType: 'arraybuffer',
+            params: payload
+        });
+    },
+
     detail(_, id) {
         return request.get('/invoice/' + id);
     },
 
     createWrapper() {
-        return request.get('/invoice/w');
+        return request.get('/invoice/w/create');
     },
 
     updateWrapper(_, id) {

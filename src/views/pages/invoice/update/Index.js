@@ -23,7 +23,7 @@ export default {
 
             items: [],
 
-            clientAddress: null,
+            client_address: null,
             discount: [],
             invoice_recurring: [],
             invoice_serie: [],
@@ -104,11 +104,11 @@ export default {
         },
 
         client_address_billing() {
-            return this.clientAddress.filter(data => data.billing);
+            return this.client_address.filter(data => data.billing);
         },
 
         client_address_shipping() {
-            return this.clientAddress.filter(data => {
+            return this.client_address.filter(data => {
                 return data.shipping && this.form.client_id === data.client.id;
             });
         }
@@ -191,7 +191,7 @@ export default {
         },
 
         setClientAddress(data) {
-            this.clientAddress = data;
+            this.client_address = data;
         },
 
         setDiscount(data) {

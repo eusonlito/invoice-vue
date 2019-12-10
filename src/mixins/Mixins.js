@@ -72,7 +72,7 @@ Vue.mixin({
 
             const a = document.createElement('a');
 
-            if (type === 'json') {
+            if ((typeof response.data !== 'string') && !(response.data instanceof ArrayBuffer)) {
                 response.data = JSON.stringify(response.data);
             }
 

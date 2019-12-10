@@ -14,11 +14,15 @@
             </div>
 
             <div class="vx-card__actions" v-if="hasAction">
-                <slot name="actions"></slot>
+                <slot name="actions">
+                    <div class="vx-card__action-buttons" v-if="collapseAction">
+                        <feather-icon @click="toggleContent" icon="ChevronUpIcon" :class="{ rotate180: !isContentCollapsed }" class="ml-4" />
+                    </div>
+                </slot>
             </div>
         </div>
 
-        <div class="vx-card__collapsible-content vs-con-loading__container" ref="content" :class="[{'overflow-hidden': tempHidden}]" :style="StyleItems">
+        <div class="vx-card__collapsible-content vs-con-loading__container" ref="content" :class="[{ collapsed: isContentCollapsed }, { 'overflow-hidden': tempHidden }]" :style="StyleItems">
             <!-- content with no body(no padding) -->
             <slot name="no-body"></slot>
 

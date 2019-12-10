@@ -7,7 +7,7 @@ export default {
 
     props: {
         value: {
-            type: [Number, String],
+            type: [Number, String, Boolean],
             required: false
         },
 

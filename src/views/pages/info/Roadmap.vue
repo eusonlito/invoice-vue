@@ -9,6 +9,8 @@
                 <p class="mb-5 text-center">El camino a seguir será (más o menos por prioridad).</p>
 
                 <vs-list class="mb-5">
+                    <vs-list-item title="Filtros avanzados para facturas"></vs-list-item>
+                    <vs-list-item title="Descarga de facturas por lotes"></vs-list-item>
                     <vs-list-item title="Importación de Facturas/Clientes/Productos"></vs-list-item>
                     <vs-list-item title="Firma digital integrada para el PDF de factura"></vs-list-item>
                     <vs-list-item title="Logo de empresa para PDF de factura"></vs-list-item>

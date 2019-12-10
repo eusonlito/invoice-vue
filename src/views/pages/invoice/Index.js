@@ -9,9 +9,62 @@ export default {
 
     data() {
         return {
+            total: null,
             list: null,
 
+            invoice_recurring: [],
+            invoice_serie: [],
+            invoice_status: [],
+            payment: [],
+
             events: {},
+
+            form: {
+                date_start: null,
+                date_end: null,
+                invoice_recurring_id: null,
+                invoice_serie_id: null,
+                invoice_status_id: null,
+                payment_id: null
+            },
+
+            export_prompt: false,
+
+            export_form: {
+                format: 'json',
+                filter: '0'
+            },
+
+            export_form_options: {
+                format: [
+                    {
+                        id: 'json',
+                        name: 'JSON'
+                    },
+
+                    {
+                        id: 'csv',
+                        name: 'CSV'
+                    },
+
+                    {
+                        id: 'zip',
+                        name: 'ZIP'
+                    }
+                ],
+
+                filter: [
+                    {
+                        id: '0',
+                        name: 'Todos los Registros'
+                    },
+
+                    {
+                        id: '1',
+                        name: 'Sólo los Filtrados'
+                    }
+                ]
+            },
 
             breadcrumb: {
                 items: [
@@ -28,7 +81,7 @@ export default {
                     },
                     {
                         title: 'Exportar',
-                        click: () => this.export()
+                        click: () => this.exportPrompt()
                     }
                 ]
             }
@@ -52,14 +105,79 @@ export default {
         },
 
         load() {
-            return invoice.dispatch('list').then(({ data }) => {
-                this.list = data.map(item => this.item(item));
+            return this.getIndexWrapper();
+        },
+
+        getIndexWrapper() {
+            return invoice.dispatch('listWrapper').then(({ data }) => {
+                this.setRelations(data);
             }).catch(e => {
                 this.notifyError(e);
             });
         },
 
-        export() {
+        setRelations(data) {
+            this.setInvoice(data.invoice);
+            this.setInvoiceRecurring(data.invoice_recurring);
+            this.setInvoiceSerie(data.invoice_serie);
+            this.setInvoiceStatus(data.invoice_status);
+            this.setPayment(data.payment);
+
+            this.total = data.invoice.length;
+        },
+
+        setInvoice(data) {
+            this.list = data.map(item => this.item(item));
+        },
+
+        setInvoiceRecurring(data) {
+            this.invoice_recurring = data;
+        },
+
+        setInvoiceSerie(data) {
+            this.invoice_serie = data;
+        },
+
+        setInvoiceStatus(data) {
+            this.invoice_status = data;
+        },
+
+        setPayment(data) {
+            this.payment = data;
+        },
+
+        submit() {
+            const event = 'invoice-list';
+
+            if (this.eventRunning(event)) {
+                return;
+            }
+
+            this.eventRun(event);
+
+            return invoice.dispatch('list', this.form).then(({ data }) => this.setInvoice(data))
+                .catch(e => this.notifyError(e))
+                .finally(() => this.eventFinish(event));
+        },
+
+        clean() {
+            this.form = Object.assign(this.form, {
+                date_start: null,
+                date_end: null,
+                invoice_recurring_id: null,
+                invoice_serie_id: null,
+                invoice_status_id: null,
+                payment_id: null
+            });
+
+            return this.submit();
+        },
+
+        exportPrompt() {
+            this.export_prompt = true;
+        },
+
+        exportAccept() {
             const event = 'invoice-export';
 
             if (this.eventRunning(event)) {
@@ -68,7 +186,11 @@ export default {
 
             this.eventRun(event);
 
-            return invoice.dispatch('export').then(response => this.downloadBlob(response))
+            return invoice.dispatch('exportFormatFilter', {
+                format: this.export_form.format,
+                filter: this.export_form.filter,
+                payload: this.form
+            }).then(response => this.downloadBlob(response))
                 .catch(e => this.notifyError(e))
                 .finally(() => this.eventFinish(event));
         },

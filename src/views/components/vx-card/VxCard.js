@@ -4,6 +4,7 @@ import _color from '@/assets/utils/color'
 
 export default {
     name: 'vx-card',
+
     props: {
         title: String,
         subtitle: String,
@@ -22,6 +23,10 @@ export default {
         headerBackground: {
             default: '',
             type: String
+        },
+        collapseAction: {
+            default: false,
+            type: Boolean
         },
         cardBackground: {
             default: '',
@@ -46,35 +51,36 @@ export default {
             maxHeight: null,
             cardMaxHeight: null,
             codeContainerMaxHeight: '0px',
+            isContentCollapsed: !!this.collapseAction,
             tempHidden: false,
-        }
+        };
     },
 
     computed: {
         hasHeader() {
-            return this.hasAction || this.title || this.subtitle
+            return this.hasAction || this.title || this.subtitle;
         },
 
         hasAction() {
-            return this.$slots.actions;
+            return this.$slots.actions || this.collapseAction;
         },
 
         StyleItems() {
-            return { maxHeight: this.maxHeight }
+            return { maxHeight: this.maxHeight };
         },
 
         cardStyles() {
             let obj = { maxHeight: this.cardMaxHeight };
 
             if (!_color.isColor(this.cardBackground)) {
-                obj.background = _color.getColor(this.cardBackground)
+                obj.background = _color.getColor(this.cardBackground);
             }
 
             if (!_color.isColor(this.contentColor)) {
-                obj.color = _color.getColor(this.contentColor)
+                obj.color = _color.getColor(this.contentColor);
             }
 
-            return obj
+            return obj;
         },
 
         cardClasses() {
@@ -82,40 +88,39 @@ export default {
 
             // Add bg class
             if (_color.isColor(this.cardBackground)) {
-                str += ` bg-${this.cardBackground}`
+                str += ` bg-${this.cardBackground}`;
             }
 
             // add content color
             if (_color.isColor(this.contentColor)) {
-                str += ` text-${this.contentColor}`
+                str += ` text-${this.contentColor}`;
             }
 
-            return str.trim()
+            return str.trim();
         },
 
         titleStyles() {
-            return { color: _color.getColor(this.titleColor) }
+            return { color: _color.getColor(this.titleColor) };
         },
 
         titleClasses() {
             let str = '';
 
-            // add content color
             if (_color.isColor(this.titleColor)) {
-                str += ` text-${this.titleColor}`
+                str += ` text-${this.titleColor}`;
             }
 
-            return str.trim()
+            return str.trim();
         },
 
         subtitleStyles() {
-            let obj = {}
+            let obj = {};
 
             if (!_color.isColor(this.subtitleColor)) {
-                obj.color = _color.getColor(this.subtitleColor)
+                obj.color = _color.getColor(this.subtitleColor);
             }
 
-            return obj
+            return obj;
         },
 
         subtitleClasses() {
@@ -123,10 +128,21 @@ export default {
 
             // add content color
             if (_color.isColor(this.subtitleColor)) {
-                str += ` text-${this.subtitleColor}`
+                str += ` text-${this.subtitleColor}`;
             }
 
-            return str.trim()
+            return str.trim();
         },
+    },
+
+    methods: {
+        toggleContent() {
+            this.maxHeight = this.$refs.content.scrollHeight + 'px';
+
+            setTimeout(() => {
+                this.isContentCollapsed = !this.isContentCollapsed;
+                this.maxHeight = this.isContentCollapsed ? '1.5rem' : 'none';
+            }, this.isContentCollapsed ? 300 : 50);
+        }
     }
 }

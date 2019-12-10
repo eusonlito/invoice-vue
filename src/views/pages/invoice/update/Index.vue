@@ -2,7 +2,7 @@
     <div class="content-with-breadcrumb">
         <breadcrumb :items="breadcrumb.items" />
 
-        <form v-if="clientAddress && clientAddress.length" method="post" @submit.prevent="submit">
+        <form v-if="client_address && client_address.length" method="post" @submit.prevent="submit">
             <div class="vx-row match-height">
                 <div class="vx-col w-full md:w-1/3 mb-base">
                     <vx-card title="Datos de Empresa">
@@ -328,7 +328,7 @@
             </vx-card>
         </form>
 
-        <vx-card v-else-if="clientAddress" class="faq-jumbotron lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base">
+        <vx-card v-else-if="client_address" class="faq-jumbotron lg:p-32 md:p-24 sm:p-16 p-8 rounded-lg mb-base">
             <h1 class="mb-10 text-center">Aún no tienes ningún cliente 🤷</h1>
 
             <p class="text-center">
