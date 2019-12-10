@@ -493,6 +493,7 @@ export default {
                 }
 
                 this.form.items = this.$refs.items.map(item => item.form);
+                this.form = this.dateToDate(this.form, ['date_at', 'paid_at', 'required_at']);
 
                 return invoice.dispatch('createOrUpdate', { id: this.$route.params.id, payload: this.form })
                     .then(({ data }) => this.success(data))

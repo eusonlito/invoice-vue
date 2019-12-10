@@ -32,7 +32,7 @@ export default {
 
             export_form: {
                 format: 'json',
-                filter: '0'
+                filter: '1'
             },
 
             export_form_options: {
@@ -55,13 +55,13 @@ export default {
 
                 filter: [
                     {
-                        id: '0',
-                        name: 'Todos los Registros'
+                        id: '1',
+                        name: 'Sólo los Filtrados'
                     },
 
                     {
-                        id: '1',
-                        name: 'Sólo los Filtrados'
+                        id: '0',
+                        name: 'Todos los Registros'
                     }
                 ]
             },
@@ -155,7 +155,8 @@ export default {
 
             this.eventRun(event);
 
-            return invoice.dispatch('list', this.form).then(({ data }) => this.setInvoice(data))
+            return invoice.dispatch('list', this.dateToDate(this.form, ['date_start', 'date_end']))
+                .then(({ data }) => this.setInvoice(data))
                 .catch(e => this.notifyError(e))
                 .finally(() => this.eventFinish(event));
         },
@@ -186,10 +187,12 @@ export default {
 
             this.eventRun(event);
 
+            this.notifyWarning('Por favor, espera mientras generamos el fichero');
+
             return invoice.dispatch('exportFormatFilter', {
                 format: this.export_form.format,
                 filter: this.export_form.filter,
-                payload: this.form
+                payload: this.dateToDate(this.form, ['date_start', 'date_end'])
             }).then(response => this.downloadBlob(response))
                 .catch(e => this.notifyError(e))
                 .finally(() => this.eventFinish(event));

@@ -16,6 +16,15 @@ export default {
         });
     },
 
+    warning($vs, message) {
+        $vs.notify({
+            text: message,
+            iconPack: 'feather',
+            icon: 'icon-check-circle',
+            color: 'warning'
+        });
+    },
+
     success($vs, message) {
         $vs.notify({
             text: message,

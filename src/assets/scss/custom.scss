@@ -144,6 +144,12 @@ input[type="file"].vs-input--input.normal {
     }
 }
 
+.vs-button-danger {
+    .icon-trash {
+        color: #C66;
+    }
+}
+
 .select-large {
     input.vs-select--input {
         padding: 0.7rem;

@@ -322,9 +322,18 @@
                 <file-upload :files="files" :upload="fileUpload" :remove="fileDelete" :open="fileView"></file-upload>
             </vx-card>
 
-            <vx-card class="mb-base text-right">
-                <vs-button v-if="id" @click="deleteConfirm()" color="danger" type="flat" class="mr-10">Borrar</vs-button>
-                <vs-button button="submit" :disabled="!validate || submitButton.disabled">{{ submitButton.text }}</vs-button>
+            <vx-card class="mb-base">
+                <div class="vx-row flex-nowrap">
+                    <div class="vx-col">
+                        <vs-button v-if="id" @click="deleteConfirm()" color="danger" type="flat" title="Borrar">
+                            <i class="feather icon-trash"></i>
+                        </vs-button>
+                    </div>
+
+                    <div class="vx-col text-right">
+                        <vs-button button="submit" :disabled="!validate || submitButton.disabled">{{ submitButton.text }}</vs-button>
+                    </div>
+                </div>
             </vx-card>
         </form>
 

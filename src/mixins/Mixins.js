@@ -8,6 +8,10 @@ Vue.mixin({
             return this.$notify.success(this.$vs, message);
         },
 
+        notifyWarning(message) {
+            return this.$notify.warning(this.$vs, message);
+        },
+
         notifyError(message) {
             return this.$notify.error(this.$vs, message);
         },
@@ -116,6 +120,26 @@ Vue.mixin({
             }
 
             return colors[((hash % colors.length) + colors.length) % colors.length];
+        },
+
+        dateToDate(list, keys) {
+            let date;
+
+            keys.forEach((key) => {
+                if (!list[key]) {
+                    return;
+                }
+
+                date = new Date(list[key]);
+
+                list[key] =
+                    date.getFullYear()
+                    + '-' + ('0' + (date.getMonth() + 1)).slice(-2)
+                    + '-' + ('0' + date.getDate()).slice(-2)
+                ;
+            });
+
+            return list;
         }
     }
 });
