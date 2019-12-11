@@ -2,12 +2,12 @@
     <form method="post" @submit.prevent="submit">
         <vx-card noShadow>
             <div class="mb-3">
-                <vs-input type="text" name="name" label="Nombre" v-model="form.name" v-validate="'required'" data-vv-as="Nombre" data-vv-validate-on="blur" />
+                <vs-input type="text" name="name" label="Nombre" v-model="form.name" v-validate="'required'" data-vv-as="Nombre" />
                 <span class="text-danger text-sm">{{ errors.first('name') }}</span>
             </div>
 
             <div class="mb-3">
-                <vs-input type="number" name="order" label="Orden" v-model="form.order" min="0" step="1" v-validate="'required'" data-vv-as="Orden" data-vv-validate-on="blur" />
+                <vs-input type="number" name="order" label="Orden" v-model="form.order" min="0" step="1" v-validate="'required'" data-vv-as="Orden" />
                 <span class="text-danger text-sm">{{ errors.first('order') }}</span>
             </div>
 

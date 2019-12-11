@@ -8,6 +8,8 @@
 
                 <p class="text-center">Acceder a una aplicación sin poder almacenar cookies de sesión... no creo que funcione.</p>
             </vx-card>
+
+            <main-footer />
         </div>
     </div>
 </template>

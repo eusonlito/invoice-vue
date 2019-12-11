@@ -25,6 +25,8 @@
                     </div>
                 </div>
             </vx-card>
+
+            <main-footer />
         </div>
     </div>
 </template>

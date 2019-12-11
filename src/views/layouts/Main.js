@@ -1,12 +1,11 @@
 'use strict';
 
-import theme from '@/services/theme'
-import view from '@/store/view'
-import MainFooter from '@/views/components/main-footer/MainFooter.vue'
-import NavbarHorizontal from '@/views/components/navbar-horizontal/NavbarHorizontal.vue'
+import theme from '@/services/theme';
+import view from '@/store/view';
+import NavbarHorizontal from '@/views/components/navbar-horizontal/NavbarHorizontal.vue';
 
 export default {
-    components: { NavbarHorizontal, MainFooter },
+    components: { NavbarHorizontal },
 
     data() {
         return {
@@ -45,10 +44,10 @@ export default {
 
         navbarClasses() {
             return {
-                'navbar-hidden': this.navbarType === 'hidden',
-                'navbar-sticky': this.navbarType === 'sticky',
-                'navbar-static': this.navbarType === 'static',
-                'navbar-floating': this.navbarType === 'floating',
+                'navbar-hidden': (this.navbarType === 'hidden'),
+                'navbar-sticky': (this.navbarType === 'sticky'),
+                'navbar-static': (this.navbarType === 'static'),
+                'navbar-floating': (this.navbarType === 'floating'),
             };
         },
 

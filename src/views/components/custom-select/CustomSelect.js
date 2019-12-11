@@ -61,13 +61,13 @@ export default {
 
     methods: {
         focus() {
-            if (this.label) {
+            if (this.label && this.$refs.inputSelectLabel) {
                 this.$refs.inputSelectLabel.classList.add('input-select-label-primary--active');
             }
         },
 
         blur() {
-            if (this.label) {
+            if (this.label && this.$refs.inputSelectLabel) {
                 this.$refs.inputSelectLabel.classList.remove('input-select-label-primary--active');
             }
         }

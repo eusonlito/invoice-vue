@@ -180,15 +180,26 @@ input[type="file"].vs-input--input.normal {
 .the-footer {
     display: block;
     color: #999;
+    font-size: 1rem;
 
     > a {
         color: #999;
-        margin-left: 10px;
+        margin-left: 15px;
     }
 }
 
 .layout--full-page .bg-img {
-    background: #aebcce;
+    background: #AEBCCE;
+
+    .the-footer {
+        background: #AEBCCE;
+        color: #FFFBFB;
+        margin-top: 4rem;
+
+        > a {
+            color: #FFFBFB;
+        }
+    }
 }
 
 .btn-addon {

@@ -2,7 +2,7 @@
     <form method="post" @submit.prevent="submit">
         <vx-card noShadow>
             <div class="mb-base">
-                <vs-textarea name="css" label="CSS" v-model="form.css" v-validate="'required'" data-vv-as="CSS" data-vv-validate-on="blur" rows="25" class="w-full"></vs-textarea>
+                <vs-textarea name="css" label="CSS" v-model="form.css" v-validate="'required'" data-vv-as="CSS" rows="25" class="w-full"></vs-textarea>
 
                 <p>
                     Puedes validar el contenido en <a href="http://csslint.net/" target="_blank">http://csslint.net/</a>

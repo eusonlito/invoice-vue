@@ -17,7 +17,7 @@
                                     </div>
 
                                     <div class="mb-6">
-                                        <vs-input type="email" name="user" label-placeholder="Correo electrónico" v-model="form.user" v-validate="'required|email'" data-vv-as="Correo electrónico" icon="icon icon-user" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
+                                        <vs-input type="email" name="user" label-placeholder="Correo electrónico" v-model="form.user" v-validate="'required|email'" data-vv-as="Correo electrónico" icon="icon icon-user" icon-no-border icon-pack="feather" />
                                         <span class="text-danger text-sm">{{ errors.first('user') }}</span>
                                     </div>
 
@@ -30,6 +30,8 @@
                     </div>
                 </div>
             </vx-card>
+
+            <main-footer />
         </div>
     </div>
 </template>

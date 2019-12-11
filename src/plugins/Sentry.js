@@ -10,8 +10,9 @@ export default {
         }
 
         Sentry.init({
-          dsn: process.env.VUE_APP_SENTRY_DSN,
-          integrations: [new Integrations.Vue({ Vue, attachProps: true })],
+            dsn: process.env.VUE_APP_SENTRY_DSN,
+            integrations: [new Integrations.Vue({ Vue, attachProps: true })],
+            ignoreErrors: ['NavigationDuplicated']
         });
     }
 }

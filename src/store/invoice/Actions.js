@@ -42,6 +42,10 @@ export default {
         return request.post('/invoice', payload);
     },
 
+    duplicate(_, { id, payload }) {
+        return request.post('/invoice/' + id, payload);
+    },
+
     paid(_, id) {
         return request.patch('/invoice/' + id + '/paid');
     },

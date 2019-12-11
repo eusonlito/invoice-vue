@@ -334,6 +334,15 @@ const router = new Router({
                 },
 
                 {
+                    path: '/contact',
+                    name: 'contact',
+                    component: () => import('@/views/pages/contact/Index.vue'),
+                    meta: {
+                        title: 'Facturación | Contacto y Feedback'
+                    }
+                },
+
+                {
                     path: '/cookie/unavailable',
                     name: 'cookie-unavailable',
                     component: () => import('@/views/pages/cookie/Unavailable.vue'),

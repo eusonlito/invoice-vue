@@ -2,32 +2,32 @@
     <vx-card noShadow>
         <form method="post" @submit.prevent="submit">
             <div class="mb-3">
-                <vs-input type="text" name="name" label="Nombre" v-model="form.name" v-validate="'required'" data-vv-as="Nombre" data-vv-validate-on="blur" />
+                <vs-input type="text" name="name" label="Nombre" v-model="form.name" v-validate="'required'" data-vv-as="Nombre" />
                 <span class="text-danger text-sm">{{ errors.first('name') }}</span>
             </div>
 
             <div class="mb-3">
-                <vs-input type="text" name="address" label="Dirección" v-model="form.address" v-validate="'required'" data-vv-as="Dirección" data-vv-validate-on="blur" />
+                <vs-input type="text" name="address" label="Dirección" v-model="form.address" v-validate="'required'" data-vv-as="Dirección" />
                 <span class="text-danger text-sm">{{ errors.first('address') }}</span>
             </div>
 
             <div class="mb-3">
-                <vs-input type="text" name="city" label="Ciudad" v-model="form.city" v-validate="'required'" data-vv-as="Ciudad" data-vv-validate-on="blur" />
+                <vs-input type="text" name="city" label="Ciudad" v-model="form.city" v-validate="'required'" data-vv-as="Ciudad" />
                 <span class="text-danger text-sm">{{ errors.first('city') }}</span>
             </div>
 
             <div class="mb-3">
-                <vs-input type="text" name="state" label="Provincia" v-model="form.state" v-validate="'required'" data-vv-as="Provincia" data-vv-validate-on="blur" />
+                <vs-input type="text" name="state" label="Provincia" v-model="form.state" v-validate="'required'" data-vv-as="Provincia" />
                 <span class="text-danger text-sm">{{ errors.first('state') }}</span>
             </div>
 
             <div class="mb-3">
-                <vs-input type="text" name="postal_code" label="Código Postal" v-model="form.postal_code" v-validate="'required'" data-vv-as="Código Postal" data-vv-validate-on="blur" />
+                <vs-input type="text" name="postal_code" label="Código Postal" v-model="form.postal_code" v-validate="'required'" data-vv-as="Código Postal" />
                 <span class="text-danger text-sm">{{ errors.first('postal_code') }}</span>
             </div>
 
             <div class="mb-3">
-                <vs-input type="text" name="country" label="País" v-model="form.country" v-validate="'required'" data-vv-as="País" data-vv-validate-on="blur" />
+                <vs-input type="text" name="country" label="País" v-model="form.country" v-validate="'required'" data-vv-as="País" />
                 <span class="text-danger text-sm">{{ errors.first('country') }}</span>
             </div>
 
@@ -37,7 +37,7 @@
             </div>
 
             <div class="mb-3">
-                <vs-input type="email" name="email" label="Correo electrónico" v-model="form.email" v-validate="'email'" data-vv-as="Correo electrónico" data-vv-validate-on="blur" />
+                <vs-input type="email" name="email" label="Correo electrónico" v-model="form.email" v-validate="'email'" data-vv-as="Correo electrónico" />
                 <span class="text-danger text-sm">{{ errors.first('email') }}</span>
             </div>
 

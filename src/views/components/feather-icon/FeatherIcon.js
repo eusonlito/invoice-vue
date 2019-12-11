@@ -4,12 +4,21 @@ import * as icons from 'vue-feather-icons'
 
 export default {
     functional: true,
+
     name: 'feather-icon',
+
     props: {
-        icon: { required: true },
-        svgClasses: { type: [String, Object, Array], default: "" },
+        icon: {
+            type: String,
+            required: true
+        },
+        svgClasses: {
+            type: [String, Object, Array],
+            default: ""
+        },
         badge: {}
     },
+
     render(h, { props, data }) {
         data.staticClass = (data.staticClass ? data.staticClass : '') + ' feather-icon select-none relative';
 

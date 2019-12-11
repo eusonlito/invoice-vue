@@ -94,7 +94,13 @@ export default {
                 payment_id: null,
                 shipping_id: null,
                 tax_id: null,
-            }
+            },
+
+            duplicate_prompt: false,
+
+            duplicate_form: {
+                invoice_serie_id: null
+            },
         }
     },
 
@@ -262,11 +268,7 @@ export default {
             }
         },
 
-        setNumber(data) {
-            if (!data || this.id) {
-                return;
-            }
-
+        getNumberNext(data) {
             let number = data.number_next.toString() || '1';
 
             if (data.number_fill) {
@@ -277,7 +279,7 @@ export default {
                 number = data.number_prefix + number;
             }
 
-            this.form.number = number;
+            return number;
         },
 
         clientAddressBillingSelected(data) {
@@ -332,14 +334,14 @@ export default {
         },
 
         invoiceSerieChange() {
-            if (!this.form.invoice_serie_id) {
+            if (this.id || !this.form.invoice_serie_id) {
                 return;
             }
 
             const serie = this.invoice_serie.filter(each => each.id === this.form.invoice_serie_id)[0];
 
             if (serie) {
-                this.setNumber(serie);
+                this.form.number = this.getNumberNext(serie);
             }
         },
 
@@ -531,6 +533,21 @@ export default {
                 this.notifyError(e);
             });
         },
+
+        duplicatePrompt() {
+            this.duplicate_prompt = true;
+            this.duplicate_form.invoice_serie_id = this.invoice_serie[0].id;
+        },
+
+        duplicateAccept() {
+            return invoice.dispatch('duplicate', {
+                id: this.id,
+                payload: this.duplicate_form
+            }).then(({ data }) => {
+                this.notifySuccess('OK :)');
+                this.$router.push({ name: this.$route.name , params: { id: data.id }});
+            }).catch(e => this.notifyError(e));
+        }
     },
 
     created() {

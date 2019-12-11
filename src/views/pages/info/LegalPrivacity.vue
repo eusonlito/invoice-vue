@@ -60,8 +60,10 @@
             </vx-card>
 
             <div class="text-center">
-                <vs-button size="large" :to="{ name: 'dashboard-index' }">Volver al inicio</vs-button>
+                <vs-button size="large" :to="{ name: 'dashboard-index' }">Volver</vs-button>
             </div>
+
+            <main-footer />
         </div>
     </div>
 </template>

@@ -16,12 +16,12 @@
                                     </div>
 
                                     <div class="mb-6">
-                                        <vs-input type="email" name="user" label-placeholder="Correo electrónico" v-model="form.user" v-validate="'required|email'" data-vv-as="Correo electrónico" icon="icon icon-user" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
+                                        <vs-input type="email" name="user" label-placeholder="Correo electrónico" v-model="form.user" v-validate="'required|email'" data-vv-as="Correo electrónico" icon="icon icon-user" icon-no-border icon-pack="feather" />
                                         <span class="text-danger text-sm">{{ errors.first('user') }}</span>
                                     </div>
 
                                     <div class="mb-6">
-                                        <vs-input type="password" name="password" label-placeholder="Contraseña" v-model="form.password" v-validate="'required'" data-vv-as="Contraseña" icon="icon icon-lock" icon-no-border icon-pack="feather" data-vv-validate-on="blur" />
+                                        <vs-input type="password" name="password" label-placeholder="Contraseña" v-model="form.password" v-validate="'required'" data-vv-as="Contraseña" icon="icon icon-lock" icon-no-border icon-pack="feather" />
                                         <span class="text-danger text-sm">{{ errors.first('password') }}</span>
                                     </div>
 
@@ -39,6 +39,8 @@
                     </div>
                 </div>
             </vx-card>
+
+            <main-footer />
         </div>
     </div>
 </template>

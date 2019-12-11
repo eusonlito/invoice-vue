@@ -4,7 +4,7 @@
             <div class="vx-col w-full sm:w-1/3 md:w-1/3 mb-base">
                 <vx-card title="Datos de Cliente" noShadow>
                     <div class="mb-3">
-                        <vs-input type="text" name="name" label="Nombre" v-model="form.name" v-validate="'required'" data-vv-as="Nombre" data-vv-validate-on="blur" />
+                        <vs-input type="text" name="name" label="Nombre" v-model="form.name" v-validate="'required'" data-vv-as="Nombre" />
                         <span class="text-danger text-sm">{{ errors.first('name') }}</span>
                     </div>
 
@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <vs-input type="email" name="email" label="Correo electrónico" v-model="form.email" v-validate="'email'" data-vv-as="Correo electrónico" data-vv-validate-on="blur" />
+                        <vs-input type="email" name="email" label="Correo electrónico" v-model="form.email" v-validate="'email'" data-vv-as="Correo electrónico" />
                         <span class="text-danger text-sm">{{ errors.first('email') }}</span>
                     </div>
 
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <vs-input type="text" name="tax_number" label="CIF/NIF" v-model="form.tax_number" v-validate="'required'" data-vv-as="CIF/NIF" data-vv-validate-on="blur" />
+                        <vs-input type="text" name="tax_number" label="CIF/NIF" v-model="form.tax_number" v-validate="'required'" data-vv-as="CIF/NIF" />
                         <span class="text-danger text-sm">{{ errors.first('tax_number') }}</span>
                     </div>
 
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <vs-input type="email" name="contact_email" label="Correo electrónico" v-model="form.contact_email" v-validate="'email'" data-vv-as="Correo electrónico" data-vv-validate-on="blur" />
+                        <vs-input type="email" name="contact_email" label="Correo electrónico" v-model="form.contact_email" v-validate="'email'" data-vv-as="Correo electrónico" />
                         <span class="text-danger text-sm">{{ errors.first('contact_email') }}</span>
                     </div>
                 </vx-card>
