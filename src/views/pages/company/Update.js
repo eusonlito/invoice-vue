@@ -19,6 +19,7 @@ export default {
             countries: [],
 
             form: {
+                id: null,
                 name: '',
                 address: '',
                 city: '',
@@ -52,6 +53,7 @@ export default {
 
             const store = company.state.company;
 
+            this.form.id = store.id;
             this.form.name = store.name;
             this.form.address = store.address;
             this.form.city = store.city;
@@ -82,11 +84,9 @@ export default {
                     return this.notifyError(this.errors.all());
                 }
 
-                return company.dispatch('update', this.form).then(() => {
-                    this.notifySuccess('OK :)');
-                }).catch(e => {
-                    this.notifyError(e);
-                });
+                return company.dispatch('createOrUpdate', { id: this.form.id, payload: this.form })
+                    .then(() => this.notifySuccess('OK :)'))
+                    .catch(e => this.notifyError(e));
             });
         }
     },

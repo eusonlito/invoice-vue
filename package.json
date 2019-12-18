@@ -10,12 +10,12 @@
   "dependencies": {
     "@sentry/browser": "^5.10.2",
     "@sentry/integrations": "^5.10.2",
-    "apexcharts": "^3",
+    "apexcharts": "^3.11.0",
     "axios": "^0",
     "dotenv": "^8",
     "material-icons": "^0",
     "vee-validate": "^2",
-    "vue": "^2",
+    "vue": "^2.6.11",
     "vue-apexcharts": "^1",
     "vue-feather-icons": "^5",
     "vue-router": "^3",
@@ -35,11 +35,11 @@
     "eslint-loader": "^2.2.1",
     "glob-all": "^3.1.0",
     "node-sass": "^4",
-    "purgecss": "^1",
+    "purgecss": "^1.4.2",
     "purgecss-webpack-plugin": "^1.6.0",
     "sass-loader": "^7",
     "script-loader": "^0",
     "tailwindcss": "^1.1.4",
-    "vue-template-compiler": "^2"
+    "vue-template-compiler": "^2.6.11"
   }
 }

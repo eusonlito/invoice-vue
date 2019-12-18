@@ -9,9 +9,15 @@ export default {
         });
     },
 
-    update({ commit }, payload) {
-        return request.patch('/company', payload).then(response => {
-            return commit('UPDATE', response.data);
-        });
+    createOrUpdate({ commit }, { id, payload }) {
+        let response;
+
+        if (id) {
+            response = request.patch('/company', payload);
+        } else {
+            response = request.post('/company', payload);
+        }
+
+        return response.then(response => commit('UPDATE', response.data));
     },
 }

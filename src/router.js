@@ -261,7 +261,7 @@ const router = new Router({
                 {
                     path: '/user/update',
                     name: 'user-update',
-                    component: () => import('@/views/pages/user/update/Update.vue'),
+                    component: () => import('@/views/pages/user/update/Index.vue'),
                     meta: {
                         title: 'Facturación | Usuario',
                         middleware: [Cache, Session, Auth]

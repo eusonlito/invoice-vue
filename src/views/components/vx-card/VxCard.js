@@ -24,9 +24,13 @@ export default {
             default: '',
             type: String
         },
-        collapseAction: {
+        toggleAction: {
             default: false,
-            type: Boolean
+            type: [Function, Boolean]
+        },
+        removeAction: {
+            default: false,
+            type: [Function, Boolean]
         },
         cardBackground: {
             default: '',
@@ -51,7 +55,7 @@ export default {
             maxHeight: null,
             cardMaxHeight: null,
             codeContainerMaxHeight: '0px',
-            isContentCollapsed: !!this.collapseAction,
+            isContentCollapsed: !!this.toggleAction,
             tempHidden: false,
         };
     },
@@ -62,7 +66,7 @@ export default {
         },
 
         hasAction() {
-            return this.$slots.actions || this.collapseAction;
+            return this.$slots.actions || this.toggleAction || this.removeAction;
         },
 
         StyleItems() {
@@ -136,13 +140,30 @@ export default {
     },
 
     methods: {
-        toggleContent() {
+        toggleClick() {
+            if (typeof this.toggleAction === 'function') {
+                return this.toggleAction();
+            }
+
             this.maxHeight = this.$refs.content.scrollHeight + 'px';
 
             setTimeout(() => {
                 this.isContentCollapsed = !this.isContentCollapsed;
                 this.maxHeight = this.isContentCollapsed ? '1.5rem' : 'none';
             }, this.isContentCollapsed ? 300 : 50);
-        }
+        },
+
+        removeClick() {
+            if (typeof this.removeAction === 'function') {
+                return this.removeAction();
+            }
+
+            this.cardMaxHeight = this.$refs.card.scrollHeight + 'px';
+            this.$el.style.overflow = 'hidden';
+
+            setTimeout(() => this.cardMaxHeight = '0px', 50);
+
+            this.$emit('remove');
+        },
     }
 }

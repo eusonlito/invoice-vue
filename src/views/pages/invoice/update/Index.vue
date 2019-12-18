@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="vx-col w-full md:w-1/3 mb-base">
-                        <vx-card title="Datos de Envío">
+                        <vx-card title="Datos de Envío" :remove-action="clientAddressShippingRemove">
                             <div class="mb-3">
                                 <input type="hidden" name="client_address_shipping_id" v-model="form.client_address_shipping_id" />
 

@@ -4,7 +4,7 @@
         {'no-shadow': noShadow},
         {'rounded-none': noRadius},
         {'card-border': cardBorder},
-        cardClasses ]" :style="cardStyles"
+        cardClasses]" :style="cardStyles"
         v-on="$listeners">
         <div class="vx-card__header" v-if="hasHeader">
             <!-- card title -->
@@ -15,8 +15,9 @@
 
             <div class="vx-card__actions" v-if="hasAction">
                 <slot name="actions">
-                    <div class="vx-card__action-buttons" v-if="collapseAction">
-                        <feather-icon @click="toggleContent" icon="ChevronUpIcon" :class="{ rotate180: !isContentCollapsed }" class="ml-4" />
+                    <div class="vx-card__action-buttons">
+                        <feather-icon @click="toggleClick" icon="ChevronUpIcon" :class="{ rotate180: !isContentCollapsed }" class="ml-4" v-if="toggleAction" />
+                        <feather-icon @click="removeClick" icon="XIcon" class="ml-4" v-if="removeAction" />
                     </div>
                 </slot>
             </div>

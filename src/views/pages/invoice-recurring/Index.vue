@@ -22,7 +22,7 @@
             </vs-table>
 
             <jumbotron v-else-if="list">
-                <template slot="title">Aún no has creado ningún periodo recurrent 🤔</template>
+                <template slot="title">Aún no has creado ningún periodo recurrente 🤔</template>
 
                 <template slot="text">
                     Puedes empezar <router-link :to="{ name: 'invoice-recurring-update' }">por aquí</router-link>.

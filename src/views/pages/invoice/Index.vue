@@ -11,20 +11,20 @@
 
         <stat v-if="total" :list="list"></stat>
 
-        <vx-card v-if="total" :collapse-action="true" subtitle="Filtros" class="mb-base">
+        <vx-card v-if="total" :toggle-action="true" subtitle="Filtros" class="mb-base">
             <form method="get" @submit.prevent="submit">
                 <div class="vx-row flex-nowrap">
                     <div class="vx-col mb-3">
                         <div class="vs-component vs-con-input-label vs-input vs-input-primary">
                             <label class="vs-input--label">Fecha Inicio</label>
-                            <datepicker name="date_start" v-model="form.date_start" ></datepicker>
+                            <datepicker name="date_start" v-model="form.date_start"></datepicker>
                         </div>
                     </div>
 
                     <div class="vx-col mb-3">
                         <div class="vs-component vs-con-input-label vs-input vs-input-primary">
                             <label class="vs-input--label">Fecha Fin</label>
-                            <datepicker name="date_end" v-model="form.date_end" ></datepicker>
+                            <datepicker name="date_end" v-model="form.date_end"></datepicker>
                         </div>
                     </div>
 

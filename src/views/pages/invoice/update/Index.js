@@ -312,6 +312,16 @@ export default {
             this.form.shipping_country = data.country;
         },
 
+        clientAddressShippingRemove() {
+            this.form.client_address_shipping_id = null;
+            this.form.shipping_name = '';
+            this.form.shipping_address = '';
+            this.form.shipping_postal_code = '';
+            this.form.shipping_city = '';
+            this.form.shipping_state = '';
+            this.form.shipping_country = '';
+        },
+
         itemAdded(index) {
             this.items.splice(index + 1, 0, { key: this.itemKey() });
         },
