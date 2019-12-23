@@ -3,7 +3,7 @@
 import company from '@/store/company';
 import file from '@/store/invoice-file';
 import invoice from '@/store/invoice';
-import updateItem from './Item.vue'
+import updateItem from './Item.vue';
 
 export default {
     components: { updateItem },
@@ -521,7 +521,7 @@ export default {
             this.notifySuccess('OK :)');
 
             if (!this.id) {
-                this.$router.push({ name: this.$route.name , params: { id: data.id }});
+                this.$router.push({ name: this.$route.name, params: { id: data.id }});
             }
 
             this.files = data.files;
@@ -555,7 +555,7 @@ export default {
                 payload: this.duplicate_form
             }).then(({ data }) => {
                 this.notifySuccess('OK :)');
-                this.$router.push({ name: this.$route.name , params: { id: data.id }});
+                this.$router.push({ name: this.$route.name, params: { id: data.id }});
             }).catch(e => this.notifyError(e));
         }
     },

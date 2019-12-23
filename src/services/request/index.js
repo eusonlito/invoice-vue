@@ -1,7 +1,7 @@
 'use strict';
 
-import axios from '@/services/axios'
-import cache from './cache'
+import axios from '@/services/axios';
+import cache from './cache';
 
 export default {
     get(path, config) {

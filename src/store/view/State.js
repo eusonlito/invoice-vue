@@ -1,6 +1,6 @@
 'use strict';
 
-import theme from '@/services/theme'
+import theme from '@/services/theme';
 
 export default {
     mainLayoutType: theme.config.mainLayoutType,

@@ -1,7 +1,7 @@
 'use strict';
 
-import Vuesax from 'vuesax'
-import theme from '@/services/theme'
+import Vuesax from 'vuesax';
+import theme from '@/services/theme';
 
 import 'material-icons/iconfont/material-icons.css';
 import 'vuesax/dist/vuesax.css';

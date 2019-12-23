@@ -13,14 +13,18 @@ Vue.use(sentry);
 import '@/plugins/Components.js';
 
 import theme from '@/plugins/Theme';
+import cache from '@/plugins/Cache';
 import jwt from '@/plugins/Jwt';
 import view from '@/plugins/View';
 import validation from '@/plugins/Validation';
+import notification from '@/plugins/Notification';
 
 Vue.use(theme);
 Vue.use(jwt);
+Vue.use(cache);
 Vue.use(view);
 Vue.use(validation);
+Vue.use(notification);
 
 // Router
 import router from '@/router';

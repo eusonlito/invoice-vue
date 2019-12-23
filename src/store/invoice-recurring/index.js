@@ -1,12 +1,12 @@
 'use strict';
 
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import actions from './Actions'
-import getters from './Getters'
-import mutations from './Mutations'
-import state from './State'
+import actions from './Actions';
+import getters from './Getters';
+import mutations from './Mutations';
+import state from './State';
 
 Vue.use(Vuex)
 

@@ -75,7 +75,7 @@ export default {
             this.notifySuccess('OK :)');
 
             if (!this.$route.params.id) {
-                this.$router.push({ name: this.$route.name , params: { id: data.id }});
+                this.$router.push({ name: this.$route.name, params: { id: data.id }});
             }
         },
 

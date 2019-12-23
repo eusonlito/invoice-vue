@@ -1,5 +1,6 @@
 'use strict';
 
+import HeaderNotifications from '@/views/components/header-notifications/HeaderNotifications.vue';
 import NavbarHorizontalMenu from '@/views/components/navbar-horizontal-menu/NavbarHorizontalMenu.vue';
 import NavbarMenuItem from '@/views/components/navbar-menu-item/NavbarMenuItem';
 
@@ -18,7 +19,7 @@ export default {
         }
     },
 
-    components: { NavbarHorizontalMenu },
+    components: { NavbarHorizontalMenu, HeaderNotifications },
 
     data() {
         return { navMenuItems: NavbarMenuItem };

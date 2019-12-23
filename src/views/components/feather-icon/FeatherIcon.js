@@ -1,6 +1,6 @@
 'use strict';
 
-import * as icons from 'vue-feather-icons'
+import * as icons from 'vue-feather-icons';
 
 export default {
     functional: true,

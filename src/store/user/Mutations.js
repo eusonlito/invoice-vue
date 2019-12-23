@@ -1,9 +1,9 @@
 'use strict';
 
-import cacheLocal from '@/services/cache/Local'
-import cacheSession from '@/services/cache/Session'
-import company from '@/store/company'
-import jwt from '@/services/jwt'
+import cacheLocal from '@/services/cache/Local';
+import cacheSession from '@/services/cache/Session';
+import company from '@/store/company';
+import jwt from '@/services/jwt';
 
 export default {
     LOAD(state) {
@@ -39,13 +39,13 @@ export default {
     },
 
     REFRESH(state) {
-        if (state.interval) {
+        if (this.interval) {
             return;
         }
 
-        state.interval = setInterval(() => {
+        this.interval = setInterval(() => {
             if (state.user) {
-                this.dispatch('detail');
+                this.dispatch('detail').catch(() => {});
             }
         }, 60000);
     },

@@ -1,7 +1,7 @@
 'use strict';
 
-import updateData from './Data.vue'
-import updateCss from './Css.vue'
+import updateData from './Data.vue';
+import updateCss from './Css.vue';
 
 export default {
     components: { updateData, updateCss },

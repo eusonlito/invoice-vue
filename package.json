@@ -10,7 +10,7 @@
   "dependencies": {
     "@sentry/browser": "^5.10.2",
     "@sentry/integrations": "^5.10.2",
-    "apexcharts": "^3.11.0",
+    "apexcharts": "^3.11.2",
     "axios": "^0",
     "dotenv": "^8",
     "material-icons": "^0",

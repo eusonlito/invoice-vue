@@ -1,6 +1,6 @@
 'use strict';
 
-import Vue from 'vue'
+import Vue from 'vue';
 import MainFooter from '@/views/components/main-footer/MainFooter.vue';
 import FeatherIcon from '@/views/components/feather-icon/FeatherIcon.vue';
 import VxCard from '@/views/components/vx-card/VxCard.vue';

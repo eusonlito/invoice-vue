@@ -1,6 +1,6 @@
 'use strict';
 
-import jwt from '@/services/jwt'
+import jwt from '@/services/jwt';
 
 export default {
     install() {

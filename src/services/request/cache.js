@@ -1,6 +1,6 @@
 'use strict';
 
-import cache from '@/services/cache/Session'
+import cache from '@/services/cache/Session';
 
 export default {
     get(path, payload) {

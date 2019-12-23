@@ -1,6 +1,6 @@
 'use strict';
 
-import user from '@/store/user'
+import user from '@/store/user';
 
 export default {
     data() {

@@ -1,7 +1,7 @@
 'use strict';
 
-import updateData from './Data.vue'
-import updateAddress from './Address.vue'
+import updateData from './Data.vue';
+import updateAddress from './Address.vue';
 
 export default {
     components: { updateData, updateAddress },

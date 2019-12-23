@@ -1,11 +1,11 @@
 'use strict';
 
-import request from '@/services/request'
+import request from '@/services/request';
 
 export default {
     auth({ commit }, payload) {
-        return request.post('/user/auth', payload).then(response => {
-            return commit('UPDATE', { ...response.data.user, ...{ token: response.data.token }});
+        return request.post('/user/auth', payload).then(({ data }) => {
+            return commit('UPDATE', { ...data.user, ...{ token: data.token }});
         });
     },
 
@@ -24,14 +24,14 @@ export default {
             return;
         }
 
-        return request.get('/user/auth/refresh').then(response => {
-            return commit('UPDATE', { token: response.data.token });
+        return request.get('/user/auth/refresh').then(({ data }) => {
+            return commit('UPDATE', { token: data.token });
         });
     },
 
     signup({ commit }, payload) {
-        return request.post('/user', payload).then(response => {
-            return commit('UPDATE', { ...response.data.user, ...{ token: response.data.token }});
+        return request.post('/user', payload).then(({ data }) => {
+            return commit('UPDATE', { ...data.user, ...{ token: data.token }});
         });
     },
 
@@ -40,8 +40,8 @@ export default {
     },
 
     confirmFinish({ commit }, hash) {
-        return request.post('/user/confirm/' + hash).then(response => {
-            return commit('UPDATE', response.data);
+        return request.post('/user/confirm/' + hash).then(({ data }) => {
+            return commit('UPDATE', data);
         });
     },
 
@@ -54,14 +54,14 @@ export default {
     },
 
     updateProfile({ commit }, payload) {
-        return request.patch('/user', payload).then(response => {
-            return commit('UPDATE', response.data);
+        return request.patch('/user', payload).then(({ data }) => {
+            return commit('UPDATE', data);
         });
     },
 
     updatePassword({ commit }, payload) {
-        return request.patch('/user/password', payload).then(response => {
-            return commit('UPDATE', response.data);
+        return request.patch('/user/password', payload).then(({ data }) => {
+            return commit('UPDATE', data);
         });
     },
 
@@ -70,8 +70,8 @@ export default {
             return;
         }
 
-        return request.get('/user').then(response => {
-            return commit('UPDATE', response.data);
+        return request.get('/user', { nocache: true }).then(({ data }) => {
+            return commit('UPDATE', data);
         }).catch(() => {
             return commit('LOGOUT');
         });

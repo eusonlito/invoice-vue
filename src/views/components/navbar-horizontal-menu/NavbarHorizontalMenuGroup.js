@@ -1,6 +1,6 @@
 'use strict';
 
-import NavbarHorizontalMenuItem from './NavbarHorizontalMenuItem.vue'
+import NavbarHorizontalMenuItem from './NavbarHorizontalMenuItem.vue';
 
 export default {
     name: 'navbar-horizontal-menu-group',

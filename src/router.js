@@ -1,7 +1,7 @@
 'use strict';
 
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 import Auth from '@/middlewares/Auth';
 import Cache from '@/middlewares/Cache';
 import Company from '@/middlewares/Company';
@@ -171,6 +171,16 @@ const router = new Router({
                         title: 'Facturación | Estado',
                         middleware: [Cache, Session, Auth, Company],
                         parent: 'invoice-status-index'
+                    }
+                },
+
+                {
+                    path: '/notification',
+                    name: 'notification-index',
+                    component: () => import('@/views/pages/notification/Index.vue'),
+                    meta: {
+                        title: 'Facturación | Notificaciones',
+                        middleware: [Cache, Session, Auth, Company]
                     }
                 },
 

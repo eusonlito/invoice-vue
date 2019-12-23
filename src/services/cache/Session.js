@@ -1,6 +1,6 @@
 'use strict';
 
-import configuration from '@/store/configuration'
+import cache from '@/store/cache';
 
 export default {
     enabled() {
@@ -72,11 +72,16 @@ export default {
         return 'cache-' + process.env.VUE_APP_CACHE_VERSION + '-' + tag;
     },
 
-    version() {
-        configuration.dispatch('cacheVersion').then(server => {
-            const local = process.env.VUE_APP_CACHE_VERSION;
+    checkVersion() {
+        if (!this.enabled()) {
+            return;
+        }
 
-            if (this.versionLocalCheck(local) && this.versionServerCheck(server)) {
+        return cache.dispatch('version').then(({ data }) => {
+            const local = process.env.VUE_APP_CACHE_VERSION;
+            const server = String(data);
+
+            if (this.checkVersionLocal(local) && this.checkVersionServer(server)) {
                 return;
             }
 
@@ -86,11 +91,11 @@ export default {
         });
     },
 
-    versionLocalCheck(version) {
+    checkVersionLocal(version) {
         return sessionStorage.getItem('version-local') === version;
     },
 
-    versionServerCheck(version) {
+    checkVersionServer(version) {
         return sessionStorage.getItem('version-server') === version;
     },
 

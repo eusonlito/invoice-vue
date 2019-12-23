@@ -1,6 +1,6 @@
 'use strict';
 
-import cache from '@/services/cache/Local'
+import cache from '@/services/cache/Local';
 
 export default {
     LOAD(state) {
@@ -30,11 +30,11 @@ export default {
     },
 
     REFRESH(state) {
-        if (state.interval) {
+        if (this.interval) {
             return;
         }
 
-        state.interval = setInterval(() => {
+        this.interval = setInterval(() => {
             if (state.company) {
                 this.dispatch('detail').catch(() => {});
             }

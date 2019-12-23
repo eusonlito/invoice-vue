@@ -1,8 +1,8 @@
 'use strict';
 
-import view from '@/store/view'
-import NavbarHorizontalMenuGroup from './NavbarHorizontalMenuGroup.vue'
-import NavbarHorizontalMenuItem from './NavbarHorizontalMenuItem.vue'
+import view from '@/store/view';
+import NavbarHorizontalMenuGroup from './NavbarHorizontalMenuGroup.vue';
+import NavbarHorizontalMenuItem from './NavbarHorizontalMenuItem.vue';
 
 export default {
     props: {

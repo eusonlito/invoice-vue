@@ -4,9 +4,7 @@
 
         <div class="vs-navbar vx-navbar navbar-skelton flex-1 justify-end">
             <div class="flex items-center text-right">
-                <div class="text-right leading-tight hidden sm:block">
-                    <p class="font-semibold">{{ user ? user.name : '' }}</p>
-                </div>
+                <header-notifications />
 
                 <vs-dropdown vs-trigger-click class="cursor-pointer">
                     <div class="con-img ml-3">

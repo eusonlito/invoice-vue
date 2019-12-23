@@ -1,6 +1,6 @@
 'use strict';
 
-import request from '@/services/request'
+import request from '@/services/request';
 
 export default {
     listWrapper() {

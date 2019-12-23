@@ -1,6 +1,6 @@
 'use strict';
 
-import view from '@/store/view'
+import view from '@/store/view';
 
 export default {
     watch: {},

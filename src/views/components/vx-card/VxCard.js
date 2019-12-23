@@ -1,6 +1,6 @@
 'use strict';
 
-import _color from '@/assets/utils/color'
+import _color from '@/assets/utils/color';
 
 export default {
     name: 'vx-card',

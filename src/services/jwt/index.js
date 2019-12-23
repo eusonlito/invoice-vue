@@ -1,8 +1,8 @@
 'use strict';
 
-import router from '@/router'
-import axios from '@/services/axios'
-import user from '@/store/user'
+import router from '@/router';
+import axios from '@/services/axios';
+import user from '@/store/user';
 
 export default {
     refreshing: false,

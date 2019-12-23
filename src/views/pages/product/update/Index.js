@@ -1,6 +1,6 @@
 'use strict';
 
-import updateData from './Data.vue'
+import updateData from './Data.vue';
 
 export default {
     components: { updateData },

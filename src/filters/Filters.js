@@ -1,6 +1,6 @@
 'use strict';
 
-import Vue from 'vue'
+import Vue from 'vue';
 
 Vue.filter('float', value => {
     return (isNaN(value = parseFloat(value || 0)) ? 0 : value).toFixed(2);
@@ -11,7 +11,7 @@ Vue.filter('parseFloat', value => {
 });
 
 Vue.filter('money', amount => {
-    return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
+    return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(amount);
 });
 
 Vue.filter('percent', (total, partial) => {
