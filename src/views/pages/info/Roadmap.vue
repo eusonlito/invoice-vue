@@ -11,6 +11,7 @@
                 <vs-list class="mb-5">
                     <vs-list-item title="Firma digital integrada para el PDF de factura"></vs-list-item>
                     <vs-list-item title="Logo de empresa para PDF de factura"></vs-list-item>
+                    <vs-list-item icon-pack="feather" icon="icon-check" title="Notificaciones para facturas recurrentes"></vs-list-item>
                     <vs-list-item icon-pack="feather" icon="icon-check" title="Duplicar factura con diferente serie"></vs-list-item>
                     <vs-list-item icon-pack="feather" icon="icon-check" title="Permitir descarga de facturas según filtros"></vs-list-item>
                     <vs-list-item icon-pack="feather" icon="icon-check" title="Descarga masiva del PDF de cada factura en ZIP"></vs-list-item>
