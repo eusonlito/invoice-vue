@@ -28,10 +28,7 @@ export default {
         },
 
         link(item) {
-            switch (item.code) {
-                case 'invoice.recurring':
-                    return this.$router.push({ name: 'invoice-update', params: { id: item.invoice_id }});
-            }
+            notification.getters.router(this.$router, item);
         }
     },
 
