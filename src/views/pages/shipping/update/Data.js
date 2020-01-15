@@ -11,6 +11,9 @@ export default {
 
             form: {
                 name: '',
+                subtotal: 0,
+                tax_percent: 0,
+                tax_amount: 0,
                 value: 0,
                 description: '',
                 default: false,
@@ -22,6 +25,14 @@ export default {
     computed: {
         validate() {
             return !this.errors.any();
+        },
+
+        tax_amount() {
+            return this.float(this.parseFloat(this.form.subtotal) * this.parseFloat(this.form.tax_percent) / 100);
+        },
+
+        value() {
+            return this.float(this.parseFloat(this.form.subtotal) * ((this.parseFloat(this.form.tax_percent) / 100) + 1));
         }
     },
 
@@ -77,7 +88,7 @@ export default {
             }).catch(e => {
                 this.notifyError(e);
             });
-        },
+        }
     },
 
     created() {

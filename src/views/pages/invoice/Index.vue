@@ -13,7 +13,7 @@
 
         <vx-card v-if="total" :toggle-action="true" subtitle="Filtros" class="mb-base">
             <form method="get" @submit.prevent="submit">
-                <div class="vx-row flex-nowrap">
+                <div class="vx-row flex-grow">
                     <div class="vx-col mb-3">
                         <div class="vs-component vs-con-input-label vs-input vs-input-primary">
                             <label class="vs-input--label">Fecha Inicio</label>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="vx-col flex-1 text-right whitespace-no-wrap mb-3">
-                        <label class="vs-input--label block">&nbsp;</label>
+                        <label class="vs-input--label block">&zwnj;</label>
 
                         <vs-button button="submit" class="mr-5">Filtrar</vs-button>
                         <vs-button button="reset" @click="clean">Limpiar</vs-button>

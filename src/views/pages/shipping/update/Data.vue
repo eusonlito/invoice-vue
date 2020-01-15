@@ -6,9 +6,26 @@
                 <span class="text-danger text-sm">{{ errors.first('name') }}</span>
             </div>
 
-            <div class="mb-3">
-                <vs-input type="number" name="value" label="Valor" v-model="form.value" v-validate="'required'" data-vv-as="Valor" />
-                <span class="text-danger text-sm">{{ errors.first('value') }}</span>
+            <div class="vx-row flex-grow">
+                <div class="vx-col mb-3">
+                    <vs-input type="number" name="subtotal" label="Coste sin impuestos" step="0.01" v-model="form.subtotal" v-validate="'required'" data-vv-as="Coste sin impuestos" />
+                    <span class="text-danger text-sm">{{ errors.first('subtotal') }}</span>
+                </div>
+
+                <div class="vx-col mb-3">
+                    <vs-input type="number" name="tax_percent" label="Impuestos (%)" step="0.01" v-model="form.tax_percent" v-validate="'required'" data-vv-as="Impuestos (%)" />
+                    <span class="text-danger text-sm">{{ errors.first('tax_percent') }}</span>
+                </div>
+
+                <div class="vx-col mb-3">
+                    <vs-input type="number" name="tax_amount" label="Impuestos (€)" step="0.01" v-model="tax_amount" readonly />
+                    <span class="text-danger text-sm">{{ errors.first('tax_amount') }}</span>
+                </div>
+
+                <div class="vx-col mb-3">
+                    <vs-input type="number" name="value" label="Coste" step="0.01" v-model="value" readonly />
+                    <span class="text-danger text-sm">{{ errors.first('value') }}</span>
+                </div>
             </div>
 
             <div class="mb-3">
@@ -27,7 +44,7 @@
             </div>
         </vx-card>
 
-        <div class="vx-row flex-nowrap">
+        <div class="vx-row flex-grow">
             <div class="vx-col">
                 <vs-button v-if="id" @click="deleteConfirm()" color="danger" type="flat" title="Borrar">
                     <i class="feather icon-trash"></i>

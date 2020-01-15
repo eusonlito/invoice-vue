@@ -4,6 +4,14 @@ import Vue from 'vue';
 
 Vue.mixin({
     methods: {
+        parseFloat(value) {
+            return this.$options.filters.parseFloat(value);
+        },
+
+        float(value) {
+            return this.$options.filters.float(value);
+        },
+
         notifySuccess(message) {
             return this.$notify.success(this.$vs, message);
         },

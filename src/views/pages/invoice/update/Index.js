@@ -72,6 +72,9 @@ export default {
                 amount_subtotal: 0,
                 amount_discount: 0,
                 amount_tax: 0,
+                amount_shipping_subtotal: 0,
+                amount_shipping_tax_percent: 0,
+                amount_shipping_tax_amount: 0,
                 amount_shipping: 0,
                 amount_total: 0,
                 amount_paid: 0,
@@ -117,6 +120,10 @@ export default {
             return this.client_address.filter(data => {
                 return data.shipping && this.form.client_id === data.client.id;
             });
+        },
+
+        amount_shipping() {
+            return this.float(this.parseFloat(this.form.amount_shipping_subtotal) * ((this.parseFloat(this.form.amount_shipping_tax_percent) / 100) + 1));
         }
     },
 
@@ -417,6 +424,9 @@ export default {
 
         calculateShipping() {
             if (!this.form.shipping_id) {
+                this.form.amount_shipping_subtotal = this.float(0);
+                this.form.amount_shipping_tax_percent = this.float(0);
+
                 return;
             }
 
@@ -426,14 +436,15 @@ export default {
                 return;
             }
 
-            this.form.amount_shipping = this.float(shipping.value);
+            this.form.amount_shipping_subtotal = this.float(shipping.subtotal);
+            this.form.amount_shipping_tax_percent = this.float(shipping.tax_percent);
         },
 
         calculateTotal() {
             const amount_subtotal = this.parseFloat(this.form.amount_subtotal);
             const amount_discount = this.parseFloat(this.form.amount_discount);
             const amount_tax = this.parseFloat(this.form.amount_tax);
-            const amount_shipping = this.parseFloat(this.form.amount_shipping);
+            const amount_shipping = this.parseFloat(this.amount_shipping);
 
             this.form.amount_total = this.float(amount_subtotal - amount_discount + amount_tax + amount_shipping);
 
@@ -455,14 +466,6 @@ export default {
             if (invoice_status) {
                 this.form.invoice_status_id = invoice_status.id;
             }
-        },
-
-        parseFloat(value) {
-            return this.$options.filters.parseFloat(value);
-        },
-
-        float(value) {
-            return this.$options.filters.float(value);
         },
 
         fileView(selected) {
@@ -590,6 +593,10 @@ export default {
         },
 
         ['form.amount_tax']() {
+            this.calculateTotal();
+        },
+
+        amount_shipping() {
             this.calculateTotal();
         },
 

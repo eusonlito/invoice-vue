@@ -15,7 +15,7 @@
                                 <vs-input type="text" name="company_address" placeholder="Dirección" v-model="form.company_address" readonly />
                             </div>
 
-                            <div class="vx-row flex-nowrap">
+                            <div class="vx-row flex-grow">
                                 <div class="vx-col mb-3 flex-1">
                                     <vs-input type="text" name="company_postal_code" placeholder="Código Postal" v-model="form.company_postal_code" readonly />
                                 </div>
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
 
-                            <div class="vx-row flex-nowrap">
+                            <div class="vx-row flex-grow">
                                 <div class="vx-col mb-3">
                                     <vs-input type="text" name="company_state" placeholder="Provincia" v-model="form.company_state" readonly />
                                 </div>
@@ -58,7 +58,7 @@
                                 <vs-input type="text" name="billing_address" placeholder="Dirección" v-model="form.billing_address" readonly />
                             </div>
 
-                            <div class="vx-row flex-nowrap">
+                            <div class="vx-row flex-grow">
                                 <div class="vx-col mb-3 flex-1">
                                     <vs-input type="text" name="billing_postal_code" placeholder="Código Postal" v-model="form.billing_postal_code" readonly />
                                 </div>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
 
-                            <div class="vx-row flex-nowrap">
+                            <div class="vx-row flex-grow">
                                 <div class="vx-col mb-3">
                                     <vs-input type="text" name="billing_state" placeholder="Provincia" v-model="form.billing_state" readonly />
                                 </div>
@@ -100,7 +100,7 @@
                                 <vs-input type="text" name="shipping_address" placeholder="Dirección" v-model="form.shipping_address" readonly />
                             </div>
 
-                            <div class="vx-row flex-nowrap">
+                            <div class="vx-row flex-grow">
                                 <div class="vx-col mb-3 flex-1">
                                     <vs-input type="text" name="shipping_postal_code" placeholder="Código Postal" v-model="form.shipping_postal_code" readonly />
                                 </div>
@@ -110,7 +110,7 @@
                                 </div>
                             </div>
 
-                            <div class="vx-row flex-nowrap">
+                            <div class="vx-row flex-grow">
                                 <div class="vx-col mb-3">
                                     <vs-input type="text" name="shipping_state" placeholder="Provincia" v-model="form.shipping_state" readonly />
                                 </div>
@@ -124,7 +124,7 @@
                 </div>
 
                 <vx-card class="mb-base">
-                    <div class="vx-row flex-nowrap">
+                    <div class="vx-row flex-grow">
                         <div class="vx-col">
                             <custom-select v-model="form.invoice_serie_id" name="invoice_serie_id" label="Serie" v-validate="'required'" data-vv-as="Serie" option-value="id" option-title="name" :options="invoice_serie" />
                             <span class="text-danger text-sm">{{ errors.first('invoice_serie_id') }}</span>
@@ -266,7 +266,19 @@
                                 </th>
 
                                 <th colspan="2" class="col">
-                                    <vs-input type="number" name="amount_shipping" v-model="form.amount_shipping" v-on:blur="calculateTotal" step="0.01" />
+                                    <div class="vx-row flex-grow flex-nowrap no-spin">
+                                        <div class="vx-col">
+                                            <vs-input type="number" name="amount_shipping_subtotal" v-model="form.amount_shipping_subtotal" placeholder="€" step="0.01" />
+                                        </div>
+
+                                        <div class="vx-col p-0">
+                                            <vs-input type="number" name="amount_shipping_tax_percent" v-model="form.amount_shipping_tax_percent" placeholder="IVA" step="0.01" />
+                                        </div>
+
+                                        <div class="vx-col">
+                                            <vs-input type="number" name="amount_shipping" v-model="amount_shipping" placeholder="Total" step="0.01" readonly />
+                                        </div>
+                                    </div>
                                 </th>
                             </tr>
 
@@ -308,7 +320,7 @@
                 </vx-card>
 
                 <vx-card class="mb-base">
-                    <div class="vx-row flex-nowrap">
+                    <div class="vx-row flex-grow">
                         <div class="vx-col">
                             <vs-textarea name="comment_public" label="Comentarios para Imprimir" v-model="form.comment_public" rows="3" class="w-full"></vs-textarea>
                         </div>
@@ -324,7 +336,7 @@
                 </vx-card>
 
                 <vx-card class="mb-base">
-                    <div class="vx-row flex-nowrap">
+                    <div class="vx-row flex-grow">
                         <div v-if="id" class="vx-col">
                             <vs-button @click="deleteConfirm()" color="danger" type="flat" title="Borrar" class="mr-5">
                                 <i class="feather icon-trash"></i>

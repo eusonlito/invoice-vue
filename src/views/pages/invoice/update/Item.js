@@ -42,11 +42,11 @@ export default {
                 this.form.description = product.name;
             }
 
-            if (!this.form.amount_price) {
+            if (!this.parseFloat(this.form.amount_price)) {
                 this.form.amount_price = product.price;
             }
 
-            if (!this.form.quantity) {
+            if (!this.parseFloat(this.form.quantity)) {
                 this.form.quantity = 1;
             }
 

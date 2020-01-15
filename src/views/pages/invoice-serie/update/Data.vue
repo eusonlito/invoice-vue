@@ -21,25 +21,23 @@
                 <span class="text-danger text-sm">{{ errors.first('number_next') }}</span>
             </div>
 
-            <div class="mb-3">
-                <div class="vx-row flex-nowrap">
-                    <div class="vx-col">
-                        <div class="vs-component vs-con-input-label vs-input vs-input-primary">
-                            <label class="vs-input--label">Certificado de firma (FNMT o Camerfirma)</label>
+            <div class="vx-row flex-grow">
+                <div class="vx-col mb-3">
+                    <div class="vs-component vs-con-input-label vs-input vs-input-primary">
+                        <label class="vs-input--label">Certificado de firma (FNMT o Camerfirma)</label>
 
-                            <div class="vs-con-input">
-                                <input type="file" name="certificate_file" class="vs-inputx vs-input--input normal" @change="file" />
-                            </div>
+                        <div class="vs-con-input">
+                            <input type="file" name="certificate_file" class="vs-inputx vs-input--input normal" @change="file" />
                         </div>
                     </div>
+                </div>
 
-                    <div class="vx-col flex-1">
-                        <vs-input type="password" name="certificate_password" label="Contraseña" v-model="form.certificate_password" />
-                    </div>
+                <div class="vx-col flex-1 mb-3">
+                    <vs-input type="password" name="certificate_password" label="Contraseña" v-model="form.certificate_password" />
                 </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 mt-3">
                 <vs-checkbox name="default" v-model="form.default" class="w-full">Por defecto</vs-checkbox>
                 <span class="text-danger text-sm">{{ errors.first('default') }}</span>
             </div>
@@ -50,7 +48,7 @@
             </div>
         </vx-card>
 
-        <div class="vx-row flex-nowrap">
+        <div class="vx-row flex-grow">
             <div class="vx-col">
                 <vs-button v-if="id" @click="deleteConfirm()" color="danger" type="flat" title="Borrar">
                     <i class="feather icon-trash"></i>

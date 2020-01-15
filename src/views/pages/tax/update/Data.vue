@@ -27,7 +27,7 @@
             </div>
         </vx-card>
 
-        <div class="vx-row flex-nowrap">
+        <div class="vx-row flex-grow">
             <div class="vx-col">
                 <vs-button v-if="id" @click="deleteConfirm()" color="danger" type="flat" title="Borrar">
                     <i class="feather icon-trash"></i>

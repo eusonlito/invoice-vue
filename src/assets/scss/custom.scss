@@ -68,6 +68,12 @@
             overflow: hidden;
             max-height: 1.5rem;
         }
+
+        @media(max-width: 800px) {
+            .vx-card__body {
+                padding: 1.5rem 0;
+            }
+        }
     }
 
     .vx-card__body {
@@ -76,6 +82,12 @@
                 border: none;
             }
         }
+    }
+}
+
+.vs-tabs--content {
+    @media(max-width: 800px) {
+        padding: 10px 0;
     }
 }
 
@@ -156,9 +168,19 @@ input[type="file"].vs-input--input.normal {
     }
 }
 
-.vx-row.flex-nowrap {
-    > .vx-col {
-        flex-grow: 1;
+.vx-row {
+    &.flex-nowrap {
+        flex-wrap: nowrap;
+
+        @media screen and (max-width: 800px) {
+            flex-wrap: wrap;
+        }
+    }
+
+    &.flex-grow {
+        > .vx-col {
+            flex-grow: 1;
+        }
     }
 }
 
@@ -225,5 +247,13 @@ input[type="file"].vs-input--input.normal {
             color: #333;
             text-align: right;
         }
+    }
+}
+
+.no-spin {
+    ::-webkit-inner-spin-button,
+    ::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 }
