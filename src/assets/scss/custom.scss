@@ -257,3 +257,11 @@ input[type="file"].vs-input--input.normal {
         margin: 0;
     }
 }
+
+.vdp-datepicker__clear-button,
+.vdp-datepicker__calendar-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+}

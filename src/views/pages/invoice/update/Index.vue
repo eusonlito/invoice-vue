@@ -147,7 +147,7 @@
                         <div class="vx-col">
                             <div class="vs-component vs-con-input-label vs-input vs-input-primary">
                                 <label class="vs-input--label">Fecha límite</label>
-                                <datepicker name="required_at" v-model="form.required_at"></datepicker>
+                                <datepicker name="required_at" v-model="form.required_at" clear-button></datepicker>
                             </div>
 
                             <span class="text-danger text-sm">{{ errors.first('required_at') }}</span>
@@ -156,7 +156,7 @@
                         <div class="vx-col">
                             <div class="vs-component vs-con-input-label vs-input vs-input-primary">
                                 <label class="vs-input--label">Fecha de cobro</label>
-                                <datepicker name="paid_at" v-model="form.paid_at"></datepicker>
+                                <datepicker name="paid_at" v-model="form.paid_at" clear-button></datepicker>
                             </div>
 
                             <span class="text-danger text-sm">{{ errors.first('paid_at') }}</span>

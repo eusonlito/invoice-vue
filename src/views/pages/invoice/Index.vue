@@ -17,14 +17,14 @@
                     <div class="vx-col mb-3">
                         <div class="vs-component vs-con-input-label vs-input vs-input-primary">
                             <label class="vs-input--label">Fecha Inicio</label>
-                            <datepicker name="date_start" v-model="form.date_start"></datepicker>
+                            <datepicker name="date_start" v-model="form.date_start" clear-button></datepicker>
                         </div>
                     </div>
 
                     <div class="vx-col mb-3">
                         <div class="vs-component vs-con-input-label vs-input vs-input-primary">
                             <label class="vs-input--label">Fecha Fin</label>
-                            <datepicker name="date_end" v-model="form.date_end"></datepicker>
+                            <datepicker name="date_end" v-model="form.date_end" clear-button></datepicker>
                         </div>
                     </div>
 
