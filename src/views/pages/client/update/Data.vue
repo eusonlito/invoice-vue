@@ -28,6 +28,11 @@
                         <span class="text-danger text-sm">{{ errors.first('tax_number') }}</span>
                     </div>
 
+                    <div class="mb-3">
+                        <custom-select v-model="form.type" name="type" label="Tipo" option-value="id" option-title="name" :options="type" v-validate="'required'" data-vv-as="Tipo" />
+                        <span class="text-danger text-sm">{{ errors.first('type') }}</span>
+                    </div>
+
                     <div class="mb-3 mt-6">
                         <vs-textarea name="comment" label="Comentarios" v-model="form.comment" rows="3" class="w-full"></vs-textarea>
                         <span class="text-danger text-sm">{{ errors.first('comment') }}</span>

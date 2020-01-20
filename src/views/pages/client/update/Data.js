@@ -14,12 +14,25 @@ export default {
             shipping: [],
             tax: [],
 
+            type: [
+                {
+                    id: 'company',
+                    name: 'Empresa'
+                },
+
+                {
+                    id: 'freelance',
+                    name: 'Autónomo'
+                }
+            ],
+
             form: {
                 name: '',
                 phone: '',
                 email: '',
                 web: '',
                 tax_number: '',
+                type: '',
                 comment: '',
 
                 contact_email: '',
