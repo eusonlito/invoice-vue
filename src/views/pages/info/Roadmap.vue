@@ -9,8 +9,7 @@
                 <p class="mb-5 text-center">El camino a seguir será (más o menos por prioridad).</p>
 
                 <vs-list class="mb-5">
-                    <vs-list-item title="Generación de e-Factura para compatibilidad con la administración pública"></vs-list-item>
-                    <vs-list-item title="Logo de empresa para PDF de factura"></vs-list-item>
+                    <vs-list-item title="Generación de fichero compatible con e-Factura para facturación electrónica"></vs-list-item>
                     <vs-list-item icon-pack="feather" icon="icon-check" title="Firma digital integrada para el PDF de factura"></vs-list-item>
                     <vs-list-item icon-pack="feather" icon="icon-check" title="Notificaciones para facturas impagadas"></vs-list-item>
                     <vs-list-item icon-pack="feather" icon="icon-check" title="Notificaciones para facturas recurrentes generadas"></vs-list-item>
