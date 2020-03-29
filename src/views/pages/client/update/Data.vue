@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <custom-select v-model="form.type" name="type" label="Tipo" option-value="id" option-title="name" :options="type" v-validate="'required'" data-vv-as="Tipo" />
+                        <custom-select v-model="form.type" name="type" label="Tipo" option-value="id" option-title="name" :options="getType" v-validate="'required'" data-vv-as="Tipo" />
                         <span class="text-danger text-sm">{{ errors.first('type') }}</span>
                     </div>
 

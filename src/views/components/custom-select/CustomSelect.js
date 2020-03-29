@@ -38,19 +38,23 @@ export default {
     },
 
     computed:{
-        selected:{
+        selected: {
             get() {
+                let value;
+
                 if (this.value) {
-                    return this.value;
+                    value = this.value;
+                } else if (this.empty) {
+                    value = '';
+                } else if (this.options.length) {
+                    value = this.options[0][this.optionValue];
                 }
 
-                if (this.empty) {
-                    return '';
+                if (value !== this.value) {
+                    this.$emit('input', value);
                 }
 
-                if (this.options.length) {
-                    return this.options[0][this.optionValue];
-                }
+                return value;
             },
 
             set(value) {

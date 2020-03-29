@@ -14,18 +14,6 @@ export default {
             shipping: [],
             tax: [],
 
-            type: [
-                {
-                    id: 'company',
-                    name: 'Empresa'
-                },
-
-                {
-                    id: 'freelance',
-                    name: 'Autónomo'
-                }
-            ],
-
             form: {
                 name: '',
                 phone: '',
@@ -51,6 +39,20 @@ export default {
     computed: {
         validate() {
             return !this.errors.any();
+        },
+
+        getType() {
+            return [
+                {
+                    id: 'company',
+                    name: 'Empresa'
+                },
+
+                {
+                    id: 'freelance',
+                    name: 'Autónomo'
+                }
+            ];
         }
     },
 
