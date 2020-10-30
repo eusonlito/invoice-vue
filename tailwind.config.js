@@ -46,8 +46,13 @@ View the full documentation at https://tailwindcss.com.
 module.exports = {
 
   important: true,
-  // prefix: '',
-  // separator: ':',
+
+  purge: [
+    './src/**/*.vue',
+    './src/**/*.js',
+    './src/**/*.css',
+    './src/**/*.scss'
+  ],
 
   theme: {
 
