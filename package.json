@@ -12,7 +12,7 @@
     "@sentry/browser": "^5.27.2",
     "@sentry/integrations": "^5.27.2",
     "apexcharts": "^3.22.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "dotenv": "^8",
     "material-icons": "^0",
     "serialize-javascript": "^5.0.1",
