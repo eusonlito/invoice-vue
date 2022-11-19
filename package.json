@@ -32,7 +32,7 @@
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "@vue/cli-plugin-babel": "^3.12.1",
     "@vue/cli-plugin-eslint": "^3.12.1",
-    "@vue/cli-service": "^4.5.8",
+    "@vue/cli-service": "^5.0.8",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "compression-webpack-plugin": "^6.0.4",
     "eslint-loader": "^2.2.1",
